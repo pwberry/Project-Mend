@@ -22,7 +22,6 @@ import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
-import testimage from "@/assets/news/IMG_1389.jpg";
 
 interface Article {
   id: string;
@@ -40,18 +39,6 @@ interface Article {
 }
 
 const articles: Article[] = [
-  {
-    id: "9",
-    title: "test 2.",
-    date: "July 2024",
-    category: "Client Stories",
-    excerpt: "Test exploration .",
-    content:
-      "Here are a few images from our event at the Seymour Public Library in Auburn.",
-    slug: "test",
-    featured: true,
-    image: testimage,
-  },
 
   {
     id: "6",
