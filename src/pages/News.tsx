@@ -22,6 +22,7 @@ import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
+import testimage from "@/assets/news/IMG_1389.jpg";
 
 interface Article {
   id: string;
@@ -39,6 +40,18 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: "9",
+    title: "test 2.",
+    date: "July 2024",
+    category: "Client Stories",
+    excerpt: "Test exploration .",
+    content: "Here are a few images from our event at the Seymour Public Library in Auburn.",
+    slug: "test",
+    featured: true,
+    image: testimage
+  },
+
   {
     id: "6",
     title: "Writing New Futures",
@@ -80,20 +93,10 @@ const articles: Article[] = [
     title: "Celebrating the 2025 Issue of Mend",
     date: "February 15, 2025",
     category: "Featured",
-    excerpt: "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
+    excerpt: "It's hard to believe that we have completed the third issue of Mend...",
     content: `It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.
 
-Our launch party will be a hybrid event, where we will celebrate the 2025 issue of Mend and render, a new publication exploring the lives and creative works of impacted artists produced by Katherine Nikolau, a Writing and Rhetoric major who graduated in December through a SOURCE research grant.
-
-📅 Date: Saturday, February 15
-⏰ Time: 12:00 p.m. - 1:30 p.m. ET
-📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
-
-This event will include a light lunch.
-
-Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation. Additionally, the project has been supported at Syracuse University by: Engaged Humanities Network, The Humanities Center, SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
-
-For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.edu by February 11.`,
+Our launch party will be a hybrid event...`,
     slug: "celebrating-2025-issue-mend",
     featured: true,
     image: launchPartyImage
@@ -103,8 +106,8 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
     title: "HNY Post-Incarceration Humanities Partnership Convening",
     date: "May 21, 2024",
     category: "Our News",
-    excerpt: "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
-    content: "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
+    excerpt: "Humanities New York hosted an in-person convening...",
+    content: "On May 21, 2024, Humanities New York hosted an in-person convening...",
     slug: "hny-pihp-convening",
     featured: true,
     isVideo: true,
@@ -112,11 +115,11 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
   },
   {
     id: "3",
-    title: "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+    title: "Delighted to have Alex Anderson...",
     date: "September 19, 2024",
     category: "Our News",
-    excerpt: "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
-    content: "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
+    excerpt: "Delighted to have Alex Anderson...",
+    content: "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us...",
     slug: "alex-anderson-visit",
     featured: true,
     image: alexAndersonImage
@@ -127,18 +130,18 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
     date: "May 2024",
     category: "Client Stories",
     excerpt: "Celebrating the achievements of our dedicated Mend editorial team member.",
-    content: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
+    content: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas...",
     slug: "congratulations-ilhy-gomez",
     featured: true,
     image: mendTeamImage
   },
   {
     id: "5",
-    title: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
+    title: "On June 8th, 2024, Project Mend participated in United We End Racism",
     date: "June 8, 2024",
     category: "Our News",
-    excerpt: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
-    content: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
+    excerpt: "On June 8th, 2024, Project Mend had the great opportunity...",
+    content: "This community event brought together diverse voices in the fight against systemic racism...",
     slug: "united-we-end-racism-festival",
     featured: true,
     image: unitedWeEndRacismImage
@@ -174,7 +177,6 @@ const News = () => {
       });
       return;
     }
-    // TODO: Implement newsletter signup
     toast({
       title: "Success!",
       description: "You've been added to our mailing list.",
@@ -236,7 +238,7 @@ const News = () => {
 
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          {/* All Articles - Image Left, Text Right */}
+          {/* Featured Articles */}
           {featuredArticles.length > 0 && (
             <section className="mb-8">
               <div className="space-y-8">
@@ -283,7 +285,7 @@ const News = () => {
                           )}
                         </div>
 
-                        {/* Right: Text Content */}
+                        {/* Right: Text */}
                         <div className="relative">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <Calendar size={14} />
@@ -314,7 +316,6 @@ const News = () => {
               </div>
             </section>
           )}
-
 
           {/* Newsletter Signup */}
           <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
