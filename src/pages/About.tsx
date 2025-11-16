@@ -19,11 +19,11 @@ const About = () => {
             {/* Row 1: 3 cards */}
             <FeatureCard
               title={
-            <span>
-            <em>Mend</em>, The Journal
-            </span>
-            }
-              description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people"
+                <span>
+                  <em>Mend</em>, The Journal
+                </span>
+              }
+              description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people."
               image={journalImage}
               imageAlt="Mend 2025 cover image"
               link="https://surface.syr.edu/mend/"
@@ -36,38 +36,37 @@ const About = () => {
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
               link="/join"
-              external={false} 
-
+              external={false}
             />
             
-           <FeatureCard
-          title={
-          <span>
-          <em>Mend</em> Fences: New Podcast Series
-          </span>
-          }
-          description={
-          <span>
-          In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
-          that appear in the journal and in our archive.
-          </span>
-          }
-          image={podcastImage}
-          imageAlt="Podcast recording setup"
-          comingSoon
-          />
+            <FeatureCard
+              title={
+                <span>
+                  <em>Mend</em> Fences: New Podcast Series
+                </span>
+              }
+              description={
+                <span>
+                  In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
+                  that appear in the journal and in our archive.
+                </span>
+              }
+              image={podcastImage}
+              imageAlt="Podcast recording setup"
+              comingSoon
+            />
             
             <FeatureCard
-            title={<span>Special Issue: <em>render</em></span>}
-            description={
-            <span>
-            <em>render</em>, created by Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists.
-            </span>
-            }
-            image={renderImage}
-            imageAlt="Cover of render special issue"
-            link="https://surface.syr.edu/mendbooks/1/"
-            external
+              title={<span>Special Issue: <em>render</em></span>}
+              description={
+                <span>
+                  <em>render</em>, created by Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists.
+                </span>
+              }
+              image={renderImage}
+              imageAlt="Cover of render special issue"
+              link="https://surface.syr.edu/mendbooks/1/"
+              external
             />
 
             {/* Row 2: 2 cards */}
@@ -86,7 +85,7 @@ const About = () => {
               image={newsImage}
               imageAlt="Community gathering at event"
               link="/news"
-              external={false} 
+              external={false}
             />
           </div>
         </div>
@@ -101,13 +100,17 @@ const About = () => {
           
           <div className="space-y-6 text-foreground/90 leading-relaxed">
             <p>
-Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration. Our archive challenges dominant narratives that stigmatize and deny the humanity of this population.            </p>
+              Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration. Our archive challenges dominant narratives that stigmatize and deny the humanity of this population.
+            </p>
             
             <p>
-The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.            </p>
+              The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.
+            </p>
                         
-             <p>
-Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation and the CNY Humanities Corridor. Additionally, the project has been supported at Syracuse University by the Engaged Humanities Network, the Humanities Center, the SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.                 
+            <p>
+              Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation and the CNY Humanities Corridor. Additionally, the project has been supported at Syracuse University by the Engaged Humanities Network, the Humanities Center, the SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
+            </p>
+
             <p>
               For more information, contact Patrick W. Berry at{" "}
               <a 
