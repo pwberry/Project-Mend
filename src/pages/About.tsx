@@ -31,6 +31,8 @@ const About = () => {
               description="Impacted people in Syracuse build multimodal storytelling skills through our apprenticeship. Learn more about becoming an editor."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
+              link="https://project-mend.net/join.html"
+              external
             />
             
             <FeatureCard
