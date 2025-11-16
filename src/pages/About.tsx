@@ -52,6 +52,7 @@ const About = () => {
             celebrates the creative work and activism of nine justice-impacted artists.
             </span>
             }
+            image={renderImage}
             imageAlt="Cover of render special issue"
             link="https://surface.syr.edu/mendbooks/1/"
             external
