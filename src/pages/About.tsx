@@ -101,16 +101,11 @@ const About = () => {
           
           <div className="space-y-6 text-foreground/90 leading-relaxed">
             <p>
-Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration.             </p>
+Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration. Our archive challenges dominant narratives that stigmatize and deny the humanity of this population.            </p>
             
             <p>
-              The initiative consists of two parts: Mend Syracuse, a publishing apprenticeship for justice-impacted people and Mend, a journal featuring the works of anyone impacted by mass incarceration. Both components concern the power of writing to bring about change, exploring how individuals learn to write themselves into new identities and new lives.
-            </p>
-            
-            <p>
-              Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation and the CNY Humanities Corridor. Additionally, the project has been supported at Syracuse University by the Engaged Humanities Network, the Humanities Center, the SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
-            </p>
-            
+The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.            </p>
+                        
             <p>
               For more information, contact Patrick W. Berry at{" "}
               <a 
