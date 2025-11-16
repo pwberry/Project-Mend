@@ -39,7 +39,7 @@ const About = () => {
            <FeatureCard
           title={
           <span>
-          <em>Mend</em> Fences: Our New Podcast Series
+          <em>Mend</em> Fences: New Podcast Series
           </span>
           }
           description={
@@ -68,8 +68,8 @@ const About = () => {
 
             {/* Row 2: 2 cards */}
             <FeatureCard
-              title="Artist-Writer Collaborations: Prison and Time"
-              description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode, an award-winning experimental animator, collaborate on a powerful film."
+              title="New Film: Prison and Time"
+              description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode collaborate on a powerful film."
               image={prisonAndTimeImage}
               imageAlt="Prison and Time film still"
               link="https://vimeo.com/1124375859/d7a60f58dc?share=copy"
