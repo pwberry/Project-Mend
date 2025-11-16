@@ -101,8 +101,7 @@ const About = () => {
           
           <div className="space-y-6 text-foreground/90 leading-relaxed">
             <p>
-              Project Mend focuses on writing and publishing as a means by which formerly incarcerated individuals and their families can reimagine themselves, their communities, and their futures. Self-expression through writing holds a potential for the transformation of not only those who create, but for those who may read the published works.
-            </p>
+Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration.             </p>
             
             <p>
               The initiative consists of two parts: Mend Syracuse, a publishing apprenticeship for justice-impacted people and Mend, a journal featuring the works of anyone impacted by mass incarceration. Both components concern the power of writing to bring about change, exploring how individuals learn to write themselves into new identities and new lives.
