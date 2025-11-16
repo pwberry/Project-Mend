@@ -31,6 +31,8 @@ const About = () => {
               description="Develop skills in multimodal storytelling and publishing."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
+              link="https://project-mend.net/news.html"
+              external
             />
             
             <FeatureCard
