@@ -46,8 +46,7 @@ const About = () => {
             
             <FeatureCard
               title="Special Issue: render"
-              description="render, created by Writing and Rhetoric graduate Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists, considering how composing can be healing after incarceration."
-              image={renderImage}
+              description="render, created by Writing and Rhetoric graduate Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists."
               imageAlt="Cover of render special issue"
               link="https://surface.syr.edu/mendbooks/1/"
               external
