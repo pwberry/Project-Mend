@@ -7,6 +7,7 @@ import theoYusra from "@/assets/slideshow/theo_yusra.jpg";
 import everson from "@/assets/slideshow/everson.jpg";
 import daquan from "@/assets/slideshow/daquan_5.jpg";
 import group from "@/assets/slideshow/group.jpg";
+import studio from "@/assets/slideshow/marion_troy_tony_in_studio.jpg";
 
 const slides = [
   { src: katherinePatrickMichael, alt: "Katherine, Patrick, and Michael at Project Mend event" },
@@ -16,6 +17,7 @@ const slides = [
   { src: everson, alt: "Project Mend community gathering at Everson" },
   { src: daquan, alt: "Daquan presenting at Project Mend event" },
   { src: group, alt: "Project Mend team and community members" },
+  { src: studio, alt: "Project Mend in studio" },
 ];
 
 const Slideshow = () => {
