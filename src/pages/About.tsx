@@ -20,9 +20,9 @@ const About = () => {
             <FeatureCard
               title= <span><em>Mend</em>, The Journal
               </span>
-              description="Mend is an annual publication celebrating the lives and creative work of systems-impacted people."
+              description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people"
               image={journalImage}
-              imageAlt="Stack of Mend journals"
+              imageAlt="Mend 2025 cover image"
               link="https://surface.syr.edu/mend/"
               external
             />
