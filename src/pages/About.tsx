@@ -28,11 +28,9 @@ const About = () => {
             
             <FeatureCard
               title="Digital Media Publishing Apprenticeship"
-              description="Develop skills in multimodal storytelling and publishing."
+              description="Our Digital Media Publishing Apprenticeship offers impacted people in Syracuse, NY, an opportunity to develop skill in multimodal storytelling. Find out how you can become an editor."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
-              link="https://project-mend.net/news.html"
-              external
             />
             
             <FeatureCard
