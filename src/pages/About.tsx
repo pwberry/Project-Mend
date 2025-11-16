@@ -78,7 +78,7 @@ const About = () => {
             
             <FeatureCard
               title="News and Events"
-              description="Learn about Project Mend’s upcoming workshops, public programs, and celebrations that highlight storytelling, digital media, and community collaboration."
+              description="Learn about our upcoming workshops, public programs, and celebrations that highlight storytelling, digital media, and community collaboration."
               image={newsImage}
               imageAlt="Community gathering at event"
               link="/news"
