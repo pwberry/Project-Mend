@@ -116,7 +116,7 @@ Project Mend is a grassroots, multimodal, open-access archive that amplifies the
                 href="mailto:mend@project-mend.net" 
                 className="text-primary hover:text-primary-light transition-colors underline"
               >
-                mendthejournal@gmail.com
+                mend@project-mend.net
               </a>
             </p>
           </div>
