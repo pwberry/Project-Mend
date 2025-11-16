@@ -18,59 +18,42 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Row 1: 3 cards */}
             <FeatureCard
-              title= <span><em>Mend</em>, The Journal
-              </span>
-              description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people"
+              title="Mend, the journal"
+              description="Mend is an annual publication celebrating the lives and creative work of systems-impacted people."
               image={journalImage}
-              imageAlt="Mend 2025 cover image"
+              imageAlt="Stack of Mend journals"
               link="https://surface.syr.edu/mend/"
               external
             />
             
             <FeatureCard
               title="Digital Media Publishing Apprenticeship"
-              description="Impacted people in Syracuse build multimodal storytelling skills through our apprenticeship. Learn more about becoming an editor."
+              description="Our Digital Media Publishing Apprenticeship offers impacted people in Syracuse, NY, an opportunity to develop skill in multimodal storytelling. Find out how you can become an editor."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
-              link="/join"
-              external={false} 
-
             />
             
-           <FeatureCard
-          title={
-          <span>
-          <em>Mend</em> Fences: New Podcast Series
-          </span>
-          }
-          description={
-          <span>
-          In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
-          that appear in the journal and in our archive.
-          </span>
-          }
-          image={podcastImage}
-          imageAlt="Podcast recording setup"
-          comingSoon
-          />
+            <FeatureCard
+              title="Project Mend Spoken Word/Podcast Series"
+              description="In the Project Mend spoken word/podcast, our editors reflect on themes that appear in our archive."
+              image={podcastImage}
+              imageAlt="Podcast recording setup"
+              comingSoon
+            />
             
             <FeatureCard
-            title={<span>Special Issue: <em>render</em></span>}
-            description={
-            <span>
-            <em>render</em>, created by Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists.
-            </span>
-            }
-            image={renderImage}
-            imageAlt="Cover of render special issue"
-            link="https://surface.syr.edu/mendbooks/1/"
-            external
+              title="Special Issue: render"
+              description="render, created by Writing and Rhetoric graduate Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists, considering how composing can be healing after incarceration."
+              image={renderImage}
+              imageAlt="Cover of render special issue"
+              link="https://surface.syr.edu/mendbooks/1/"
+              external
             />
 
             {/* Row 2: 2 cards */}
             <FeatureCard
-              title="New Film: Prison and Time"
-              description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode collaborate on a powerful film."
+              title="Artist-Writer Collaborations: Prison and Time"
+              description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode, an award-winning experimental animator, collaborate on a powerful film."
               image={prisonAndTimeImage}
               imageAlt="Prison and Time film still"
               link="https://vimeo.com/1124375859/d7a60f58dc?share=copy"
@@ -79,11 +62,11 @@ const About = () => {
             
             <FeatureCard
               title="News and Events"
-              description="Learn about our upcoming workshops, public programs, and celebrations that highlight our community."
+              description="Find out about upcoming news and events."
               image={newsImage}
               imageAlt="Community gathering at event"
-              link="/news"
-              external={false} 
+              link="https://project-mend.net/news.html"
+              external
             />
           </div>
         </div>
