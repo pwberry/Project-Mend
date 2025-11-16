@@ -37,11 +37,15 @@ const About = () => {
             />
             
             <FeatureCard
-              title="<span><em>Mend</em> Fences: Our New Podcast Series" </span>
-              description="In Mend Fences, our new podcast series,  editors reflect on themes that appear in the journal and in our archive."
-              image={podcastImage}
-              imageAlt="Podcast recording setup"
-              comingSoon
+            title={
+            <span>
+            <em>Mend</em> Fences: Our New Podcast Series
+            </span>
+            }
+            description="In Mend Fences, our new podcast series, editors reflect on themes that appear in the journal and in our archive."
+            image={podcastImage}
+            imageAlt="Podcast recording setup"
+            comingSoon
             />
             
             <FeatureCard
