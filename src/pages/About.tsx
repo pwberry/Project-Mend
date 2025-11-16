@@ -100,8 +100,7 @@ const About = () => {
           
           <div className="space-y-6 text-foreground/90 leading-relaxed">
             <p>
-              Project Mend is a multimodal, grassroots-level, open-access national archive centered on the scholarly and creative work of incarcerated and formerly incarcerated individuals and their communities, many of whom are Black and brown people struggling to break cycles of incarceration. Our archive challenges dominant narratives that stigmatize and deny the humanity of this population.
-            </p>
+Project Mend is a grassroots, multimodal, open-access archive that amplifies the scholarly and creative contributions of people who are currently or formerly incarcerated, along with their broader communities. Many of our contributors are Black and brown individuals working to interrupt cycles of incarceration. Through this work, the archive pushes back against dominant narratives that diminish, silence, or dehumanize these lives.            </p>
             
             <p>
               The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.
