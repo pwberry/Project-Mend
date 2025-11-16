@@ -18,7 +18,7 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Row 1: 3 cards */}
             <FeatureCard
-              title="Mend, the journal"
+              title="Med, the journal"
               description="Mend is an annual publication celebrating the lives and creative work of systems-impacted people."
               image={journalImage}
               imageAlt="Stack of Mend journals"
