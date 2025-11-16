@@ -37,8 +37,8 @@ const About = () => {
             />
             
             <FeatureCard
-              title="Project Mend Spoken Word/Podcast Series"
-              description="In the Project Mend spoken word/podcast, our editors reflect on themes that appear in our archive."
+              title="Mend Fences: Our New Podcast Series"
+              description="In the Project Mend spoken word/podcast, our editors reflect on themes that appear in the journal and our archive."
               image={podcastImage}
               imageAlt="Podcast recording setup"
               comingSoon
