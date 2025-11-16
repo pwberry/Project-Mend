@@ -29,8 +29,8 @@ const Slideshow = () => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setIsReducedMotion(mediaQuery.matches);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsReducedMotion(e.matches);
+    const handleChange = (event: any) => {
+      setIsReducedMotion(event.matches);
     };
 
     mediaQuery.addEventListener("change", handleChange);
@@ -80,7 +80,6 @@ const Slideshow = () => {
               src={slide.src}
               alt={slide.alt}
               className="max-w-full max-h-full object-contain"
-              style={{ objectFit: "contain" }}
             />
           </div>
         ))}
@@ -116,7 +115,7 @@ const Slideshow = () => {
                 : "bg-foreground/30 hover:bg-foreground/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
-            aria-current={index === currentIndex}
+            aria-current={index === currentIndex ? "true" : undefined}
           />
         ))}
       </div>
