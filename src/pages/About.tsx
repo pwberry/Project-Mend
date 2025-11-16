@@ -57,8 +57,7 @@ const About = () => {
             title={<span>Special Issue: <em>render</em></span>}
             description={
             <span>
-            <em>render</em>, created by Writing and Rhetoric graduate Katherine Nikolau,
-            celebrates the creative work and activism of nine justice-impacted artists.
+            <em>render</em>, created by Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists.
             </span>
             }
             image={renderImage}
