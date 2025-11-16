@@ -28,7 +28,7 @@ const About = () => {
             
             <FeatureCard
               title="Digital Media Publishing Apprenticeship"
-              description="Impacted people in Syracuse cultivate multimodal storytelling skills through our apprenticeship. Learn more about becoming an editor."
+              description="Impacted people in Syracuse build multimodal storytelling skills through our apprenticeship. Learn more about becoming an editor."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
               link="/join"
