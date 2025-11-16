@@ -113,7 +113,7 @@ Project Mend is a grassroots, multimodal, open-access archive that amplifies the
             <p>
               For more information, contact Patrick W. Berry at{" "}
               <a 
-                href="mailto:mendthejournal@gmail.com" 
+                href="mailto:mend@project-mend.net" 
                 className="text-primary hover:text-primary-light transition-colors underline"
               >
                 mendthejournal@gmail.com
