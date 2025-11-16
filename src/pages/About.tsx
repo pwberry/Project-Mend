@@ -68,8 +68,8 @@ const About = () => {
               description="Find out about upcoming news and events."
               image={newsImage}
               imageAlt="Community gathering at event"
-              link="https://project-mend.net/news.html"
-              external
+              link="/news"
+              external={false} 
             />
           </div>
         </div>
