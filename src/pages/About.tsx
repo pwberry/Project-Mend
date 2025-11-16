@@ -106,6 +106,8 @@ Project Mend is a multimodal, grassroots-level, open-access national archive cen
             <p>
 The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.            </p>
                         
+             <p>
+Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation and the CNY Humanities Corridor. Additionally, the project has been supported at Syracuse University by the Engaged Humanities Network, the Humanities Center, the SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.                 
             <p>
               For more information, contact Patrick W. Berry at{" "}
               <a 
