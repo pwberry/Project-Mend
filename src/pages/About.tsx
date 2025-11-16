@@ -18,8 +18,11 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Row 1: 3 cards */}
             <FeatureCard
-              title= <span><em>Mend</em>, The Journal
-              </span>
+              title={
+            <span>
+            <em>Mend</em>, The Journal
+            </span>
+            }
               description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people"
               image={journalImage}
               imageAlt="Mend 2025 cover image"
