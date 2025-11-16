@@ -32,7 +32,7 @@ const About = () => {
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
               link="https://surface.syr.edu/join/"
-              external;
+              external
             />
             
             <FeatureCard
