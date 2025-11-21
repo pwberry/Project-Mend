@@ -176,22 +176,20 @@ const News = () => {
   }
 
   try {
-    const response = await fetch(
+    const body = new URLSearchParams();
+    body.append("name", name);
+    body.append("email", email);
+
+    await fetch(
       "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email }),
+        mode: "no-cors", // avoid CORS errors; we don't inspect the response
+        body,
       }
     );
 
-    // Optional: you can inspect the response if needed
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
+    // If fetch didn't throw, we assume success
     toast({
       title: "Success!",
       description: "You've been added to our mailing list.",
