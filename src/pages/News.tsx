@@ -164,51 +164,51 @@ const News = () => {
   const featuredArticles = articles.filter((article) => article.featured);
 
   const handleSignupSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!name || !email) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields.",
-        variant: "destructive",
-      });
-      return;
-    }
+  if (!name || !email) {
+    toast({
+      title: "Error",
+      description: "Please fill in all fields.",
+      variant: "destructive",
+    });
+    return;
+  }
 
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, email }),
-        }
-      );
-
-      // Optional: you can inspect the response if needed
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email }),
       }
+    );
 
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list.",
-      });
-
-      setName("");
-      setEmail("");
-    } catch (error) {
-      console.error("Newsletter submit error:", error);
-      toast({
-        title: "Something went wrong",
-        description:
-          "We couldn't save your subscription. Please try again later.",
-        variant: "destructive",
-      });
+    // Optional: you can inspect the response if needed
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
     }
-  };
+
+    toast({
+      title: "Success!",
+      description: "You've been added to our mailing list.",
+    });
+
+    setName("");
+    setEmail("");
+  } catch (error) {
+    console.error("Newsletter submit error:", error);
+    toast({
+      title: "Something went wrong",
+      description:
+        "We couldn't save your subscription. Please try again later.",
+      variant: "destructive",
+    });
+  }
+};
 
   return (
     <div className="min-h-screen bg-background">
