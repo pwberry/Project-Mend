@@ -1,20 +1,10 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
+
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
@@ -166,57 +156,42 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
   },
 ];
 
-const ITEMS_PER_PAGE = 6;
-
 const News = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const { toast } = useToast();
 
-  const filteredArticles =
-    selectedCategory === "All"
-      ? articles
-      : articles.filter((article) => article.category === selectedCategory);
-
-  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedArticles = filteredArticles.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE
-  );
-
   const featuredArticles = articles.filter((article) => article.featured);
 
-  const handleSignupSubmit = async (e: React.FormEvent) => {
+  const handleSignupSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!name || !email) {
       toast({
         title: "Error",
-        description: "Please fill in all fields",
+        description: "Please fill in all fields.",
         variant: "destructive",
       });
       return;
     }
 
     try {
-      const body = new URLSearchParams({
-        name,
-        email,
-      });
-
-      await fetch(
-        "https://script.google.com/macros/s/130p_s7X0klqFOwIyWubEbpN2GWTYPc61nL8C7-ifeF0/exec",
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
         {
           method: "POST",
-          mode: "no-cors", // let the request go through; we won't inspect the response
-          body,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email }),
         }
       );
 
-      // If fetch doesn't throw, assume success
+      // Optional: you can inspect the response if needed
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
       toast({
         title: "Success!",
         description: "You've been added to our mailing list.",
@@ -246,7 +221,7 @@ const News = () => {
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
               Stay updated on Project Mend announcements, events, and community
-              happenings
+              happenings.
             </p>
             <div className="flex gap-4 justify-center">
               <Button
@@ -282,9 +257,10 @@ const News = () => {
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          {/* Featured Articles - Image Left, Text Right */}
+          {/* Featured Articles */}
           {featuredArticles.length > 0 && (
             <section className="mb-8">
               <div className="space-y-8">
@@ -377,14 +353,14 @@ const News = () => {
                 Subscribe to our mailing list to receive the latest news,
                 events, and updates from Project Mend.
               </p>
-              <form onSubmit={handlesignupSubmit} className="space-y-4">
+              <form onSubmit={handleSignupSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-left">
                     <Label htmlFor="newsletter-name" className="mb-2 block">
                       Name
                     </Label>
                     <Input
-                      id="Sheet1"
+                      id="newsletter-name"
                       type="text"
                       placeholder="Your name"
                       value={name}
@@ -397,7 +373,7 @@ const News = () => {
                       Email
                     </Label>
                     <Input
-                      id="Sheet1"
+                      id="newsletter-email"
                       type="email"
                       placeholder="your.email@example.com"
                       value={email}
