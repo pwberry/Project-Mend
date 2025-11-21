@@ -9,6 +9,7 @@ import mcconnellImg from "@/assets/people/2026/mcconnell.jpg";
 import nikolauImg from "@/assets/people/2026/nikolau.jpg";
 import rodriguezImg from "@/assets/people/2026/rodriguez.jpg";
 import shoultzImg from "@/assets/people/2026/shoultz.jpg";
+import tingueImg from "@/assets/people/2026/tingue.jpg";
 import withersImg from "@/assets/people/2026/withers.jpg";
 import whiteImg from "@/assets/people/2026/white.jpg";
 import berry from "@/assets/people/2026/berry.jpg";
@@ -60,7 +61,7 @@ const teams: Record<string, Person[]> = {
     { name: "Melinda Agnew", role: "Editor", image: agnewImg },
     { name: "Rebecca Botting", role: "Editor", image: bottingImg },
     { name: "Ejarias P. Burgin", role: "Editor", image: ejariasImg },
-    { name: "Frantzline Tingue", role: "Editor", image: placeholderImage },
+    { name: "Frantzline Tingue", role: "Editor", image: tingueImg},
     { name: "Tony Eiland", role: "Editor", image: eilandImg },
     { name: "Alexis Kirkpatrick", role: "Editor", image: kirkpatrickImg },
     { name: "Molly McConnell", role: "Editor", image: mcconnellImg },
