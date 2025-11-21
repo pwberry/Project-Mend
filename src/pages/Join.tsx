@@ -18,10 +18,13 @@ const formSchema = z.object({
   over18: z.enum(["yes", "no"], { required_error: "Please select an option" }),
   interest: z.string().min(10, "Please provide at least 10 characters"),
   sampleWriting: z.string().optional(),
+  // RHF will store a FileList here; keep Zod loose but type it below
   files: z.any().optional(),
 });
 
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof formSchema> & {
+  files?: FileList;
+};
 
 const Join = () => {
   const {
@@ -29,45 +32,49 @@ const Join = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
- const onSubmit = async (data: FormData) => {
-  try {
-    const formDataToSend = {
-      ...data,
-      files: await Promise.all(
-        (data.files ? Array.from(data.files) : []).map(async (file: File) => ({
-          fileName: file.name,
-          content: await file.text() // optional: send file content
-        }))
-      ),
-    };
+  const onSubmit = async (data: FormData) => {
+    try {
+      const filesArray = data.files ? Array.from(data.files) : [];
 
-   const response = await fetch(
-  "https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formDataToSend),
-  }
-);
+      const formDataToSend = {
+        ...data,
+        files: await Promise.all(
+          filesArray.map(async (file: File) => ({
+            fileName: file.name,
+            content: await file.text(), // optional: send file content
+          }))
+        ),
+      };
 
-    const result = await response.json();
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formDataToSend),
+        }
+      );
 
-    if (result.ok) {
-      toast.success("Application submitted successfully!");
-    } else {
-      toast.error("Error submitting application");
+      // If your Apps Script returns JSON and you need it, you can parse it here:
+      // const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Application submitted successfully!");
+        reset();
+      } else {
+        toast.error("Error submitting application.");
+      }
+    } catch (err) {
+      toast.error("Something went wrong submitting your application.");
     }
-  } catch (err) {
-    toast.error("Something went wrong submitting your application.");
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-background py-16">
@@ -83,19 +90,19 @@ const Join = () => {
           <div className="bg-card border border-border rounded-lg p-8 mb-12">
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Do you want to produce and publish your own stories? Do you want to participate 
-                in the production and manufacturing of Mend, an anthology of work by incarcerated 
-                and formerly incarcerated individuals and their families? Do you want to participate 
-                in workshops on multimedia storytelling?
+                Do you want to produce and publish your own stories? Do you want to participate
+                in the production and manufacturing of <em>Mend</em>, an anthology of work by
+                incarcerated and formerly incarcerated individuals and their families? Do you
+                want to participate in workshops on multimedia storytelling?
               </p>
               <p>
-                The Project Mend apprentice position is open to residents of Central New York who 
-                have been impacted by mass incarceration. You will have the opportunity to work 
-                collaboratively to plan, design, and edit the journal Mend and to learn how to 
-                create your own digital stories.
+                The Project Mend apprentice position is open to residents of Central New York who
+                have been impacted by mass incarceration. You will have the opportunity to work
+                collaboratively to plan, design, and edit the journal <em>Mend</em> and to learn
+                how to create your own digital stories.
               </p>
               <p>
-                You'll also get a chance to meet with guest speakers, participate in humanities 
+                You&apos;ll also get a chance to meet with guest speakers, participate in humanities
                 events, and learn the skills needed to publish your own work.
               </p>
               <p className="font-semibold text-foreground">
@@ -120,8 +127,10 @@ const Join = () => {
 
           {/* Application Form */}
           <div className="bg-card border border-border rounded-lg p-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-6">Apply to Join Our Team</h2>
-            
+            <h2 className="text-2xl font-semibold text-foreground mb-6">
+              Apply to Join Our Team
+            </h2>
+
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* Criminal Justice System Impact */}
               <div className="space-y-2">
@@ -129,16 +138,22 @@ const Join = () => {
                   Have you been impacted by the criminal justice system? *
                 </Label>
                 <RadioGroup
-                  onValueChange={(value) => setValue("impacted", value as "yes" | "no")}
+                  onValueChange={(value) =>
+                    setValue("impacted", value as "yes" | "no", { shouldValidate: true })
+                  }
                   className="flex gap-4"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="impacted-yes" />
-                    <Label htmlFor="impacted-yes" className="font-normal cursor-pointer">Yes</Label>
+                    <Label htmlFor="impacted-yes" className="font-normal cursor-pointer">
+                      Yes
+                    </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="no" id="impacted-no" />
-                    <Label htmlFor="impacted-no" className="font-normal cursor-pointer">No</Label>
+                    <Label htmlFor="impacted-no" className="font-normal cursor-pointer">
+                      No
+                    </Label>
                   </div>
                 </RadioGroup>
                 {errors.impacted && (
@@ -218,16 +233,22 @@ const Join = () => {
               <div className="space-y-2">
                 <Label className="text-base">Are you over the age of 18? *</Label>
                 <RadioGroup
-                  onValueChange={(value) => setValue("over18", value as "yes" | "no")}
+                  onValueChange={(value) =>
+                    setValue("over18", value as "yes" | "no", { shouldValidate: true })
+                  }
                   className="flex gap-4"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="over18-yes" />
-                    <Label htmlFor="over18-yes" className="font-normal cursor-pointer">Yes</Label>
+                    <Label htmlFor="over18-yes" className="font-normal cursor-pointer">
+                      Yes
+                    </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="no" id="over18-no" />
-                    <Label htmlFor="over18-no" className="font-normal cursor-pointer">No</Label>
+                    <Label htmlFor="over18-no" className="font-normal cursor-pointer">
+                      No
+                    </Label>
                   </div>
                 </RadioGroup>
                 {errors.over18 && (
@@ -254,7 +275,8 @@ const Join = () => {
               {/* Sample Writing */}
               <div className="space-y-2">
                 <Label htmlFor="sampleWriting">
-                  Do you have any sample writing that you'd like to share? This is not required.
+                  Do you have any sample writing that you&apos;d like to share? This is not
+                  required.
                 </Label>
                 <Textarea
                   id="sampleWriting"
@@ -292,9 +314,13 @@ const Join = () => {
 
             <p className="text-sm text-muted-foreground mt-6">
               Questions? Reach out at{" "}
-              <a href="mailto:mend@project-mend.net" className="text-primary hover:underline">
-                mendthejournal@gmail.com
+              <a
+                href="mailto:mend@project-mend.net"
+                className="text-primary hover:underline"
+              >
+                mend@project-mend.net
               </a>
+              .
             </p>
           </div>
         </div>
