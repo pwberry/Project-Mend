@@ -50,7 +50,7 @@ const Join = () => {
       console.log("Sending payload to Apps Script:", formDataToSend);
 
       await fetch(
-        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+        "https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec",
         {
           method: "POST",
           mode: "no-cors",
