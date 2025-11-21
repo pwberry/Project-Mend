@@ -45,7 +45,8 @@ const articles: Article[] = [
     title: "Writing New Futures",
     date: "November 2025",
     category: "In The Media",
-    excerpt: "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
+    excerpt:
+      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
     content:
       "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
     slug: "writing-new-futures",
@@ -74,7 +75,8 @@ const articles: Article[] = [
       "How Project Mend is helping formerly incarcerated people and their families tell their stories",
     date: "March 27, 2025",
     category: "In The Media",
-    excerpt: "Central Current features Project Mend's work with formerly incarcerated individuals.",
+    excerpt:
+      "Central Current features Project Mend's work with formerly incarcerated individuals.",
     content:
       "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
     slug: "central-current-project-mend",
@@ -173,22 +175,8 @@ const News = () => {
   const [name, setName] = useState("");
   const { toast } = useToast();
 
-  const filteredArticles =
-    selectedCategory === "All"
-      ? articles
-      : articles.filter((article) => article.category === selectedCategory);
-
-  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedArticles = filteredArticles.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE
-  );
-
-  const featuredArticles = articles.filter((article) => article.featured);
-
   // -------------------------------------------------------------
-  // 🔥 UPDATED NEWSLETTER FORM SUBMISSION — CONNECTED TO GOOGLE SHEETS
+  // 🔥 UPDATED NEWSLETTER SUBMISSION — GOOGLE SHEETS FORM-ENCODED
   // -------------------------------------------------------------
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -208,20 +196,28 @@ const News = () => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
           },
-          body: JSON.stringify({ name, email }),
+          body: new URLSearchParams({
+            name,
+            email,
+          }).toString(),
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      const text = await response.text();
+      console.log("Apps Script response:", text);
+
+      let data: { result?: string; message?: string } = {};
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        console.error("Could not parse JSON:", text);
+        throw new Error("Invalid server response");
       }
 
-      const data = await response.json();
-
       if (data.result !== "success") {
-        throw new Error(data.message || "Unexpected response from server");
+        throw new Error(data.message || "Unexpected server response");
       }
 
       toast({
@@ -232,7 +228,7 @@ const News = () => {
       setName("");
       setEmail("");
     } catch (error: any) {
-      console.error(error);
+      console.error("Newsletter error:", error);
       toast({
         title: "Something went wrong",
         description:
@@ -241,10 +237,23 @@ const News = () => {
       });
     }
   };
-
   // -------------------------------------------------------------
   // END UPDATED NEWSLETTER CODE
   // -------------------------------------------------------------
+
+  const filteredArticles =
+    selectedCategory === "All"
+      ? articles
+      : articles.filter((article) => article.category === selectedCategory);
+
+  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedArticles = filteredArticles.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
+
+  const featuredArticles = articles.filter((article) => article.featured);
 
   return (
     <div className="min-h-screen bg-background">
@@ -303,7 +312,9 @@ const News = () => {
             <section className="mb-8">
               <div className="space-y-8">
                 {featuredArticles.map((article) => {
-                  const ArticleWrapper = article.externalLink ? "a" : "article";
+                  const ArticleWrapper = article.externalLink
+                    ? "a"
+                    : "article";
                   const wrapperProps = article.externalLink
                     ? {
                         href: article.externalLink,
@@ -317,7 +328,6 @@ const News = () => {
                   return (
                     <ArticleWrapper key={article.id} {...wrapperProps}>
                       <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
-                        {/* LEFT: IMAGE OR VIDEO */}
                         <div className="overflow-hidden rounded-lg flex justify-center">
                           {article.isVideo && article.videoId ? (
                             <div className="aspect-video w-full max-w-xl">
@@ -346,7 +356,6 @@ const News = () => {
                           )}
                         </div>
 
-                        {/* RIGHT: TEXT CONTENT */}
                         <div className="relative">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <Calendar size={14} />
