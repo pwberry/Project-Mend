@@ -17,7 +17,11 @@ const navItems = [
     ]
   },
   { label: "Submit", path: "/submit" },
-  { label: "Mend, The Journal", path: "https://surface.syr.edu/mend/", external: true },
+  {
+  label: <span><em>Mend</em>, The Journal</span>,
+  path: "https://surface.syr.edu/mend/",
+  external: true
+},
   { label: "Join Editorial Team", path: "/join" },
   { label: "News & Events", path: "/news" },
 ];
