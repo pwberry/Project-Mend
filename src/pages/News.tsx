@@ -189,17 +189,24 @@ const News = () => {
 
   const featuredArticles = articles.filter((article) => article.featured);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!name || !email) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields",
-        variant: "destructive",
-      });
-      return;
+  const res = await fetch(
+    "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
     }
+  );
+
+  const result = await res.json();
+  console.log(result);
+};
 
     try {
       const body = new URLSearchParams({
