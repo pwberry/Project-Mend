@@ -1,10 +1,20 @@
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
-
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
@@ -32,56 +42,45 @@ const articles: Article[] = [
   {
     id: "6",
     title: "Writing New Futures",
-    date: "November 2025",
+    date: "January 2025",
     category: "In The Media",
-    excerpt:
-      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
-    content:
-      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
+    excerpt: "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
+    content: "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
     slug: "writing-new-futures",
     featured: true,
     image: writingNewFuturesImage,
-    externalLink:
-      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
+    externalLink: "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/"
   },
   {
     id: "7",
     title: "When I Think of Freedom...",
-    date: "July 2025",
+    date: "December 2024",
     category: "In The Media",
-    excerpt:
-      "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
-    content:
-      "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
+    excerpt: "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
+    content: "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
     slug: "when-i-think-of-freedom",
     featured: true,
     image: whenIThinkOfFreedomImage,
-    externalLink:
-      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
+    externalLink: "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/"
   },
   {
     id: "8",
-    title:
-      "How Project Mend is helping formerly incarcerated people and their families tell their stories",
+    title: "How Project Mend is helping formerly incarcerated people and their families tell their stories",
     date: "March 27, 2025",
     category: "In The Media",
-    excerpt:
-      "Central Current features Project Mend's work with formerly incarcerated individuals.",
-    content:
-      "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
+    excerpt: "Central Current features Project Mend's work with formerly incarcerated individuals.",
+    content: "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family member's incarceration prompted him to help incarcerated people tell their stories.",
     slug: "central-current-project-mend",
     featured: true,
     image: centralCurrentImage,
-    externalLink:
-      "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
+    externalLink: "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/"
   },
   {
     id: "1",
     title: "Celebrating the 2025 Issue of Mend",
     date: "February 15, 2025",
     category: "Featured",
-    excerpt:
-      "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
+    excerpt: "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
     content: `It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.
 
 Our launch party will be a hybrid event, where we will celebrate the 2025 issue of Mend and render, a new publication exploring the lives and creative works of impacted artists produced by Katherine Nikolau, a Writing and Rhetoric major who graduated in December through a SOURCE research grant.
@@ -97,115 +96,105 @@ Project Mend is made possible through collaboration with the Center for Communit
 For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.edu by February 11.`,
     slug: "celebrating-2025-issue-mend",
     featured: true,
-    image: launchPartyImage,
+    image: launchPartyImage
   },
   {
     id: "2",
     title: "HNY Post-Incarceration Humanities Partnership Convening",
     date: "May 21, 2024",
     category: "Our News",
-    excerpt:
-      "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
-    content:
-      "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
+    excerpt: "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
+    content: "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
     slug: "hny-pihp-convening",
     featured: true,
     isVideo: true,
-    videoId: "Iez6a6fYUZ8",
+    videoId: "Iez6a6fYUZ8"
   },
   {
     id: "3",
-    title:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+    title: "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
     date: "September 19, 2024",
     category: "Our News",
-    excerpt:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
-    content:
-      "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
+    excerpt: "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+    content: "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
     slug: "alex-anderson-visit",
     featured: true,
-    image: alexAndersonImage,
+    image: alexAndersonImage
   },
   {
     id: "4",
     title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas..",
     date: "May 2024",
     category: "Client Stories",
-    excerpt:
-      "Celebrating the achievements of our dedicated Mend editorial team member.",
-    content:
-      "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
+    excerpt: "Celebrating the achievements of our dedicated Mend editorial team member.",
+    content: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
     slug: "congratulations-ilhy-gomez",
     featured: true,
-    image: mendTeamImage,
+    image: mendTeamImage
   },
   {
     id: "5",
-    title:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
+    title: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
     date: "June 8, 2024",
     category: "Our News",
-    excerpt:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
-    content:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
+    excerpt: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
+    content: "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
     slug: "united-we-end-racism-festival",
     featured: true,
-    image: unitedWeEndRacismImage,
+    image: unitedWeEndRacismImage
   },
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 const News = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const { toast } = useToast();
 
-  const featuredArticles = articles.filter((article) => article.featured);
+  const filteredArticles = selectedCategory === "All" 
+    ? articles 
+    : articles.filter(article => article.category === selectedCategory);
 
-  const handleSignupSubmit = async (e: FormEvent) => {
+  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedArticles = filteredArticles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const featuredArticles = articles.filter(article => article.featured);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!name || !email) {
       toast({
         title: "Error",
-        description: "Please fill in all fields.",
+        description: "Please fill in all fields",
         variant: "destructive",
       });
       return;
     }
+    
+    const subject = encodeURIComponent("Newsletter Subscription Request");
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nI would like to subscribe to the Project Mend newsletter.`);
+    window.location.href = `mailto:mend@project-mend.net?subject=${subject}&body=${body}`;
+    
+    setName("");
+    setEmail("");
+  };
 
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbwcEyNTp6Ekv1olq_Gsjje-bsPt2jKomERa0kdcuS-WNJf7eysVavbmAwcJnRvIYyD4/exec",
-        {
-          method: "POST",
-          mode: "no-cors", // avoid CORS errors; we don't inspect the response
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-          }),
-        }
-      );
-
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list.",
-      });
-
-      setName("");
-      setEmail("");
-    } catch (error) {
-      console.error("Newsletter submit error:", error);
-      toast({
-        title: "Something went wrong",
-        description:
-          "We couldn't save your subscription. Please try again later.",
-        variant: "destructive",
-      });
+  const getCategoryColor = (category: Article["category"]) => {
+    switch (category) {
+      case "Featured":
+        return "default";
+      case "Client Stories":
+        return "secondary";
+      case "In The Media":
+        return "outline";
+      case "Our News":
+        return "outline";
+      default:
+        return "outline";
     }
   };
 
@@ -219,19 +208,13 @@ const News = () => {
               News & Events
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
-              Stay updated on Project Mend announcements, events, and community
-              happenings.
+              Stay updated on Project Mend announcements, events, and community happenings
             </p>
             <div className="flex gap-4 justify-center">
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.facebook.com/ProjectMendSU",
-                    "_blank"
-                  )
-                }
+                onClick={() => window.open("https://www.facebook.com/ProjectMendSU", "_blank")}
                 className="gap-2"
               >
                 <Facebook size={20} />
@@ -240,12 +223,7 @@ const News = () => {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.instagram.com/projectmend/",
-                    "_blank"
-                  )
-                }
+                onClick={() => window.open("https://www.instagram.com/projectmend/", "_blank")}
                 className="gap-2"
               >
                 <Instagram size={20} />
@@ -256,32 +234,30 @@ const News = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          {/* Featured Articles */}
+          {/* All Articles - Image Left, Text Right */}
           {featuredArticles.length > 0 && (
             <section className="mb-8">
               <div className="space-y-8">
                 {featuredArticles.map((article) => {
-                  const ArticleWrapper = article.externalLink ? "a" : "article";
-                  const wrapperProps = article.externalLink
-                    ? {
-                        href: article.externalLink,
-                        target: "_blank",
+                  const ArticleWrapper = article.externalLink ? 'a' : 'article';
+                  const wrapperProps = article.externalLink 
+                    ? { 
+                        href: article.externalLink, 
+                        target: "_blank", 
                         rel: "noopener noreferrer",
-                        className:
-                          "block cursor-pointer hover:opacity-95 transition-opacity",
+                        className: "block cursor-pointer hover:opacity-95 transition-opacity"
                       }
                     : {};
-
+                  
                   return (
                     <ArticleWrapper key={article.id} {...wrapperProps}>
                       <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
-                        {/* LEFT: IMAGE OR VIDEO */}
-                        <div className="overflow-hidden rounded-lg flex justify-center">
+                        {/* Left: Image or Video */}
+                        <div className="overflow-hidden rounded-lg">
                           {article.isVideo && article.videoId ? (
-                            <div className="aspect-video w-full max-w-xl">
+                            <div className="aspect-video">
                               <iframe
                                 width="100%"
                                 height="100%"
@@ -296,18 +272,18 @@ const News = () => {
                             <img
                               src={article.image}
                               alt={article.title}
-                              className="w-full max-w-xl h-auto object-contain"
+                              className={`w-full h-auto object-contain ${
+                                article.id === "6" || article.id === "7" ? "max-h-64" : ""
+                              }`}
                             />
                           ) : (
                             <div className="w-full h-64 bg-muted flex items-center justify-center">
-                              <span className="text-muted-foreground">
-                                No image available
-                              </span>
+                              <span className="text-muted-foreground">No image available</span>
                             </div>
                           )}
                         </div>
 
-                        {/* RIGHT: TEXT CONTENT */}
+                        {/* Right: Text Content */}
                         <div className="relative">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <Calendar size={14} />
@@ -317,10 +293,7 @@ const News = () => {
                             {article.title}
                           </h3>
                           <div className="relative">
-                            <div
-                              className="text-muted-foreground leading-relaxed"
-                              style={{ whiteSpace: "pre-line" }}
-                            >
+                            <div className="text-muted-foreground leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
                               {article.content}
                             </div>
                             {article.externalLink && (
@@ -342,17 +315,17 @@ const News = () => {
             </section>
           )}
 
-          {/* Signup */}
+
+          {/* Newsletter Signup */}
           <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Stay Connected
               </h2>
               <p className="text-muted-foreground mb-8">
-                Subscribe to our mailing list to receive the latest news,
-                events, and updates from Project Mend.
+                Subscribe to our mailing list to receive the latest news, events, and updates from Project Mend.
               </p>
-              <form onSubmit={handleSignupSubmit} className="space-y-4">
+              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-left">
                     <Label htmlFor="newsletter-name" className="mb-2 block">
