@@ -208,7 +208,7 @@ const News = () => {
       });
 
       await fetch(
-        "https://script.google.com/macros/s/130p_s7X0klqFOwIyWubEbpN2GWTYPc61nL8C7-ifeF0/exec",
+        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
         {
           method: "POST",
           mode: "no-cors", // let the request go through; we won't inspect the response
