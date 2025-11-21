@@ -18,7 +18,6 @@ const formSchema = z.object({
   over18: z.enum(["yes", "no"], { required_error: "Please select an option" }),
   interest: z.string().min(10, "Please provide at least 10 characters"),
   sampleWriting: z.string().optional(),
-  // Keep schema loose here; we’ll clean it up in code
   files: z.any().optional(),
 });
 
@@ -39,27 +38,19 @@ const Join = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      // Normalize files to a simple File[] safely
       let filesArray: File[] = [];
 
       if (data.files instanceof FileList) {
         filesArray = Array.from(data.files);
       } else if (Array.isArray(data.files)) {
-        // In case RHF gives us an array already
-        filesArray = data.files.filter(
-          (f): f is File => f instanceof File
-        );
+        filesArray = data.files.filter((f): f is File => f instanceof File);
       }
 
-      // Build a safe payload (don’t let JSON.stringify see FileList/File)
-      const filesPayload = await Promise.all(
-        filesArray.map(async (file) => ({
-          fileName: file.name,
-          content: await file.text(), // if you don't need content, you can remove this
-        }))
-      );
+      // Only send filenames — easier + smaller payload
+      const filesPayload = filesArray.map((file) => ({
+        fileName: file.name,
+      }));
 
-      // Strip out the original `files` so we never serialize FileList/File
       const { files, ...rest } = data;
 
       const formDataToSend = {
@@ -67,29 +58,26 @@ const Join = () => {
         files: filesPayload,
       };
 
-      const response = await fetch(
+      console.log("Sending:", formDataToSend);
+
+      // IMPORTANT: no-cors + text/plain
+      await fetch(
         "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
         {
           method: "POST",
+          mode: "no-cors",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "text/plain;charset=utf-8",
           },
           body: JSON.stringify(formDataToSend),
         }
       );
 
-      // Optional: inspect server response while debugging:
-      // const text = await response.text();
-      // console.log("Raw server response:", text);
+      toast.success("Application submitted successfully!");
+      reset();
 
-      if (response.ok) {
-        toast.success("Application submitted successfully!");
-        reset();
-      } else {
-        toast.error("Error submitting application.");
-      }
-    } catch (err) {
-      console.error("Submit error:", err);
+    } catch (error) {
+      console.error("Submit error:", error);
       toast.error("Something went wrong submitting your application.");
     }
   };
@@ -104,24 +92,21 @@ const Join = () => {
             </h1>
           </div>
 
-          {/* About the Position */}
+          {/* About Section */}
           <div className="bg-card border border-border rounded-lg p-8 mb-12">
             <div className="space-y-4 text-muted-foreground">
               <p>
                 Do you want to produce and publish your own stories? Do you want to participate
                 in the production and manufacturing of <em>Mend</em>, an anthology of work by
-                incarcerated and formerly incarcerated individuals and their families? Do you
-                want to participate in workshops on multimedia storytelling?
+                incarcerated and formerly incarcerated individuals and their families?
               </p>
               <p>
                 The Project Mend apprentice position is open to residents of Central New York who
-                have been impacted by mass incarceration. You will have the opportunity to work
-                collaboratively to plan, design, and edit the journal <em>Mend</em> and to learn
-                how to create your own digital stories.
+                have been impacted by mass incarceration.
               </p>
               <p>
-                You&apos;ll also get a chance to meet with guest speakers, participate in humanities
-                events, and learn the skills needed to publish your own work.
+                You’ll learn multimedia storytelling, editing, publishing, and work collaboratively
+                on new issues of <em>Mend</em>.
               </p>
               <p className="font-semibold text-foreground">
                 Participants will receive a stipend for attending.
@@ -137,24 +122,22 @@ const Join = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>You just need an interest in writing. No technical skills required.</span>
+                  <span>Interest in writing — no technical skills required.</span>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Application Form */}
+          {/* Form */}
           <div className="bg-card border border-border rounded-lg p-8">
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Apply to Join Our Team
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Criminal Justice System Impact */}
+              {/* Impacted */}
               <div className="space-y-2">
-                <Label className="text-base">
-                  Have you been impacted by the criminal justice system? *
-                </Label>
+                <Label>Have you been impacted by the criminal justice system? *</Label>
                 <RadioGroup
                   onValueChange={(value) =>
                     setValue("impacted", value as "yes" | "no", { shouldValidate: true })
@@ -163,15 +146,11 @@ const Join = () => {
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="impacted-yes" />
-                    <Label htmlFor="impacted-yes" className="font-normal cursor-pointer">
-                      Yes
-                    </Label>
+                    <Label htmlFor="impacted-yes">Yes</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="no" id="impacted-no" />
-                    <Label htmlFor="impacted-no" className="font-normal cursor-pointer">
-                      No
-                    </Label>
+                    <Label htmlFor="impacted-no">No</Label>
                   </div>
                 </RadioGroup>
                 {errors.impacted && (
@@ -179,27 +158,19 @@ const Join = () => {
                 )}
               </div>
 
-              {/* First Name */}
+              {/* First name */}
               <div className="space-y-2">
                 <Label htmlFor="firstName">First name *</Label>
-                <Input
-                  id="firstName"
-                  {...register("firstName")}
-                  placeholder="Enter your first name"
-                />
+                <Input id="firstName" {...register("firstName")} placeholder="Enter your first name" />
                 {errors.firstName && (
                   <p className="text-sm text-destructive">{errors.firstName.message}</p>
                 )}
               </div>
 
-              {/* Last Name */}
+              {/* Last name */}
               <div className="space-y-2">
                 <Label htmlFor="lastName">Last name *</Label>
-                <Input
-                  id="lastName"
-                  {...register("lastName")}
-                  placeholder="Enter your last name"
-                />
+                <Input id="lastName" {...register("lastName")} placeholder="Enter your last name" />
                 {errors.lastName && (
                   <p className="text-sm text-destructive">{errors.lastName.message}</p>
                 )}
@@ -208,12 +179,7 @@ const Join = () => {
               {/* Email */}
               <div className="space-y-2">
                 <Label htmlFor="email">Email address *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  placeholder="your.email@example.com"
-                />
+                <Input id="email" type="email" {...register("email")} placeholder="you@example.com" />
                 {errors.email && (
                   <p className="text-sm text-destructive">{errors.email.message}</p>
                 )}
@@ -222,12 +188,7 @@ const Join = () => {
               {/* Phone */}
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone number *</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  {...register("phone")}
-                  placeholder="(123) 456-7890"
-                />
+                <Input id="phone" type="tel" {...register("phone")} placeholder="(123) 456-7890" />
                 {errors.phone && (
                   <p className="text-sm text-destructive">{errors.phone.message}</p>
                 )}
@@ -236,12 +197,7 @@ const Join = () => {
               {/* Address */}
               <div className="space-y-2">
                 <Label htmlFor="address">Address *</Label>
-                <Textarea
-                  id="address"
-                  {...register("address")}
-                  placeholder="Enter your full address"
-                  rows={3}
-                />
+                <Textarea id="address" {...register("address")} rows={3} placeholder="Your full address" />
                 {errors.address && (
                   <p className="text-sm text-destructive">{errors.address.message}</p>
                 )}
@@ -249,7 +205,7 @@ const Join = () => {
 
               {/* Over 18 */}
               <div className="space-y-2">
-                <Label className="text-base">Are you over the age of 18? *</Label>
+                <Label>Are you over the age of 18? *</Label>
                 <RadioGroup
                   onValueChange={(value) =>
                     setValue("over18", value as "yes" | "no", { shouldValidate: true })
@@ -258,15 +214,11 @@ const Join = () => {
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="over18-yes" />
-                    <Label htmlFor="over18-yes" className="font-normal cursor-pointer">
-                      Yes
-                    </Label>
+                    <Label htmlFor="over18-yes">Yes</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="no" id="over18-no" />
-                    <Label htmlFor="over18-no" className="font-normal cursor-pointer">
-                      No
-                    </Label>
+                    <Label htmlFor="over18-no">No</Label>
                   </div>
                 </RadioGroup>
                 {errors.over18 && (
@@ -276,35 +228,25 @@ const Join = () => {
 
               {/* Interest */}
               <div className="space-y-2">
-                <Label htmlFor="interest">
-                  Why are you interested in a position with Project Mend? *
-                </Label>
+                <Label htmlFor="interest">Why are you interested in this position? *</Label>
                 <Textarea
                   id="interest"
-                  {...register("interest")}
-                  placeholder="Tell us about your interest..."
                   rows={5}
+                  {...register("interest")}
+                  placeholder="Tell us why you'd like to participate..."
                 />
                 {errors.interest && (
                   <p className="text-sm text-destructive">{errors.interest.message}</p>
                 )}
               </div>
 
-              {/* Sample Writing */}
+              {/* Sample writing */}
               <div className="space-y-2">
-                <Label htmlFor="sampleWriting">
-                  Do you have any sample writing that you&apos;d like to share? This is not
-                  required.
-                </Label>
-                <Textarea
-                  id="sampleWriting"
-                  {...register("sampleWriting")}
-                  placeholder="Paste your sample writing here (optional)"
-                  rows={5}
-                />
+                <Label htmlFor="sampleWriting">Sample writing (optional)</Label>
+                <Textarea id="sampleWriting" {...register("sampleWriting")} rows={5} />
               </div>
 
-              {/* File Upload */}
+              {/* Files */}
               <div className="space-y-2">
                 <Label htmlFor="files">Upload files (optional)</Label>
                 <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
@@ -314,15 +256,14 @@ const Join = () => {
                     multiple
                     accept=".pdf,.doc,.docx,.txt"
                     {...register("files")}
-                    className="cursor-pointer"
                   />
                   <p className="text-sm text-muted-foreground mt-2">
-                    Upload up to 5 supported files. Max 100 MB per file.
+                    Upload up to 5 files.
                   </p>
                 </div>
               </div>
 
-              {/* Submit Button */}
+              {/* Submit */}
               <div className="pt-4">
                 <Button type="submit" size="lg" className="w-full md:w-auto">
                   Submit Application
@@ -331,20 +272,5 @@ const Join = () => {
             </form>
 
             <p className="text-sm text-muted-foreground mt-6">
-              Questions? Reach out at{" "}
-              <a
-                href="mailto:mend@project-mend.net"
-                className="text-primary hover:underline"
-              >
-                mend@project-mend.net
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Join;
+              Questions? Email{" "}
+              <a href="mailto:mend@project-mend.net" className="text-primar
