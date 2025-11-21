@@ -1,5 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 // 2026 Team Images
+import bottingImg from "@/assets/people/2026/agnew.jpg";
 import bottingImg from "@/assets/people/2026/botting.jpg";
 import ejariasImg from "@/assets/people/2026/ejarias.jpg";
 import eilandImg from "@/assets/people/2026/eiland.jpg";
@@ -56,7 +57,7 @@ const placeholderImage = "https://images.unsplash.com/photo-1494790108377-be9c29
 
 const teams: Record<string, Person[]> = {
   "2026": [
-    { name: "Melinda Agnew", role: "Editor", image: placeholderImage },
+    { name: "Melinda Agnew", role: "Editor", image: agnewImg },
     { name: "Rebecca Botting", role: "Editor", image: bottingImg },
     { name: "Ejarias P. Burgin", role: "Editor", image: ejariasImg },
     { name: "Frantzline Tingue", role: "Editor", image: placeholderImage },
