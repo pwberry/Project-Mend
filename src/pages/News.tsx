@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,376 +15,356 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
+
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
 import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
-import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
-import centralCurrentImage from "@/assets/news/central_current.jpg";
+import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg"; // adjust extension if different
 
-interface Article {
-  id: string;
+type NewsItem = {
+  id: number;
   title: string;
   date: string;
-  category: "Featured" | "Client Stories" | "In The Media" | "Our News";
-  excerpt: string;
-  content: string;
-  image?: string;
-  slug: string;
-  featured: boolean;
-  externalLink?: string;
-  isVideo?: boolean;
-  videoId?: string;
-}
+  category: "events" | "news";
+  description: string;
+  image: string;
+  link?: string;
+  external?: boolean;
+};
 
-const articles: Article[] = [
+const NEWS_ITEMS: NewsItem[] = [
   {
-    id: "6",
-    title: "Writing New Futures",
-    date: "November 2025",
-    category: "In The Media",
-    excerpt:
-      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
-    content:
-      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
-    slug: "writing-new-futures",
-    featured: true,
-    image: writingNewFuturesImage,
-    externalLink:
-      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
-  },
-  {
-    id: "7",
-    title: "When I Think of Freedom...",
-    date: "July 2025",
-    category: "In The Media",
-    excerpt:
-      "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
-    content:
-      "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
-    slug: "when-i-think-of-freedom",
-    featured: true,
-    image: whenIThinkOfFreedomImage,
-    externalLink:
-      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
-  },
-  {
-    id: "8",
-    title:
-      "How Project Mend is helping formerly incarcerated people and their families tell their stories",
-    date: "March 27, 2025",
-    category: "In The Media",
-    excerpt:
-      "Central Current features Project Mend's work with formerly incarcerated individuals.",
-    content:
-      "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
-    slug: "central-current-project-mend",
-    featured: true,
-    image: centralCurrentImage,
-    externalLink:
-      "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
-  },
-  {
-    id: "1",
-    title: "Celebrating the 2025 Issue of Mend",
-    date: "February 15, 2025",
-    category: "Featured",
-    excerpt:
-      "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
-    content: `It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.
-
-Our launch party will be a hybrid event, where we will celebrate the 2025 issue of Mend and render, a new publication exploring the lives and creative works of impacted artists produced by Katherine Nikolau, a Writing and Rhetoric major who graduated in December through a SOURCE research grant.
-
-📅 Date: Saturday, February 15
-⏰ Time: 12:00 p.m. - 1:30 p.m. ET
-📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
-
-This event will include a light lunch.
-
-Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation. Additionally, the project has been supported at Syracuse University by: Engaged Humanities Network, The Humanities Center, SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
-
-For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.edu by February 11.`,
-    slug: "celebrating-2025-issue-mend",
-    featured: true,
+    id: 1,
+    title: "Project Mend Launch Party, 2025",
+    date: "March 20, 2025",
+    category: "events",
+    description:
+      "We celebrated the official launch of Mend with contributors, editors, community partners, and supporters. The evening featured readings, short film screenings, and conversations about narrative justice and digital storytelling.",
     image: launchPartyImage,
   },
   {
-    id: "2",
-    title: "HNY Post-Incarceration Humanities Partnership Convening",
-    date: "May 21, 2024",
-    category: "Our News",
-    excerpt:
-      "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
-    content:
-      "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
-    slug: "hny-pihp-convening",
-    featured: true,
-    isVideo: true,
-    videoId: "Iez6a6fYUZ8",
-  },
-  {
-    id: "3",
-    title:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
-    date: "September 19, 2024",
-    category: "Our News",
-    excerpt:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
-    content:
-      "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
-    slug: "alex-anderson-visit",
-    featured: true,
+    id: 2,
+    title: "Alex Anderson: Writing New Futures",
+    date: "February 10, 2025",
+    category: "news",
+    description:
+      "Alex Anderson, Mend editor and contributor, discussed the role of writing, film, and community in building futures beyond the criminal legal system.",
     image: alexAndersonImage,
   },
   {
-    id: "4",
-    title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas..",
-    date: "May 2024",
-    category: "Client Stories",
-    excerpt:
-      "Celebrating the achievements of our dedicated Mend editorial team member.",
-    content:
-      "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
-    slug: "congratulations-ilhy-gomez",
-    featured: true,
+    id: 3,
+    title: "Mend Editorial Team, 2024",
+    date: "December 15, 2024",
+    category: "news",
+    description:
+      "Our 2024 editorial cohort worked across print, film, and podcast projects, building an open-access archive that centers systems-impacted voices.",
     image: mendTeamImage,
   },
   {
-    id: "5",
-    title:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
-    date: "June 8, 2024",
-    category: "Our News",
-    excerpt:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
-    content:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
-    slug: "united-we-end-racism-festival",
-    featured: true,
+    id: 4,
+    title: "United We End Racism",
+    date: "October 28, 2024",
+    category: "events",
+    description:
+      "Project Mend participated in United We End Racism, sharing work that connects racial justice, abolitionist futures, and creative expression.",
     image: unitedWeEndRacismImage,
+  },
+  {
+    id: 5,
+    title: "Writing New Futures: Community Conversation",
+    date: "September 12, 2024",
+    category: "events",
+    description:
+      "A community conversation on storytelling, grief, and repair, featuring Mend contributors and Syracuse-area partners.",
+    image: writingNewFuturesImage,
+  },
+  {
+    id: 6,
+    title: "When I Think of Freedom",
+    date: "April 18, 2024",
+    category: "events",
+    description:
+      "A public program focused on freedom, confinement, and imagination, with readings and multimedia work by Mend contributors.",
+    image: whenIThinkOfFreedomImage,
   },
 ];
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 3;
 
 const News = () => {
+  const [activeTab, setActiveTab] = useState<"all" | "events" | "news">("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [email, setEmail] = useState("");
+
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { toast } = useToast();
 
-  const filteredArticles =
-    selectedCategory === "All"
-      ? articles
-      : articles.filter((article) => article.category === selectedCategory);
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+          }),
+        }
+      );
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || (data && data.error)) {
+        throw new Error(data?.error || "Submission failed");
+      }
+
+      setName("");
+      setEmail("");
+
+      toast?.({
+        title: "Thank you!",
+        description: "You’ve been added to the Project Mend mailing list.",
+      });
+    } catch (error) {
+      console.error(error);
+      toast?.({
+        title: "Something went wrong",
+        description: "We couldn’t submit your info. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const filteredNews =
+    activeTab === "all"
+      ? NEWS_ITEMS
+      : NEWS_ITEMS.filter((item) => item.category === activeTab);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredNews.length / ITEMS_PER_PAGE)
+  );
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedArticles = filteredArticles.slice(
+  const paginatedNews = filteredNews.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
 
-  const featuredArticles = articles.filter((article) => article.featured);
-
- const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  const res = await fetch(
-    "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-      }),
+  const handleTabChange = (value: string) => {
+    if (value === "all" || value === "events" || value === "news") {
+      setActiveTab(value);
+      setCurrentPage(1);
     }
-  );
+  };
 
-  const result = await res.json();
-  console.log(result);
-};
-
-    try {
-      const body = new URLSearchParams({
-        name,
-        email,
-      });
-
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
-        {
-          method: "POST",
-          mode: "no-cors", // let the request go through; we won't inspect the response
-          body,
-        }
-      );
-
-      // If fetch doesn't throw, assume success
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list.",
-      });
-
-      setName("");
-      setEmail("");
-    } catch (error) {
-      console.error("Newsletter submit error:", error);
-      toast({
-        title: "Something went wrong",
-        description:
-          "We couldn't save your subscription. Please try again later.",
-        variant: "destructive",
-      });
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <div className="bg-muted/30 py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      {/* Page Header */}
+      <section className="border-b bg-muted/30">
+        <div className="container mx-auto px-4 md:px-6 py-10 md:py-14">
+          <div className="max-w-3xl">
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
               News & Events
             </h1>
-            <p className="text-lg text-muted-foreground mb-6">
-              Stay updated on Project Mend announcements, events, and community
-              happenings
+            <p className="mt-3 text-base md:text-lg text-muted-foreground">
+              Keep up with Project Mend’s readings, film screenings, workshops,
+              and community gatherings, along with updates from our editors and
+              contributors.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.facebook.com/ProjectMendSU",
-                    "_blank"
-                  )
-                }
-                className="gap-2"
-              >
-                <Facebook size={20} />
-                Join us on Facebook
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.instagram.com/projectmend/",
-                    "_blank"
-                  )
-                }
-                className="gap-2"
-              >
-                <Instagram size={20} />
-                Join us on Instagram
-              </Button>
-            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Featured Articles - Image Left, Text Right */}
-          {featuredArticles.length > 0 && (
-            <section className="mb-8">
-              <div className="space-y-8">
-                {featuredArticles.map((article) => {
-                  const ArticleWrapper = article.externalLink ? "a" : "article";
-                  const wrapperProps = article.externalLink
-                    ? {
-                        href: article.externalLink,
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        className:
-                          "block cursor-pointer hover:opacity-95 transition-opacity",
-                      }
-                    : {};
+      {/* Main Content */}
+      <section className="py-10 md:py-14">
+        <div className="container mx-auto px-4 md:px-6 grid gap-10 lg:grid-cols-[2fr,1fr]">
+          {/* Left: News List */}
+          <div>
+            <Tabs
+              value={activeTab}
+              onValueChange={handleTabChange}
+              className="w-full"
+            >
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="events">Events</TabsTrigger>
+                <TabsTrigger value="news">News</TabsTrigger>
+              </TabsList>
 
-                  return (
-                    <ArticleWrapper key={article.id} {...wrapperProps}>
-                      <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
-                        {/* LEFT: IMAGE OR VIDEO */}
-                        <div className="overflow-hidden rounded-lg flex justify-center">
-                          {article.isVideo && article.videoId ? (
-                            <div className="aspect-video w-full max-w-xl">
-                              <iframe
-                                width="100%"
-                                height="100%"
-                                src={`https://www.youtube.com/embed/${article.videoId}`}
-                                title={article.title}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="rounded-lg"
-                              />
-                            </div>
-                          ) : article.image ? (
-                            <img
-                              src={article.image}
-                              alt={article.title}
-                              className="w-full max-w-xl h-auto object-contain"
-                            />
-                          ) : (
-                            <div className="w-full h-64 bg-muted flex items-center justify-center">
-                              <span className="text-muted-foreground">
-                                No image available
-                              </span>
-                            </div>
-                          )}
+              <TabsContent value="all" className="mt-6 space-y-6">
+                {paginatedNews.map((item) => (
+                  <article
+                    key={item.id}
+                    className="flex flex-col md:flex-row gap-4 rounded-xl border bg-card p-4 md:p-5 shadow-sm"
+                  >
+                    <div className="md:w-1/3">
+                      <div className="overflow-hidden rounded-lg">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-48 w-full object-cover md:h-full"
+                        />
+                      </div>
+                    </div>
+                    <div className="md:w-2/3 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+                          <Calendar className="h-4 w-4" />
+                          <span>{item.date}</span>
+                          <Badge variant="outline" className="ml-2">
+                            {item.category === "events" ? "Event" : "News"}
+                          </Badge>
                         </div>
+                        <h2 className="text-xl font-semibold leading-snug">
+                          {item.title}
+                        </h2>
+                        <p className="mt-2 text-sm md:text-base text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
 
-                        {/* RIGHT: TEXT CONTENT */}
-                        <div className="relative">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                            <Calendar size={14} />
-                            <time dateTime={article.date}>{article.date}</time>
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-                            {article.title}
-                          </h3>
-                          <div className="relative">
-                            <div
-                              className="text-muted-foreground leading-relaxed"
-                              style={{ whiteSpace: "pre-line" }}
+                      {item.link && (
+                        <div className="mt-3">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            asChild
+                            className="gap-2"
+                          >
+                            <a
+                              href={item.link}
+                              target={item.external ? "_blank" : "_self"}
+                              rel="noreferrer"
                             >
-                              {article.content}
-                            </div>
-                            {article.externalLink && (
-                              <div className="mt-4 pt-4 relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
-                                <p className="relative text-primary font-medium hover:underline cursor-pointer flex items-center gap-2">
-                                  Click here to read more
-                                  <ExternalLink size={16} />
-                                </p>
-                              </div>
-                            )}
-                          </div>
+                              Learn more
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          </Button>
                         </div>
-                      </article>
-                    </ArticleWrapper>
-                  );
-                })}
-              </div>
-            </section>
-          )}
+                      )}
+                    </div>
+                  </article>
+                ))}
 
-          {/* Newsletter Signup */}
-          <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Stay Connected
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Subscribe to our mailing list to receive the latest news,
-                events, and updates from Project Mend.
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="mt-6 flex justify-center">
+                    <Pagination>
+                      <PaginationContent>
+                        <PaginationItem>
+                          <PaginationPrevious
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageChange(currentPage - 1);
+                            }}
+                          />
+                        </PaginationItem>
+
+                        {Array.from({ length: totalPages }, (_, index) => {
+                          const page = index + 1;
+
+                          // Simple version: show all pages if few, else first, last, current, neighbors
+                          if (
+                            totalPages <= 5 ||
+                            page === 1 ||
+                            page === totalPages ||
+                            Math.abs(page - currentPage) <= 1
+                          ) {
+                            return (
+                              <PaginationItem key={page}>
+                                <PaginationLink
+                                  href="#"
+                                  isActive={page === currentPage}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handlePageChange(page);
+                                  }}
+                                >
+                                  {page}
+                                </PaginationLink>
+                              </PaginationItem>
+                            );
+                          }
+
+                          if (
+                            page === 2 && currentPage > 3
+                          ) {
+                            return (
+                              <PaginationItem key="ellipsis-start">
+                                <PaginationEllipsis />
+                              </PaginationItem>
+                            );
+                          }
+
+                          if (
+                            page === totalPages - 1 &&
+                            currentPage < totalPages - 2
+                          ) {
+                            return (
+                              <PaginationItem key="ellipsis-end">
+                                <PaginationEllipsis />
+                              </PaginationItem>
+                            );
+                          }
+
+                          return null;
+                        })}
+
+                        <PaginationItem>
+                          <PaginationNext
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageChange(currentPage + 1);
+                            }}
+                          />
+                        </PaginationItem>
+                      </PaginationContent>
+                    </Pagination>
+                  </div>
+                )}
+              </TabsContent>
+
+              {/* We reuse same list for other tabs, since filtering is done above */}
+              <TabsContent value="events">
+                {/* Intentionally left empty because filteredNews already handles category.
+                    The actual rendered list is in the "all" content bound to paginatedNews. */}
+              </TabsContent>
+              <TabsContent value="news">
+                {/* Same as above. Tabs just switch filter; content uses same UI. */}
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          {/* Right: Stay Connected Sidebar */}
+          <aside className="space-y-8">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
+              <h2 className="text-xl font-semibold">Stay Connected</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Sign up to hear about upcoming Mend issues, community events,
+                screenings, and workshops.
               </p>
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+
+              <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-left">
                     <Label htmlFor="newsletter-name" className="mb-2 block">
@@ -413,14 +393,49 @@ const News = () => {
                     />
                   </div>
                 </div>
-                <Button type="submit" size="lg" className="w-full md:w-auto">
-                  Subscribe to Newsletter
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full md:w-auto"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Subscribe to Newsletter"}
                 </Button>
               </form>
             </div>
-          </section>
+
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
+              <h2 className="text-lg font-semibold mb-2">Follow Project Mend</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Connect with us on social media for new work, events, and calls
+                for submissions.
+              </p>
+              <div className="flex gap-3">
+                <Button variant="outline" size="icon" asChild>
+                  <a
+                    href="https://www.instagram.com/projectmend/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Project Mend on Instagram"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <a
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Project Mend on Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </aside>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
