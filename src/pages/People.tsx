@@ -140,7 +140,7 @@ const People = () => {
             Editorial Team {currentYear}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Meet the editors who worked on the 2026 issue of <em>Mend</em>.
+            Meet the editors who worked on this issue of <em>Mend</em>.
           </p>
         </div>
 
