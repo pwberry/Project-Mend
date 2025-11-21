@@ -189,24 +189,17 @@ const News = () => {
 
   const featuredArticles = articles.filter((article) => article.featured);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const res = await fetch(
-    "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-      }),
+    if (!name || !email) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
     }
-  );
-
-  const result = await res.json();
-  console.log(result);
-};
 
     try {
       const body = new URLSearchParams({
@@ -215,7 +208,7 @@ const News = () => {
       });
 
       await fetch(
-        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+        "https://script.google.com/macros/s/130p_s7X0klqFOwIyWubEbpN2GWTYPc61nL8C7-ifeF0/exec",
         {
           method: "POST",
           mode: "no-cors", // let the request go through; we won't inspect the response
