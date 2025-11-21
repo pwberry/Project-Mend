@@ -42,7 +42,7 @@ const articles: Article[] = [
   {
     id: "6",
     title: "Writing New Futures",
-    date: "January 2025",
+    date: "November 2025",
     category: "In The Media",
     excerpt: "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
     content: "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
@@ -54,7 +54,7 @@ const articles: Article[] = [
   {
     id: "7",
     title: "When I Think of Freedom...",
-    date: "December 2024",
+    date: "July 2025",
     category: "In The Media",
     excerpt: "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
     content: "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
