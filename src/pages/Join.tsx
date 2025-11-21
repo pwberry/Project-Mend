@@ -287,7 +287,7 @@ const Join = () => {
 
             <p className="text-sm text-muted-foreground mt-6">
               Questions? Reach out at{" "}
-              <a href="mailto:mendthejournal@gmail.com" className="text-primary hover:underline">
+              <a href="mailto:mend@project-mend.net" className="text-primary hover:underline">
                 mendthejournal@gmail.com
               </a>
             </p>
