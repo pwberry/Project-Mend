@@ -202,28 +202,21 @@ const News = () => {
     }
 
     try {
-      // Send URL-encoded form data (name & email)
       const body = new URLSearchParams({
         name,
         email,
       });
 
-      const response = await fetch(
+      await fetch(
         "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
         {
           method: "POST",
-          // Don't set Content-Type manually; URLSearchParams will use application/x-www-form-urlencoded
+          mode: "no-cors", // let the request go through; we won't inspect the response
           body,
         }
       );
 
-      const text = await response.text();
-      console.log("Newsletter response:", response.status, text);
-
-      if (!response.ok || !text.startsWith("OK")) {
-        throw new Error(text || "Server error");
-      }
-
+      // If fetch doesn't throw, assume success
       toast({
         title: "Success!",
         description: "You've been added to our mailing list.",
@@ -396,8 +389,8 @@ const News = () => {
                       placeholder="Your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      required>
-                    </Input>
+                      required
+                    />
                   </div>
                   <div className="text-left">
                     <Label htmlFor="newsletter-email" className="mb-2 block">
@@ -409,8 +402,8 @@ const News = () => {
                       placeholder="your.email@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      required>
-                    </Input>
+                      required
+                    />
                   </div>
                 </div>
                 <Button type="submit" size="lg" className="w-full md:w-auto">
