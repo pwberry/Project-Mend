@@ -68,7 +68,7 @@ const Join = () => {
       };
 
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec",
+        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
         {
           method: "POST",
           headers: {
@@ -78,9 +78,9 @@ const Join = () => {
         }
       );
 
-      // Optional: inspect server response if you're returning JSON
-      // const result = await response.json();
-      // console.log("Server response:", result);
+      // If you want to see what the server returns for debugging:
+      // const text = await response.text();
+      // console.log("Raw server response:", text);
 
       if (response.ok) {
         toast.success("Application submitted successfully!");
@@ -215,136 +215,4 @@ const Join = () => {
                   placeholder="your.email@example.com"
                 />
                 {errors.email && (
-                  <p className="text-sm text-destructive">{errors.email.message}</p>
-                )}
-              </div>
-
-              {/* Phone */}
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone number *</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  {...register("phone")}
-                  placeholder="(123) 456-7890"
-                />
-                {errors.phone && (
-                  <p className="text-sm text-destructive">{errors.phone.message}</p>
-                )}
-              </div>
-
-              {/* Address */}
-              <div className="space-y-2">
-                <Label htmlFor="address">Address *</Label>
-                <Textarea
-                  id="address"
-                  {...register("address")}
-                  placeholder="Enter your full address"
-                  rows={3}
-                />
-                {errors.address && (
-                  <p className="text-sm text-destructive">{errors.address.message}</p>
-                )}
-              </div>
-
-              {/* Over 18 */}
-              <div className="space-y-2">
-                <Label className="text-base">Are you over the age of 18? *</Label>
-                <RadioGroup
-                  onValueChange={(value) =>
-                    setValue("over18", value as "yes" | "no", { shouldValidate: true })
-                  }
-                  className="flex gap-4"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="yes" id="over18-yes" />
-                    <Label htmlFor="over18-yes" className="font-normal cursor-pointer">
-                      Yes
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="no" id="over18-no" />
-                    <Label htmlFor="over18-no" className="font-normal cursor-pointer">
-                      No
-                    </Label>
-                  </div>
-                </RadioGroup>
-                {errors.over18 && (
-                  <p className="text-sm text-destructive">{errors.over18.message}</p>
-                )}
-              </div>
-
-              {/* Interest */}
-              <div className="space-y-2">
-                <Label htmlFor="interest">
-                  Why are you interested in a position with Project Mend? *
-                </Label>
-                <Textarea
-                  id="interest"
-                  {...register("interest")}
-                  placeholder="Tell us about your interest..."
-                  rows={5}
-                />
-                {errors.interest && (
-                  <p className="text-sm text-destructive">{errors.interest.message}</p>
-                )}
-              </div>
-
-              {/* Sample Writing */}
-              <div className="space-y-2">
-                <Label htmlFor="sampleWriting">
-                  Do you have any sample writing that you&apos;d like to share? This is not
-                  required.
-                </Label>
-                <Textarea
-                  id="sampleWriting"
-                  {...register("sampleWriting")}
-                  placeholder="Paste your sample writing here (optional)"
-                  rows={5}
-                />
-              </div>
-
-              {/* File Upload */}
-              <div className="space-y-2">
-                <Label htmlFor="files">Upload files (optional)</Label>
-                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
-                  <Input
-                    id="files"
-                    type="file"
-                    multiple
-                    accept=".pdf,.doc,.docx,.txt"
-                    {...register("files")}
-                    className="cursor-pointer"
-                  />
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Upload up to 5 supported files. Max 100 MB per file.
-                  </p>
-                </div>
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-4">
-                <Button type="submit" size="lg" className="w-full md:w-auto">
-                  Submit Application
-                </Button>
-              </div>
-            </form>
-
-            <p className="text-sm text-muted-foreground mt-6">
-              Questions? Reach out at{" "}
-              <a
-                href="mailto:mend@project-mend.net"
-                className="text-primary hover:underline"
-              >
-                mend@project-mend.net
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Join;
+                  <p className="text-sm text-
