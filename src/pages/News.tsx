@@ -189,7 +189,7 @@ const News = () => {
 
   const featuredArticles = articles.filter((article) => article.featured);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name || !email) {
@@ -367,7 +367,7 @@ const News = () => {
             </section>
           )}
 
-          {/* Newsletter Signup */}
+          {/* Signup */}
           <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -377,14 +377,14 @@ const News = () => {
                 Subscribe to our mailing list to receive the latest news,
                 events, and updates from Project Mend.
               </p>
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <form onSubmit={handlesignupSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-left">
                     <Label htmlFor="newsletter-name" className="mb-2 block">
                       Name
                     </Label>
                     <Input
-                      id="newsletter-name"
+                      id="Sheet1"
                       type="text"
                       placeholder="Your name"
                       value={name}
@@ -397,7 +397,7 @@ const News = () => {
                       Email
                     </Label>
                     <Input
-                      id="newsletter-email"
+                      id="Sheet1"
                       type="email"
                       placeholder="your.email@example.com"
                       value={email}
