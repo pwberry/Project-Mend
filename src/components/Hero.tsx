@@ -4,8 +4,8 @@ import Slideshow from "./Slideshow";
 
 const Hero = () => {
   return (
-    <section className="w-full" style={{ maxHeight: "70vh" }}>
-      <div className="grid md:grid-cols-2 h-full" style={{ minHeight: "500px", maxHeight: "70vh" }}>
+    <section className="w-full md:max-h-[70vh]">
+      <div className="grid md:grid-cols-2 md:h-full md:min-h-[500px] md:max-h-[70vh]">
         {/* Left: Text Content */}
         <div className="flex flex-col justify-center items-center px-6 md:px-12 lg:px-16 py-12 md:py-0 bg-background">
           <div className="max-w-xl text-center">
@@ -41,7 +41,7 @@ const Hero = () => {
         </div>
 
         {/* Right: Slideshow */}
-        <div className="h-full min-h-[400px] md:min-h-0 overflow-hidden pr-[1in]">
+        <div className="h-[400px] md:h-full md:min-h-0 overflow-hidden md:pr-[1in] pr-4">
           <Slideshow />
         </div>
       </div>
