@@ -34,10 +34,35 @@ const Join = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    toast.success("Application submitted successfully!");
-  };
+ const onSubmit = async (data: FormData) => {
+  try {
+    const formDataToSend = {
+      ...data,
+      files: await Promise.all(
+        (data.files ? Array.from(data.files) : []).map(async (file: File) => ({
+          fileName: file.name,
+          content: await file.text() // optional: send file content
+        }))
+      ),
+    };
+
+    const response = await fetch("https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec", {
+      method: "POST",
+      contentType: "application/json",
+      body: JSON.stringify(formDataToSend),
+    });
+
+    const result = await response.json();
+
+    if (result.ok) {
+      toast.success("Application submitted successfully!");
+    } else {
+      toast.error("Error submitting application");
+    }
+  } catch (err) {
+    toast.error("Something went wrong submitting your application.");
+  }
+};
 
   return (
     <div className="min-h-screen bg-background py-16">
