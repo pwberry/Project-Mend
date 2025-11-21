@@ -8,6 +8,7 @@ import kirkpatrickImg from "@/assets/people/2026/kirkpatrick.jpg";
 import mcconnellImg from "@/assets/people/2026/mcconnell.jpg";
 import nikolauImg from "@/assets/people/2026/nikolau.jpg";
 import rodriguezImg from "@/assets/people/2026/rodriguez.jpg";
+import savinoImg from "@/assets/people/2026/savino.jpg";
 import shoultzImg from "@/assets/people/2026/shoultz.jpg";
 import tingueImg from "@/assets/people/2026/tingue.jpg";
 import withersImg from "@/assets/people/2026/withers.jpg";
@@ -67,7 +68,7 @@ const teams: Record<string, Person[]> = {
     { name: "Molly McConnell", role: "Editor", image: mcconnellImg },
     { name: "Katherine Nikolau", role: "Editor", image: nikolauImg },
     { name: "Marion Rodriguez", role: "Editor", image: rodriguezImg },
-    { name: "Ava Savino", role: "Editor", image: placeholderImage },
+    { name: "Ava Savino", role: "Editor", image: savinoImg },
     { name: "Bonnie Shoultz", role: "Editor", image: shoultzImg },
     { name: "Shilloh Withers", role: "Editor", image: withersImg },
     { name: "Troy White", role: "Senior Editor", image: whiteImg },
