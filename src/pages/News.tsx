@@ -104,48 +104,56 @@ const News = () => {
   const { toast } = useToast();
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-          }),
-        }
-      );
-
-      const data = await response.json().catch(() => null);
-
-      if (!response.ok || (data && data.error)) {
-        throw new Error(data?.error || "Submission failed");
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+        }),
       }
+    );
 
-      setName("");
-      setEmail("");
+    const rawText = await response.text();
+    console.log("Raw response from Apps Script:", rawText);
 
-      toast?.({
-        title: "Thank you!",
-        description: "You’ve been added to the Project Mend mailing list.",
-      });
-    } catch (error) {
-      console.error(error);
-      toast?.({
-        title: "Something went wrong",
-        description: "We couldn’t submit your info. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
+    let data: any = null;
+    try {
+      data = JSON.parse(rawText);
+    } catch {
+      // if it wasn't valid JSON, leave data = null
     }
-  };
+
+    if (!response.ok || (data && data.error)) {
+      throw new Error(data?.error || `Submission failed (${response.status})`);
+    }
+
+    setName("");
+    setEmail("");
+
+    toast?.({
+      title: "Thank you!",
+      description: "You’ve been added to the Project Mend mailing list.",
+    });
+  } catch (error) {
+    console.error("Submit error:", error);
+    toast?.({
+      title: "Something went wrong",
+      description: "We couldn’t submit your info. Please try again.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const filteredNews =
     activeTab === "all"
