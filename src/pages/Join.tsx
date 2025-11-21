@@ -46,11 +46,16 @@ const Join = () => {
       ),
     };
 
-    const response = await fetch("https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec", {
-      method: "POST",
-      contentType: "application/json",
-      body: JSON.stringify(formDataToSend),
-    });
+   const response = await fetch(
+  "https://script.google.com/macros/s/AKfycby4VzdLZk1zxih0_r5zGSOcmsKKwY1ibNcIx11ZS3kQQXB80opsptrnY4Yeu5E-f9ZN/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formDataToSend),
+  }
+);
 
     const result = await response.json();
 
