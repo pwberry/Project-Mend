@@ -18,12 +18,12 @@ const formSchema = z.object({
   over18: z.enum(["yes", "no"], { required_error: "Please select an option" }),
   interest: z.string().min(10, "Please provide at least 10 characters"),
   sampleWriting: z.string().optional(),
-  // RHF will store a FileList here; keep Zod loose but type it below
+  // Keep schema loose here; we’ll clean it up in code
   files: z.any().optional(),
 });
 
 type FormData = z.infer<typeof formSchema> & {
-  files?: FileList;
+  files?: FileList | File[] | null;
 };
 
 const Join = () => {
@@ -39,16 +39,32 @@ const Join = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const filesArray = data.files ? Array.from(data.files) : [];
+      // Normalize files to a simple File[] safely
+      let filesArray: File[] = [];
+
+      if (data.files instanceof FileList) {
+        filesArray = Array.from(data.files);
+      } else if (Array.isArray(data.files)) {
+        // In case RHF gives us an array already
+        filesArray = data.files.filter(
+          (f): f is File => f instanceof File
+        );
+      }
+
+      // Build a safe payload (don’t let JSON.stringify see FileList/File)
+      const filesPayload = await Promise.all(
+        filesArray.map(async (file) => ({
+          fileName: file.name,
+          content: await file.text(), // if you don't need content, you can remove this
+        }))
+      );
+
+      // Strip out the original `files` so we never serialize FileList/File
+      const { files, ...rest } = data;
 
       const formDataToSend = {
-        ...data,
-        files: await Promise.all(
-          filesArray.map(async (file: File) => ({
-            fileName: file.name,
-            content: await file.text(), // optional: send file content
-          }))
-        ),
+        ...rest,
+        files: filesPayload,
       };
 
       const response = await fetch(
@@ -62,8 +78,9 @@ const Join = () => {
         }
       );
 
-      // If your Apps Script returns JSON and you need it, you can parse it here:
+      // Optional: inspect server response if you're returning JSON
       // const result = await response.json();
+      // console.log("Server response:", result);
 
       if (response.ok) {
         toast.success("Application submitted successfully!");
@@ -72,6 +89,7 @@ const Join = () => {
         toast.error("Error submitting application.");
       }
     } catch (err) {
+      console.error("Submit error:", err);
       toast.error("Something went wrong submitting your application.");
     }
   };
