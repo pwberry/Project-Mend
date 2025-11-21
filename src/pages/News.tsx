@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -70,7 +69,7 @@ const articles: Article[] = [
     date: "March 27, 2025",
     category: "In The Media",
     excerpt: "Central Current features Project Mend's work with formerly incarcerated individuals.",
-    content: "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family member's incarceration prompted him to help incarcerated people tell their stories.",
+    content: "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
     slug: "central-current-project-mend",
     featured: true,
     image: centralCurrentImage,
@@ -155,15 +154,19 @@ const News = () => {
   const [name, setName] = useState("");
   const { toast } = useToast();
 
-  const filteredArticles = selectedCategory === "All" 
-    ? articles 
-    : articles.filter(article => article.category === selectedCategory);
+  const filteredArticles =
+    selectedCategory === "All"
+      ? articles
+      : articles.filter((article) => article.category === selectedCategory);
 
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedArticles = filteredArticles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const paginatedArticles = filteredArticles.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
 
-  const featuredArticles = articles.filter(article => article.featured);
+  const featuredArticles = articles.filter((article) => article.featured);
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -175,28 +178,13 @@ const News = () => {
       });
       return;
     }
-    // TODO: Implement newsletter signup
+
     toast({
       title: "Success!",
       description: "You've been added to our mailing list.",
     });
     setName("");
     setEmail("");
-  };
-
-  const getCategoryColor = (category: Article["category"]) => {
-    switch (category) {
-      case "Featured":
-        return "default";
-      case "Client Stories":
-        return "secondary";
-      case "In The Media":
-        return "outline";
-      case "Our News":
-        return "outline";
-      default:
-        return "outline";
-    }
   };
 
   return (
@@ -209,13 +197,16 @@ const News = () => {
               News & Events
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
-              Stay updated on Project Mend announcements, events, and community happenings
+              Stay updated on Project Mend announcements, events, and community
+              happenings
             </p>
             <div className="flex gap-4 justify-center">
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => window.open("https://www.facebook.com/ProjectMendSU", "_blank")}
+                onClick={() =>
+                  window.open("https://www.facebook.com/ProjectMendSU", "_blank")
+                }
                 className="gap-2"
               >
                 <Facebook size={20} />
@@ -224,7 +215,9 @@ const News = () => {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => window.open("https://www.instagram.com/projectmend/", "_blank")}
+                onClick={() =>
+                  window.open("https://www.instagram.com/projectmend/", "_blank")
+                }
                 className="gap-2"
               >
                 <Instagram size={20} />
@@ -242,23 +235,24 @@ const News = () => {
             <section className="mb-8">
               <div className="space-y-8">
                 {featuredArticles.map((article) => {
-                  const ArticleWrapper = article.externalLink ? 'a' : 'article';
-                  const wrapperProps = article.externalLink 
-                    ? { 
-                        href: article.externalLink, 
-                        target: "_blank", 
+                  const ArticleWrapper = article.externalLink ? "a" : "article";
+                  const wrapperProps = article.externalLink
+                    ? {
+                        href: article.externalLink,
+                        target: "_blank",
                         rel: "noopener noreferrer",
-                        className: "block cursor-pointer hover:opacity-95 transition-opacity"
+                        className:
+                          "block cursor-pointer hover:opacity-95 transition-opacity",
                       }
                     : {};
-                  
+
                   return (
                     <ArticleWrapper key={article.id} {...wrapperProps}>
                       <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
-                        {/* Left: Image or Video */}
-                        <div className="overflow-hidden rounded-lg">
+                        {/* LEFT: UNIFORM IMAGE OR VIDEO */}
+                        <div className="overflow-hidden rounded-lg flex justify-center">
                           {article.isVideo && article.videoId ? (
-                            <div className="aspect-video">
+                            <div className="aspect-video w-full max-w-xl">
                               <iframe
                                 width="100%"
                                 height="100%"
@@ -273,18 +267,18 @@ const News = () => {
                             <img
                               src={article.image}
                               alt={article.title}
-                              className={`w-full h-auto object-contain ${
-                                article.id === "6" || article.id === "7" ? "max-h-64" : ""
-                              }`}
+                              className="w-full max-w-xl h-auto object-contain"
                             />
                           ) : (
                             <div className="w-full h-64 bg-muted flex items-center justify-center">
-                              <span className="text-muted-foreground">No image available</span>
+                              <span className="text-muted-foreground">
+                                No image available
+                              </span>
                             </div>
                           )}
                         </div>
 
-                        {/* Right: Text Content */}
+                        {/* RIGHT: TEXT CONTENT */}
                         <div className="relative">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <Calendar size={14} />
@@ -294,7 +288,10 @@ const News = () => {
                             {article.title}
                           </h3>
                           <div className="relative">
-                            <div className="text-muted-foreground leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                            <div
+                              className="text-muted-foreground leading-relaxed"
+                              style={{ whiteSpace: "pre-line" }}
+                            >
                               {article.content}
                             </div>
                             {article.externalLink && (
@@ -316,7 +313,6 @@ const News = () => {
             </section>
           )}
 
-
           {/* Newsletter Signup */}
           <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
             <div className="max-w-2xl mx-auto text-center">
@@ -324,7 +320,8 @@ const News = () => {
                 Stay Connected
               </h2>
               <p className="text-muted-foreground mb-8">
-                Subscribe to our mailing list to receive the latest news, events, and updates from Project Mend.
+                Subscribe to our mailing list to receive the latest news,
+                events, and updates from Project Mend.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
