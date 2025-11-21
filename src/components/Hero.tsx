@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Slideshow from "./Slideshow";
 
 const Hero = () => {
@@ -31,13 +32,9 @@ const Hero = () => {
                 size="lg"
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                <a 
-                  href="https://project-mend.net/news.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+                <Link to="/news">
                   News & Events
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

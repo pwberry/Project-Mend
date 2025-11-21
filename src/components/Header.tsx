@@ -17,11 +17,7 @@ const navItems = [
     ]
   },
   { label: "Submit", path: "/submit" },
-  {
-  label: <span><em>Mend</em>, The Journal</span>,
-  path: "https://surface.syr.edu/mend/",
-  external: true
-},
+  { label: "Mend, The Journal", path: "https://surface.syr.edu/mend/", external: true },
   { label: "Join Editorial Team", path: "/join" },
   { label: "News & Events", path: "/news" },
 ];
@@ -106,6 +102,19 @@ const Header = () => {
                   </div>
                 );
               }
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 lg:px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-foreground hover:bg-secondary hover:text-secondary-foreground"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
               return (
                 <Link
                   key={item.path}
@@ -163,6 +172,20 @@ const Header = () => {
                       </Link>
                     ))}
                   </div>
+                );
+              }
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 rounded-md text-sm font-medium transition-colors duration-200 text-foreground hover:bg-secondary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
                 );
               }
               return (
