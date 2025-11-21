@@ -1,6 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 // 2026 Team Images
-import bottingImg from "@/assets/people/2026/agnew.jpg";
+import agnewImg from "@/assets/people/2026/agnew.jpg";
 import bottingImg from "@/assets/people/2026/botting.jpg";
 import ejariasImg from "@/assets/people/2026/ejarias.jpg";
 import eilandImg from "@/assets/people/2026/eiland.jpg";
