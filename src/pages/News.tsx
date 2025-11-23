@@ -32,7 +32,7 @@ const articles: Article[] = [
   {
     id: "6",
     title: "Writing New Futures",
-    date: "November 2025",
+    date: "November 11, 2025",
     category: "In The Media",
     excerpt:
       "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
@@ -47,7 +47,7 @@ const articles: Article[] = [
   {
     id: "7",
     title: "When I Think of Freedom...",
-    date: "July 2025",
+    date: "July 30, 2025",
     category: "In The Media",
     excerpt:
       "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
