@@ -5,6 +5,7 @@ import logo from "@/assets/project_mend_logo_purple.png";
 
 const navItems = [
   { label: "About", path: "/" },
+
   { 
     label: "People", 
     path: "/people/2026",
@@ -16,8 +17,16 @@ const navItems = [
       { label: "2023", path: "/people/2023" },
     ]
   },
+
   { label: "Submit", path: "/submit" },
-  { label: "Mend, The Journal", path: "https://surface.syr.edu/mend/", external: true },
+
+  // ⭐ FULL UPDATED ITEM — Mend is italic
+  { 
+    label: <><em>Mend</em>, The Journal</>, 
+    path: "https://surface.syr.edu/mend/", 
+    external: true 
+  },
+
   { label: "Join Editorial Team", path: "/join" },
   { label: "News & Events", path: "/news" },
 ];
