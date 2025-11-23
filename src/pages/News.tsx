@@ -339,9 +339,7 @@ const News = () => {
                                     />
                                   </div>
                                   <p className="text-sm text-muted-foreground text-center">
-                                    Project Mend editor Katherine Nikolau recites
-                                    her poem for the "When I think of Freedom"
-                                    showcase at the Seymour Library Thursday,
+                                    Project Mend editor Katherine Nikolau shares her writing at the Seymour Library, Thursday,
                                     Nov. 13.
                                   </p>
                                 </div>
