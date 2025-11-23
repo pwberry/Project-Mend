@@ -31,6 +31,20 @@ interface Article {
 
 const articles: Article[] = [
   {
+  id: "11",
+  title: "Prison and Time",
+  date: "November 23, 2025",
+  category: "Awards and Recogitions",
+  excerpt:
+    "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.'",
+  content:
+    "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December. In “Prison and Time,” Bode animate excerpts of an essay by writer & activist Marvin Wade, who speaks personally about his 25 years of incarceration—and the positive transformation he achieved in spite of, not because of, an inhumane prison system working against him.",
+  slug: "prison-and-time-2025",
+  featured: true,
+  image: prison_and_timeImage,
+  externalLink: "https://www.evanbode.net/project-mend/"
+},
+  {
     id: "9",
     title: "Formerly incarcerated writers talk freedom at Auburn library",
     date: "November 13, 2025",
