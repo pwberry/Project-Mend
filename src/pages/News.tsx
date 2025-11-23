@@ -38,7 +38,7 @@ const articles: Article[] = [
     excerpt:
       "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system.",
     content:
-      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system. Thanks to Kay McCumber for writing this story.",
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system. Thanks to Kay McCumber from The Citizne for writing this story.",
     slug: "project-mend-at-auburn",
     featured: true,
     isVideo: true,
@@ -337,9 +337,8 @@ const News = () => {
                                     />
                                   </div>
                                   <p className="text-sm text-muted-foreground text-center">
-                                    Project Mend editor Katherine Nikolau recites
-                                    her poem for the "When I think of Freedom"
-                                    showcase at the Seymour Library Thursday,
+                                    Project Mend editor Katherine Nikolau reads
+                                    her piece about freedom at the Seymour Library on Thursday,
                                     Nov. 13.
                                   </p>
                                 </div>
