@@ -14,16 +14,18 @@ import katherine_alexis from "@/assets/slideshow/katherine_alexis.png";
 import marion_mary from "@/assets/slideshow/marion_mary_marvin.png";
 import wade_interview from "@/assets/slideshow/wade_interview.png";
 import ej_patrick from "@/assets/slideshow/ej_patrick.png";
-// ✅ Add captions here
+
+// ✅ Slides with captions
 const slides = [
   {
     src: katherinePatrickMichael,
     alt: "Katherine, Patrick, and Michael at Project Mend event",
-    caption: "Katherine Nikolau, Patrick W. Berry, and Michael Willacy at Syracuse Stage talk",
+    caption:
+      "Katherine Nikolau, Patrick W. Berry, and Michael Willacy at Syracuse Stage talk",
   },
   {
     src: jackie,
-    alt: ""Jackie Thompkins at Mend launch event",
+    alt: "Jackie Thompkins at Mend launch event",
     caption: "Jackie Thompkins at Mend launch event",
   },
   {
@@ -56,23 +58,30 @@ const slides = [
     alt: "Marion Rodriguez, Troy White, and Tony Eiland in the studio",
     caption: "Marion Rodriguez, Troy White, and Tony Eiland in the studio",
   },
-    {
+  {
     src: movie,
-    alt: "still from Marvin Wade and Evan Stenger Bode's new film",
-    caption: "still from Marvin Wade and Evan Stenger Bode's new film "Prison and Time",
-  },  {
+    alt: "Still from Marvin Wade and Evan Stenger Bode's film Prison and Time",
+    caption:
+      "Still from Marvin Wade and Evan Stenger Bode's new film 'Prison and Time'",
+  },
+  {
     src: katherine_alexis,
     alt: "Katherine Nikolau and Alexis Kirkpatrick",
     caption: "Katherine Nikolau and Alexis Kirkpatrick",
-  },  {
+  },
+  {
     src: marion_mary,
     alt: "Marion Rodriguez, Mary Carr, and Marvin Wade",
     caption: "Marion Rodriguez, Mary Carr, and Marvin Wade",
-  },  {
+  },
+  {
     src: wade_interview,
-    alt: "Marvin Wade being interviewed after 'When I Think of Freedom…' event",
-    caption: "Marvin Wade being interviewed after 'When I Think of Freedom…' event",
-  },  {
+    alt:
+      "Marvin Wade being interviewed after When I Think of Freedom… event",
+    caption:
+      "Marvin Wade being interviewed after “When I Think of Freedom…” event",
+  },
+  {
     src: ej_patrick,
     alt: "Ejarias P. Burgin and Patrick W. Berry",
     caption: "Ejarias P. Burgin and Patrick W. Berry",
@@ -82,7 +91,7 @@ const slides = [
 export default function Slideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance (optional)
+  // Auto-advance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -107,7 +116,7 @@ export default function Slideshow() {
             className="max-w-full max-h-full object-contain"
           />
 
-          {/* ✅ Caption */}
+          {/* Caption */}
           <p className="text-center text-sm text-muted-foreground mt-2">
             {slide.caption}
           </p>
@@ -116,19 +125,21 @@ export default function Slideshow() {
 
       {/* Navigation buttons */}
       <button
+        type="button"
         onClick={() =>
           setCurrentIndex((currentIndex - 1 + slides.length) % slides.length)
         }
         className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-background/60 rounded-full shadow"
+        aria-label="Previous slide"
       >
         <ChevronLeft />
       </button>
 
       <button
-        onClick={() =>
-          setCurrentIndex((currentIndex + 1) % slides.length)
-        }
+        type="button"
+        onClick={() => setCurrentIndex((currentIndex + 1) % slides.length)}
         className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-background/60 rounded-full shadow"
+        aria-label="Next slide"
       >
         <ChevronRight />
       </button>
