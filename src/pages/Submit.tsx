@@ -49,8 +49,8 @@ const Submit = () => {
                 <h3 className="text-xl font-medium text-foreground mb-3">Electronic submissions:</h3>
                 <p className="text-muted-foreground ml-4">
                   Use the link below or email your work to{" "}
-                  <a href="mailto:mendthejournal@gmail.com" className="text-primary hover:underline">
-                    mendthejournal@gmail.com
+                  <a href="mailto:mend@project-mend.net.com" className="text-primary hover:underline">
+                    mend@project-mend.net
                   </a>
                   .
                 </p>
@@ -109,7 +109,7 @@ const Submit = () => {
               className="text-lg px-10"
               asChild
             >
-              <a href="mailto:mendthejournal@gmail.com">
+              <a href="mailto:mend@project-mend.net">
                 Submit Your Work
               </a>
             </Button>
