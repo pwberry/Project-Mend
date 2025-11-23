@@ -26,9 +26,29 @@ interface Article {
   externalLink?: string;
   isVideo?: boolean;
   videoId?: string;
+  secondVideoId?: string;
 }
 
 const articles: Article[] = [
+  {
+    id: "9",
+    title: "Formerly incarcerated writers talk freedom at Auburn library",
+    date: "November 13, 2025",
+    category: "In The Media",
+    excerpt:
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system.",
+    content:
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system. Thanks to Kay McCumber for writing this story.",
+    slug: "project-mend-at-auburn",
+    featured: true,
+    isVideo: true,
+    // First video
+    videoId: "fgqvd6XMz6M",
+    // Second video
+    secondVideoId: "H9P_HIDQ7BQ",
+    externalLink:
+      "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
+  },
   {
     id: "6",
     title: "Writing New Futures",
@@ -180,7 +200,7 @@ const News = () => {
         "https://script.google.com/macros/s/AKfycbwcEyNTp6Ekv1olq_Gsjje-bsPt2jKomERa0kdcuS-WNJf7eysVavbmAwcJnRvIYyD4/exec",
         {
           method: "POST",
-          mode: "no-cors", // avoid CORS errors; we don't inspect the response
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
@@ -281,16 +301,49 @@ const News = () => {
                         {/* LEFT: IMAGE OR VIDEO */}
                         <div className="overflow-hidden rounded-lg flex justify-center">
                           {article.isVideo && article.videoId ? (
-                            <div className="aspect-video w-full max-w-xl">
-                              <iframe
-                                width="100%"
-                                height="100%"
-                                src={`https://www.youtube.com/embed/${article.videoId}`}
-                                title={article.title}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="rounded-lg"
-                              />
+                            <div className="w-full max-w-xl space-y-8">
+                              {/* FIRST VIDEO */}
+                              <div>
+                                <div className="aspect-video mb-2">
+                                  <iframe
+                                    width="100%"
+                                    height="100%"
+                                    src={`https://www.youtube.com/embed/${article.videoId}`}
+                                    title={article.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="rounded-lg"
+                                  />
+                                </div>
+                                {/* Caption for first video (URL) */}
+                                <p className="text-sm text-muted-foreground text-center">
+                                  {"https://www.youtube.com/watch?v="}
+                                  {article.videoId}
+                                </p>
+                              </div>
+
+                              {/* SECOND VIDEO (only for articles that define it, e.g., ID 9) */}
+                              {article.secondVideoId && (
+                                <div>
+                                  <div className="aspect-video mb-2">
+                                    <iframe
+                                      width="100%"
+                                      height="100%"
+                                      src={`https://www.youtube.com/embed/${article.secondVideoId}`}
+                                      title="Project Mend video"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                      allowFullScreen
+                                      className="rounded-lg"
+                                    />
+                                  </div>
+                                  <p className="text-sm text-muted-foreground text-center">
+                                    Project Mend editor Katherine Nikolau recites
+                                    her poem for the "When I think of Freedom"
+                                    showcase at the Seymour Library Thursday,
+                                    Nov. 13.
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           ) : article.image ? (
                             <img
