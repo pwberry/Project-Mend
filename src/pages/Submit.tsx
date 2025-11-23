@@ -12,13 +12,19 @@ const Submit = () => {
 
           {/* About Section */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
               <img 
                 src={submitImage} 
                 alt="Submit to Mend - Artwork by Brian Hindson, Intertext 2023" 
                 className="w-1/2 h-auto rounded-lg border-2 border-border"
               />
+
+              {/* 📌 Added Credit Line */}
+              <p className="text-sm text-muted-foreground mt-2">
+                Brian Hindson
+              </p>
             </div>
+
             <div className="flex items-center">
               <p className="text-lg text-foreground leading-relaxed">
                 Mend is an online and print journal that celebrates the lives and creative work of individuals impacted by the criminal legal system. This annual publication features writing of all kinds—fiction, poetry, and nonfiction—as well as visual, audio, and video submissions. While contributors may choose to write about experiences with incarceration, Mend welcomes work on any topic, in any genre or modality.
