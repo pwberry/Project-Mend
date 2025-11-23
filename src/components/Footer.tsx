@@ -66,11 +66,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground border-t border-border pt-6">
           <p>© {new Date().getFullYear()} Project Mend. All rights reserved.</p>
           <a 
-            href="mailto:contact@project-mend.net" 
+            href="mailto:mend@project-mend.net" 
             className="hover:text-primary transition-colors"
             aria-label="Email us"
           >
-            contact@project-mend.net
+            mend@project-mend.net
           </a>
         </div>
       </div>
