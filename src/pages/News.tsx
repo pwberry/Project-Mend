@@ -1,386 +1,449 @@
 import { useState, FormEvent } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 
-import prison_and_timeImage from "@/assets/news/prison_and_time.png";
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
 import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
-import centralCurrentImage from "@/assets/news/central_current.png";
+import centralCurrentImage from "@/assets/news/central_current.jpg";
 
-type NewsItem = {
-  id: number;
+interface Article {
+  id: string;
   title: string;
   date: string;
-  category: string;
+  category: "Featured" | "Client Stories" | "In The Media" | "Our News";
   excerpt: string;
   content: string;
+  image?: string;
   slug: string;
-  featured?: boolean;
-  image: string;
+  featured: boolean;
   externalLink?: string;
-};
+  isVideo?: boolean;
+  videoId?: string;
+  secondVideoId?: string;
+}
 
-const allNewsItems: NewsItem[] = [
+const articles: Article[] = [
   {
-    id: 10,
-    title: "Prison and Time",
-    date: "November 23, 2025",
-    category: "Awards and Recognitions",
-    excerpt:
-      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.'",
-    content:
-      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time,' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December. In “Prison and Time,” Bode animates excerpts of an essay by writer and activist Marvin Wade, who speaks personally about his 25 years of incarceration—and the positive transformation he achieved in spite of, not because of, an inhumane prison system working against him.",
-    slug: "prison-and-time-2025",
-    featured: true,
-    image: prison_and_timeImage,
-    externalLink: "https://www.evanbode.net/project-mend/",
-  },
-  {
-    id: 9,
-    title: "When I Think of Freedom Showcase",
+    id: "9",
+    title: "Formerly incarcerated writers talk freedom at Auburn library",
     date: "November 13, 2025",
-    category: "Events",
+    category: "In The Media",
     excerpt:
-      "Writers and artists gathered at the Seymour Library in Auburn, NY for an evening of poetry, film, and conversation on freedom, incarceration, and repair.",
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system.",
     content:
-      "Project Mend writers and collaborators presented new work at the Seymour Library in Auburn, NY as part of the 'When I Think of Freedom' showcase. The event featured readings, film screenings, and conversations about incarceration, abolition, and narrative justice.",
-    slug: "when-i-think-of-freedom-2025",
-    image: whenIThinkOfFreedomImage,
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system. Thanks to Kay McCumber for writing this story.",
+    slug: "project-mend-at-auburn",
+    featured: true,
+    isVideo: true,
+    // First video
+    videoId: "fgqvd6XMz6M",
+    // Second video
+    secondVideoId: "H9P_HIDQ7BQ",
+    externalLink:
+      "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
   },
   {
-    id: 8,
-    title: "Launch Party for Mend 2025",
-    date: "October 15, 2025",
-    category: "Events",
+    id: "6",
+    title: "Writing New Futures",
+    date: "November 11, 2025",
+    category: "In The Media",
     excerpt:
-      "We celebrated the release of the 2025 issue of Mend with contributors, editors, and community partners.",
+      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
     content:
-      "Our 2025 launch party brought together writers, artists, families, and community partners to celebrate the new issue of Mend. The evening included readings, films, and informal conversations about the work of storytelling after incarceration.",
-    slug: "mend-2025-launch-party",
+      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
+    slug: "writing-new-futures",
+    featured: true,
+    image: writingNewFuturesImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
+  },
+  {
+    id: "7",
+    title: "When I Think of Freedom...",
+    date: "July 30, 2025",
+    category: "In The Media",
+    excerpt:
+      "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
+    content:
+      "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
+    slug: "when-i-think-of-freedom",
+    featured: true,
+    image: whenIThinkOfFreedomImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
+  },
+  {
+    id: "8",
+    title:
+      "How Project Mend is helping formerly incarcerated people and their families tell their stories",
+    date: "March 27, 2025",
+    category: "In The Media",
+    excerpt:
+      "Central Current features Project Mend's work with formerly incarcerated individuals.",
+    content:
+      "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
+    slug: "central-current-project-mend",
+    featured: true,
+    image: centralCurrentImage,
+    externalLink:
+      "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
+  },
+  {
+    id: "1",
+    title: "Celebrating the 2025 Issue of Mend",
+    date: "February 15, 2025",
+    category: "Featured",
+    excerpt:
+      "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
+    content: `It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.
+
+Our launch party will be a hybrid event, where we will celebrate the 2025 issue of Mend and render, a new publication exploring the lives and creative works of impacted artists produced by Katherine Nikolau, a Writing and Rhetoric major who graduated in December through a SOURCE research grant.
+
+📅 Date: Saturday, February 15
+⏰ Time: 12:00 p.m. - 1:30 p.m. ET
+📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
+
+This event will include a light lunch.
+
+Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation. Additionally, the project has been supported at Syracuse University by: Engaged Humanities Network, The Humanities Center, SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
+
+For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.edu by February 11.`,
+    slug: "celebrating-2025-issue-mend",
+    featured: true,
     image: launchPartyImage,
   },
   {
-    id: 7,
-    title: "Alex Anderson Featured in Mend",
-    date: "September 10, 2025",
-    category: "News",
+    id: "2",
+    title: "HNY Post-Incarceration Humanities Partnership Convening",
+    date: "May 21, 2024",
+    category: "Our News",
     excerpt:
-      "Artist and writer Alex Anderson joins the Project Mend community with a new series blending visual art and essay.",
+      "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
     content:
-      "Alex Anderson’s work appears in the latest issue of Mend, bringing together visual collage and essay to explore memory, confinement, and the possibility of new futures.",
-    slug: "alex-anderson-feature",
+      "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
+    slug: "hny-pihp-convening",
+    featured: true,
+    isVideo: true,
+    videoId: "Iez6a6fYUZ8",
+  },
+  {
+    id: "3",
+    title:
+      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+    date: "September 19, 2024",
+    category: "Our News",
+    excerpt:
+      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+    content:
+      "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
+    slug: "alex-anderson-visit",
+    featured: true,
     image: alexAndersonImage,
   },
   {
-    id: 6,
-    title: "Mend Editorial Team 2024–2025",
-    date: "August 30, 2025",
-    category: "News",
+    id: "4",
+    title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas..",
+    date: "May 2024",
+    category: "Client Stories",
     excerpt:
-      "Meet the editors who work on Mend, including systems-impacted writers, Syracuse students, and community partners.",
+      "Celebrating the achievements of our dedicated Mend editorial team member.",
     content:
-      "Our 2024–2025 editorial team includes systems-impacted writers, Syracuse University students, and community members who collaborate on editing, design, and outreach for Mend.",
-    slug: "mend-editorial-team-2024-2025",
+      "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
+    slug: "congratulations-ilhy-gomez",
+    featured: true,
     image: mendTeamImage,
   },
   {
-    id: 5,
-    title: "United We End Racism",
-    date: "April 20, 2025",
-    category: "Events",
+    id: "5",
+    title:
+      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
+    date: "June 8, 2024",
+    category: "Our News",
     excerpt:
-      "Project Mend contributors joined local organizers for United We End Racism, sharing work on incarceration, race, and community repair.",
+      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
     content:
-      "Project Mend writers participated in the United We End Racism gathering, sharing readings and multimedia work that confront the intersections of racism, policing, and incarceration.",
-    slug: "united-we-end-racism-2025",
+      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
+    slug: "united-we-end-racism-festival",
+    featured: true,
     image: unitedWeEndRacismImage,
-  },
-  {
-    id: 4,
-    title: "Writing New Futures",
-    date: "March 10, 2025",
-    category: "Workshops",
-    excerpt:
-      "A hands-on workshop series for systems-impacted writers focusing on storytelling, digital publishing, and community archiving.",
-    content:
-      "The Writing New Futures workshop series invites systems-impacted writers to experiment with multimodal storytelling, from print to podcasting, while building a shared community archive.",
-    slug: "writing-new-futures-workshop",
-    image: writingNewFuturesImage,
-  },
-  {
-    id: 3,
-    title: "Project Mend in Central Current",
-    date: "January 25, 2025",
-    category: "Press & Media",
-    excerpt:
-      "Central Current profiled Project Mend, highlighting our work with justice-impacted writers, artists, and families.",
-    content:
-      "Central Current’s profile of Project Mend discusses our community partnerships, editorial model, and the role of storytelling in imagining life after incarceration.",
-    slug: "central-current-profile",
-    image: centralCurrentImage,
-    externalLink: "https://www.centralcurrent.org/", // update with the specific article link if you have it
   },
 ];
 
-type TabKey = "all" | "news" | "events" | "press";
-
-const getItemsForTab = (tab: TabKey): NewsItem[] => {
-  if (tab === "all") return allNewsItems;
-
-  if (tab === "news") {
-    return allNewsItems.filter((item) =>
-      item.category.toLowerCase().includes("news")
-    );
-  }
-
-  if (tab === "events") {
-    return allNewsItems.filter((item) =>
-      ["event", "workshop"].some((word) =>
-        item.category.toLowerCase().includes(word)
-      )
-    );
-  }
-
-  // "press"
-  return allNewsItems.filter((item) =>
-    ["press", "media"].some((word) =>
-      item.category.toLowerCase().includes(word)
-    )
-  );
-};
-
-const STAY_CONNECTED_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbzduAzI8yc_ytBRxbDzJkt-pxgTQab6I_hfMTpHNaw7DZarSGPH8SvM4_4LP2m73Loc/exec";
-
-const NewsPage = () => {
+const News = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const { toast } = useToast();
 
-  const [activeTab, setActiveTab] = useState<TabKey>("all");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const featuredArticles = articles.filter((article) => article.featured);
 
-  const handleStayConnectedSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSignupSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim() || !email.trim()) {
+    if (!name || !email) {
       toast({
-        title: "Missing information",
-        description: "Please enter both your name and email.",
+        title: "Error",
+        description: "Please fill in all fields.",
         variant: "destructive",
       });
       return;
     }
 
     try {
-      setIsSubmitting(true);
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwcEyNTp6Ekv1olq_Gsjje-bsPt2jKomERa0kdcuS-WNJf7eysVavbmAwcJnRvIYyD4/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+          }),
+        }
+      );
 
-      await fetch(STAY_CONNECTED_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-        }),
+      toast({
+        title: "Success!",
+        description: "You've been added to our mailing list.",
       });
 
       setName("");
       setEmail("");
-
-      toast({
-        title: "Thanks for staying connected",
-        description:
-          "We’ll keep you posted about new issues of Mend, events, and opportunities.",
-      });
     } catch (error) {
+      console.error("Newsletter submit error:", error);
       toast({
         title: "Something went wrong",
         description:
-          "We weren’t able to submit your information. Please try again later.",
+          "We couldn't save your subscription. Please try again later.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
-  const itemsForActiveTab = getItemsForTab(activeTab);
-
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10 lg:py-14">
-      <header className="max-w-3xl">
-        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-          News &amp; Events
-        </h1>
-        <p className="mt-3 text-sm text-slate-700 md:text-base">
-          Updates from{" "}
-          <span className="italic">Mend</span>, including launches, events,
-          workshops, and media features celebrating the work of systems-impacted
-          writers and artists.
-        </p>
-      </header>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="bg-muted/30 py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              News & Events
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6">
+              Stay updated on Project Mend announcements, events, and community
+              happenings.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() =>
+                  window.open(
+                    "https://www.facebook.com/ProjectMendSU",
+                    "_blank"
+                  )
+                }
+                className="gap-2"
+              >
+                <Facebook size={20} />
+                Join us on Facebook
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/projectmend/",
+                    "_blank"
+                  )
+                }
+                className="gap-2"
+              >
+                <Instagram size={20} />
+                Join us on Instagram
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section className="mt-6">
-        <Tabs
-          value={activeTab}
-          onValueChange={(value) => setActiveTab(value as TabKey)}
-        >
-          <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="news">News</TabsTrigger>
-            <TabsTrigger value="events">Events &amp; Workshops</TabsTrigger>
-            <TabsTrigger value="press">Press &amp; Media</TabsTrigger>
-          </TabsList>
+      {/* Main Content */}
+      <div className="container mx-auto px-4 md:px-6 py-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Featured Articles */}
+          {featuredArticles.length > 0 && (
+            <section className="mb-8">
+              <div className="space-y-8">
+                {featuredArticles.map((article) => {
+                  const ArticleWrapper = article.externalLink ? "a" : "article";
+                  const wrapperProps = article.externalLink
+                    ? {
+                        href: article.externalLink,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className:
+                          "block cursor-pointer hover:opacity-95 transition-opacity",
+                      }
+                    : {};
 
-          {/* One content block that updates based on activeTab */}
-          <TabsContent value={activeTab}>
-            <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-              {/* Left: news grid */}
-              <div className="grid gap-6 md:grid-cols-2">
-                {itemsForActiveTab.map((item) => (
-                  <article
-                    key={item.id}
-                    className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm"
-                  >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
+                  return (
+                    <ArticleWrapper key={article.id} {...wrapperProps}>
+                      <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
+                        {/* LEFT: IMAGE OR VIDEO */}
+                        <div className="overflow-hidden rounded-lg flex justify-center">
+                          {article.isVideo && article.videoId ? (
+                            <div className="w-full max-w-xl space-y-8">
+                              {/* FIRST VIDEO */}
+                              <div>
+                                <div className="aspect-video mb-2">
+                                  <iframe
+                                    width="100%"
+                                    height="100%"
+                                    src={`https://www.youtube.com/embed/${article.videoId}`}
+                                    title={article.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="rounded-lg"
+                                  />
+                                </div>
+                                {/* UPDATED CAPTION FOR FIRST VIDEO */}
+                                <p className="text-sm text-muted-foreground text-center">
+                                  Brooklyn writer and activist Marvin Wade reads
+                                  "Getting Over the Mountains" at the "When I
+                                  think of Freedom" showcase at the Seymour
+                                  Library, Thursday, Nov. 13.
+                                </p>
+                              </div>
 
-                    <div className="flex flex-1 flex-col gap-3 p-4">
-                      <div className="flex items-center justify-between text-xs text-slate-600">
-                        <span className="inline-flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span>{item.date}</span>
-                        </span>
-                        <Badge variant="outline">{item.category}</Badge>
-                      </div>
+                              {/* SECOND VIDEO (only for articles that define it, e.g., ID 9) */}
+                              {article.secondVideoId && (
+                                <div>
+                                  <div className="aspect-video mb-2">
+                                    <iframe
+                                      width="100%"
+                                      height="100%"
+                                      src={`https://www.youtube.com/embed/${article.secondVideoId}`}
+                                      title="Project Mend video"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                      allowFullScreen
+                                      className="rounded-lg"
+                                    />
+                                  </div>
+                                  <p className="text-sm text-muted-foreground text-center">
+                                    Project Mend editor Katherine Nikolau shares her writing at the Seymour Library, Thursday,
+                                    Nov. 13.
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          ) : article.image ? (
+                            <img
+                              src={article.image}
+                              alt={article.title}
+                              className="w-full max-w-xl h-auto object-contain"
+                            />
+                          ) : (
+                            <div className="w-full h-64 bg-muted flex items-center justify-center">
+                              <span className="text-muted-foreground">
+                                No image available
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                      <h2 className="text-lg font-semibold tracking-tight">
-                        {item.title}
-                      </h2>
-
-                      <p className="text-sm text-slate-700">{item.excerpt}</p>
-
-                      <div className="mt-auto pt-2">
-                        {item.externalLink ? (
-                          <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="gap-2"
-                          >
-                            <a
-                              href={item.externalLink}
-                              target="_blank"
-                              rel="noreferrer"
+                        {/* RIGHT: TEXT CONTENT */}
+                        <div className="relative">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                            <Calendar size={14} />
+                            <time dateTime={article.date}>{article.date}</time>
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+                            {article.title}
+                          </h3>
+                          <div className="relative">
+                            <div
+                              className="text-muted-foreground leading-relaxed"
+                              style={{ whiteSpace: "pre-line" }}
                             >
-                              <ExternalLink className="h-4 w-4" />
-                              Learn more
-                            </a>
-                          </Button>
-                        ) : null}
-                      </div>
-                    </div>
-                  </article>
-                ))}
+                              {article.content}
+                            </div>
+                            {article.externalLink && (
+                              <div className="mt-4 pt-4 relative">
+                                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+                                <p className="relative text-primary font-medium hover:underline cursor-pointer flex items-center gap-2">
+                                  Click here to read more
+                                  <ExternalLink size={16} />
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </article>
+                    </ArticleWrapper>
+                  );
+                })}
               </div>
+            </section>
+          )}
 
-              {/* Right: stay connected */}
-              <aside className="h-fit rounded-2xl border bg-slate-50 p-6">
-                <h2 className="text-lg font-semibold tracking-tight">
-                  Stay connected
-                </h2>
-                <p className="mt-2 text-sm text-slate-700">
-                  Share your email to receive updates about{" "}
-                  <span className="italic">Mend</span> launches, workshops, and
-                  events.
-                </p>
-
-                <form
-                  onSubmit={handleStayConnectedSubmit}
-                  className="mt-4 space-y-4"
-                >
-                  <div className="space-y-1.5">
-                    <Label htmlFor="name">Name</Label>
+          {/* Signup */}
+          <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Stay Connected
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                Subscribe to our mailing list to receive the latest news,
+                events, and updates from Project Mend.
+              </p>
+              <form onSubmit={handleSignupSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="text-left">
+                    <Label htmlFor="newsletter-name" className="mb-2 block">
+                      Name
+                    </Label>
                     <Input
-                      id="name"
-                      name="name"
-                      placeholder="First and last name"
-                      autoComplete="name"
+                      id="newsletter-name"
+                      type="text"
+                      placeholder="Your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      required
                     />
                   </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Email</Label>
+                  <div className="text-left">
+                    <Label htmlFor="newsletter-email" className="mb-2 block">
+                      Email
+                    </Label>
                     <Input
-                      id="email"
-                      name="email"
+                      id="newsletter-email"
                       type="email"
-                      placeholder="you@example.com"
-                      autoComplete="email"
+                      placeholder="your.email@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit"}
-                  </Button>
-                </form>
-
-                <div className="mt-6 border-t pt-4">
-                  <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
-                    Follow Project Mend
-                  </p>
-                  <div className="mt-2 flex gap-3">
-                    <a
-                      href="https://www.instagram.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white text-slate-700 hover:bg-slate-100"
-                    >
-                      <Instagram className="h-4 w-4" />
-                    </a>
-                    <a
-                      href="https://www.facebook.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white text-slate-700 hover:bg-slate-100"
-                    >
-                      <Facebook className="h-4 w-4" />
-                    </a>
-                  </div>
                 </div>
-              </aside>
+                <Button type="submit" size="lg" className="w-full md:w-auto">
+                  Subscribe to Newsletter
+                </Button>
+              </form>
             </div>
-          </TabsContent>
-        </Tabs>
-      </section>
-    </main>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default NewsPage;
+export default News;
