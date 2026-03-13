@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
 
 interface FeatureCardProps {
   title: ReactNode;
@@ -30,28 +31,27 @@ const FeatureCard = ({
         />
       </div>
 
-      <div className="p-6 flex flex-col gap-3">
+      <div className="p-6 flex flex-col gap-3 h-full">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-            {title}
-          </h3>
-
-          {comingSoon && (
-            <span className="px-2 py-1 text-xs font-medium bg-muted text-muted-foreground rounded">
-              Coming soon
-            </span>
+          <h3 className="text-xl font-semibold leading-snug">{title}</h3>
+          {external && link && (
+            <ExternalLink className="h-4 w-4 mt-1 shrink-0 text-muted-foreground" />
           )}
         </div>
 
-        <p className="text-muted-foreground line-clamp-3">
+        <div className="text-muted-foreground leading-relaxed text-sm">
           {description}
-        </p>
+        </div>
+
+        {comingSoon && (
+          <p className="text-sm font-medium text-primary pt-2">Coming soon</p>
+        )}
       </div>
     </div>
   );
 
   if (comingSoon || !link) {
-    return <div className="cursor-default">{content}</div>;
+    return content;
   }
 
   if (external) {
@@ -59,8 +59,8 @@ const FeatureCard = ({
       <a
         href={link}
         target="_blank"
-        rel="noopener noreferrer"
-        className="block h-full focus:outline-none focus:ring-2 focus:ring-ring rounded-lg"
+        rel="noreferrer"
+        className="block h-full"
       >
         {content}
       </a>
@@ -68,10 +68,7 @@ const FeatureCard = ({
   }
 
   return (
-    <Link
-      to={link}
-      className="block h-full focus:outline-none focus:ring-2 focus:ring-ring rounded-lg"
-    >
+    <Link to={link} className="block h-full">
       {content}
     </Link>
   );
