@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { Calendar, ExternalLink, Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,6 @@ import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
-import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
 
 interface Article {
   id: string;
@@ -39,32 +38,6 @@ interface Article {
 }
 
 const articles: Article[] = [
-  {
-    id: "13",
-    title: "Project Mend Launches New Podcast Series: Mend Fences",
-    date: "March 2026",
-    category: "Our News",
-    excerpt:
-      "Project Mend announces Mend Fences, a new podcast series inspired by themes in the journal and archive.",
-    content: `Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.
-
-In Mend Fences, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
-
-The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
-
-Mend Fences is available on major podcast platforms.
-
-Listen to Mend Fences:
-
-Listen on Spotify:
-https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU
-
-Listen on Amazon Music:
-https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences`,
-    slug: "mend-fences-podcast",
-    featured: true,
-    image: mendFencesArtImage,
-  },
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
@@ -256,7 +229,7 @@ const News = () => {
 
   const featuredArticles = articles.filter((article) => article.featured);
 
-  const handleSignupSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSignupSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!name || !email) {
@@ -356,148 +329,130 @@ const News = () => {
           {featuredArticles.length > 0 && (
             <section className="mb-8">
               <div className="space-y-8">
-                {featuredArticles.map((article) => (
-                  <article
-                    key={article.id}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8"
-                  >
-                    {/* LEFT: IMAGE OR VIDEO */}
-                    <div className="overflow-hidden rounded-lg flex justify-center">
-                      {article.isVideo && article.videoId ? (
-                        <div className="w-full max-w-xl space-y-8">
-                          <div>
-                            <div className="aspect-video mb-2">
-                              <iframe
-                                width="100%"
-                                height="100%"
-                                src={`https://www.youtube.com/embed/${article.videoId}`}
-                                title={article.title}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="rounded-lg"
-                              />
-                            </div>
-                            <p className="text-sm text-muted-foreground text-center">
-                              Brooklyn writer and activist Marvin Wade reads
-                              "Getting Over the Mountains" at the "When I think
-                              of Freedom" showcase at the Seymour Library,
-                              Thursday, Nov. 13.
-                            </p>
-                          </div>
+                {featuredArticles.map((article) => {
+                  const ArticleWrapper = article.externalLink ? "a" : "article";
+                  const wrapperProps = article.externalLink
+                    ? {
+                        href: article.externalLink,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className:
+                          "block cursor-pointer hover:opacity-95 transition-opacity",
+                      }
+                    : {};
 
-                          {article.secondVideoId && (
-                            <div>
-                              <div className="aspect-video mb-2">
-                                <iframe
-                                  width="100%"
-                                  height="100%"
-                                  src={`https://www.youtube.com/embed/${article.secondVideoId}`}
-                                  title="Project Mend video"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                  className="rounded-lg"
-                                />
+                  return (
+                    <ArticleWrapper key={article.id} {...wrapperProps}>
+                      <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
+                        {/* LEFT: IMAGE OR VIDEO */}
+                        <div className="overflow-hidden rounded-lg flex justify-center">
+                          {article.isVideo && article.videoId ? (
+                            <div className="w-full max-w-xl space-y-8">
+                              <div>
+                                <div className="aspect-video mb-2">
+                                  <iframe
+                                    width="100%"
+                                    height="100%"
+                                    src={`https://www.youtube.com/embed/${article.videoId}`}
+                                    title={article.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="rounded-lg"
+                                  />
+                                </div>
+                                <p className="text-sm text-muted-foreground text-center">
+                                  Brooklyn writer and activist Marvin Wade reads
+                                  "Getting Over the Mountains" at the "When I
+                                  think of Freedom" showcase at the Seymour
+                                  Library, Thursday, Nov. 13.
+                                </p>
                               </div>
-                              <p className="text-sm text-muted-foreground text-center">
-                                Project Mend editor Katherine Nikolau shares her
-                                writing at the Seymour Library, Thursday, Nov.
-                                13.
-                              </p>
+
+                              {article.secondVideoId && (
+                                <div>
+                                  <div className="aspect-video mb-2">
+                                    <iframe
+                                      width="100%"
+                                      height="100%"
+                                      src={`https://www.youtube.com/embed/${article.secondVideoId}`}
+                                      title="Project Mend video"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                      allowFullScreen
+                                      className="rounded-lg"
+                                    />
+                                  </div>
+                                  <p className="text-sm text-muted-foreground text-center">
+                                    Project Mend editor Katherine Nikolau shares
+                                    her writing at the Seymour Library,
+                                    Thursday, Nov. 13.
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          ) : article.image ? (
+                            <img
+                              src={article.image}
+                              alt={article.title}
+                              className="w-full max-w-xl h-auto object-contain"
+                            />
+                          ) : (
+                            <div className="w-full h-64 bg-muted flex items-center justify-center">
+                              <span className="text-muted-foreground">
+                                No image available
+                              </span>
                             </div>
                           )}
                         </div>
-                      ) : article.image ? (
-                        <img
-                          src={article.image}
-                          alt={article.title}
-                          className="w-full max-w-xl h-auto object-contain"
-                        />
-                      ) : (
-                        <div className="w-full h-64 bg-muted flex items-center justify-center">
-                          <span className="text-muted-foreground">
-                            No image available
-                          </span>
+
+                        {/* RIGHT: TEXT CONTENT */}
+                        <div className="relative">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                            <Calendar size={14} />
+                            <time dateTime={article.date}>{article.date}</time>
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+                            {article.title}
+                          </h3>
+                          <div className="relative">
+                            <div
+                              className="text-muted-foreground leading-relaxed"
+                              style={{ whiteSpace: "pre-line" }}
+                            >
+                              {article.content}
+                            </div>
+
+                            {article.zoomRegistrationLink && (
+                              <div className="mt-6">
+                                <Button
+                                  size="lg"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.open(
+                                      article.zoomRegistrationLink,
+                                      "_blank"
+                                    );
+                                  }}
+                                >
+                                  Register for Zoom
+                                </Button>
+                              </div>
+                            )}
+
+                            {article.externalLink && (
+                              <div className="mt-4 pt-4 relative">
+                                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+                                <p className="relative text-primary font-medium hover:underline cursor-pointer flex items-center gap-2">
+                                  Click here to read more
+                                  <ExternalLink size={16} />
+                                </p>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      )}
-                    </div>
-
-                    {/* RIGHT: TEXT CONTENT */}
-                    <div className="relative">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                        <Calendar size={14} />
-                        <time dateTime={article.date}>{article.date}</time>
-                      </div>
-
-                      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-                        {article.title}
-                      </h3>
-
-                      <div
-                        className="text-muted-foreground leading-relaxed"
-                        style={{ whiteSpace: "pre-line" }}
-                      >
-                        {article.content}
-                      </div>
-
-                      {article.slug === "mend-fences-podcast" && (
-                        <div className="mt-6 flex gap-3 flex-wrap">
-                          <Button
-                            onClick={() =>
-                              window.open(
-                                "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
-                                "_blank"
-                              )
-                            }
-                          >
-                            Listen on Spotify
-                          </Button>
-
-                          <Button
-                            variant="outline"
-                            onClick={() =>
-                              window.open(
-                                "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
-                                "_blank"
-                              )
-                            }
-                          >
-                            Listen on Amazon Music
-                          </Button>
-                        </div>
-                      )}
-
-                      {article.zoomRegistrationLink && (
-                        <div className="mt-6">
-                          <Button
-                            size="lg"
-                            onClick={() =>
-                              window.open(
-                                article.zoomRegistrationLink,
-                                "_blank"
-                              )
-                            }
-                          >
-                            Register for Zoom
-                          </Button>
-                        </div>
-                      )}
-
-                      {article.externalLink && (
-                        <div className="mt-4 pt-4">
-                          <a
-                            href={article.externalLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary font-medium hover:underline cursor-pointer flex items-center gap-2"
-                          >
-                            Click here to read more
-                            <ExternalLink size={16} />
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                ))}
+                      </article>
+                    </ArticleWrapper>
+                  );
+                })}
               </div>
             </section>
           )}
