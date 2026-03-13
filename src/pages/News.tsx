@@ -14,7 +14,7 @@ import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
-import mendFencesArtImage from "@/assets/news/mend_fences_art.JPG";
+import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
 
 interface Article {
   id: string;
