@@ -84,7 +84,7 @@ const Join = () => {
           <div className="bg-card border border-border rounded-lg p-8 mb-12">
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Do you want to produce and publish your own stories? Do you want to participate
+                Does you want to produce and publish your own stories? Do you want to participate
                 in the production and manufacturing of <em>Mend</em>, an anthology of work by
                 incarcerated and formerly incarcerated individuals and their families? Do you
                 want to participate in workshops on multimedia storytelling?
