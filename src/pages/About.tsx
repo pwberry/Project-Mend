@@ -14,35 +14,20 @@ const About = () => {
       <Hero />
 
       <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6 pr-[1in] pl-4 md:pl-6">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-7xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
               About Project Mend
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-              Project Mend is a public humanities initiative that supports the
-              creative and intellectual work of people impacted by incarceration.
-              Through publishing, storytelling, apprenticeship, and community
-              collaboration, Project Mend creates platforms for writers, artists,
-              and organizers to share their work with broader publics.
+              Project Mend is a public humanities initiative that supports the creative and intellectual work of people impacted by incarceration. Through publishing, storytelling, apprenticeship, and community collaboration, Project Mend creates platforms for writers, artists, and organizers to share their work with broader publics.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             <FeatureCard
-              title={
-                <span>
-                  <em>Mend</em>, The Journal
-                </span>
-              }
-              description={
-                <span>
-                  <em>Mend</em> is an annual open-access publication celebrating
-                  the lives and creative work of people impacted by incarceration.
-                  The journal brings together writing, visual art, and other
-                  forms of storytelling.
-                </span>
-              }
+              title="Mend, The Journal"
+              description="Mend is an annual open-access publication celebrating the lives and creative work of people impacted by incarceration."
               image={journalImage}
               imageAlt="Cover image for Mend journal"
               link="/journal"
@@ -50,25 +35,15 @@ const About = () => {
 
             <FeatureCard
               title="Editorial Apprenticeship"
-              description="Project Mend offers students and community collaborators opportunities to participate in editing, publishing, and public humanities work through hands-on apprenticeship."
+              description="Project Mend offers students and community collaborators opportunities to participate in editing, publishing, and public humanities work."
               image={apprenticeImage}
               imageAlt="Project Mend apprenticeship"
               link="/apprenticeship"
             />
 
             <FeatureCard
-              title={
-                <span>
-                  <em>Mend Fences</em> Podcast
-                </span>
-              }
-              description={
-                <span>
-                  <em>Mend Fences</em> extends conversations emerging from the
-                  pages of <em>Mend</em> and the growing Project Mend archive
-                  through audio storytelling, reflection, and dialogue.
-                </span>
-              }
+              title="Mend Fences Podcast"
+              description="Mend Fences extends conversations emerging from the pages of Mend and the growing Project Mend archive."
               image={podcastImage}
               imageAlt="Mend Fences podcast artwork"
               link="/podcast"
@@ -76,18 +51,14 @@ const About = () => {
 
             <FeatureCard
               title="Renderings and Creative Work"
-              description="Project Mend highlights multimedia and creative work that engages justice, memory, community, and transformation through digital and public-facing formats."
+              description="Project Mend highlights multimedia and creative work that engages justice, memory, community, and transformation."
               image={renderImage}
               imageAlt="Creative renderings and visual work"
               link="/renderings"
             />
 
             <FeatureCard
-              title={
-                <span>
-                  <em>Prison and Time</em>
-                </span>
-              }
+              title="Prison and Time"
               description="This documentary project explores incarceration, time, education, and the humanities through collaborative storytelling and film."
               image={prisonAndTimeImage}
               imageAlt="Prison and Time project image"
@@ -96,7 +67,7 @@ const About = () => {
 
             <FeatureCard
               title="News and Events"
-              description="Read the latest updates about Project Mend, including new publications, podcast episodes, public events, partnerships, and community programming."
+              description="Read the latest updates about Project Mend, including publications, podcast episodes, events, and partnerships."
               image={newsImage}
               imageAlt="Project Mend news and events"
               link="/news"
