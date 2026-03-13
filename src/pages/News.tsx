@@ -14,6 +14,7 @@ import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
+import mendFencesArtImage from "@/assets/news/mend_fences_art.JPG";
 
 interface Article {
   id: string;
@@ -38,6 +39,32 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: "13",
+    title: "Project Mend Launches New Podcast Series: Mend Fences",
+    date: "March 2026",
+    category: "Our News",
+    excerpt:
+      "Project Mend announces Mend Fences, a new podcast series inspired by themes in the journal and archive.",
+    content: `Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.
+
+In Mend Fences, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
+
+The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
+
+Mend Fences is available on major podcast platforms.
+
+Listen to Mend Fences:
+
+Listen on Spotify:
+https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU
+
+Listen on Amazon Music:
+https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences`,
+    slug: "mend-fences-podcast",
+    featured: true,
+    image: mendFencesArtImage,
+  },
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
@@ -420,6 +447,35 @@ const News = () => {
                             >
                               {article.content}
                             </div>
+
+                            {article.slug === "mend-fences-podcast" && (
+                              <div className="mt-6 flex gap-3 flex-wrap">
+                                <Button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.open(
+                                      "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
+                                      "_blank"
+                                    );
+                                  }}
+                                >
+                                  Listen on Spotify
+                                </Button>
+
+                                <Button
+                                  variant="outline"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.open(
+                                      "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
+                                      "_blank"
+                                    );
+                                  }}
+                                >
+                                  Listen on Amazon Music
+                                </Button>
+                              </div>
+                            )}
 
                             {article.zoomRegistrationLink && (
                               <div className="mt-6">
