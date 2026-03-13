@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
+import projectMendLaunchImage from "@/assets/news/project_mend_launch.png";
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
@@ -23,7 +24,7 @@ interface Article {
     | "Client Stories"
     | "In The Media"
     | "Our News"
-    | "Awards and Recogitions";
+    | "Awards and Recognitions";
   excerpt: string;
   content: string;
   image?: string;
@@ -37,14 +38,34 @@ interface Article {
 
 const articles: Article[] = [
   {
+    id: "12",
+    title: "Celebrating the 2026 Issue of Mend",
+    date: "March 21, 2026",
+    category: "Featured",
+    excerpt:
+      "Join us as we celebrate the fourth issue of Mend and showcase art and films that are now part of the Project Mend archive.",
+    content: `We are thrilled to celebrate the fourth issue of Mend, marking the fourth year of this collaborative project showcasing the writing and art of people impacted by the criminal legal system.
+
+At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.
+
+📅 Date: Saturday, March 21, 2026
+⏰ Time: 12:00 p.m. - 1:30 p.m.
+📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
+
+This gathering highlights the continued growth of Project Mend and the powerful creative work of our contributors and collaborators.`,
+    slug: "celebrating-2026-issue-mend",
+    featured: true,
+    image: projectMendLaunchImage,
+  },
+  {
     id: "11",
     title: "Prison and Time",
     date: "November 23, 2025",
-    category: "Awards and Recogitions",
+    category: "Awards and Recognitions",
     excerpt:
       "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.'",
     content:
-      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December. In “Prison and Time,” Bode animates excerpts of an essay by writer & activist Marvin Wade, who speaks personally about his 25 years of incarceration—and the positive transformation he achieved in spite of, not because of, an inhumane prison system working against him.",
+      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time,' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December. In “Prison and Time,” Bode animates excerpts of an essay by writer & activist Marvin Wade, who speaks personally about his 25 years of incarceration—and the positive transformation he achieved in spite of, not because of, an inhumane prison system working against him.",
     slug: "prison-and-time-2025",
     featured: true,
     image: prison_and_timeImage,
@@ -62,9 +83,7 @@ const articles: Article[] = [
     slug: "project-mend-at-auburn",
     featured: true,
     isVideo: true,
-    // First video
     videoId: "fgqvd6XMz6M",
-    // Second video
     secondVideoId: "H9P_HIDQ7BQ",
     externalLink:
       "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
@@ -169,7 +188,7 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
   },
   {
     id: "4",
-    title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas..",
+    title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas.",
     date: "May 2024",
     category: "Client Stories",
     excerpt:
@@ -322,7 +341,6 @@ const News = () => {
                         <div className="overflow-hidden rounded-lg flex justify-center">
                           {article.isVideo && article.videoId ? (
                             <div className="w-full max-w-xl space-y-8">
-                              {/* FIRST VIDEO */}
                               <div>
                                 <div className="aspect-video mb-2">
                                   <iframe
@@ -335,7 +353,6 @@ const News = () => {
                                     className="rounded-lg"
                                   />
                                 </div>
-                                {/* UPDATED CAPTION FOR FIRST VIDEO */}
                                 <p className="text-sm text-muted-foreground text-center">
                                   Brooklyn writer and activist Marvin Wade reads
                                   "Getting Over the Mountains" at the "When I
@@ -344,7 +361,6 @@ const News = () => {
                                 </p>
                               </div>
 
-                              {/* SECOND VIDEO (only for articles that define it, e.g., ID 9) */}
                               {article.secondVideoId && (
                                 <div>
                                   <div className="aspect-video mb-2">
