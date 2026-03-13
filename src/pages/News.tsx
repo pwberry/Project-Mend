@@ -15,7 +15,7 @@ import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
-import prison_and_timeImage from "@/assets/news/prison_and_time.png";
+import podcast from "@/assets/news/podcast.png";
 
 interface Article {
   id: string;
@@ -84,7 +84,7 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
 <em>Mend Fences</em> is available on major podcast platforms.`,
     slug: "mend-fences-podcast-launch",
     featured: true,
-    image: mendFencesArtImage,
+    image: podcast,
     spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
     amazonLink:
       "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
