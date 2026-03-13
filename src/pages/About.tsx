@@ -2,8 +2,9 @@ import Hero from "@/components/Hero";
 import FeatureCard from "@/components/FeatureCard";
 import journalImage from "@/assets/cards/mend_journal.png";
 import apprenticeImage from "@/assets/cards/apprentice.png";
-import renderImage from "@/assets/cards/render_cover.png";
 import podcastImage from "@/assets/cards/podcast.png";
+import renderImage from "@/assets/cards/render_cover.png";
+import prisonAndTimeImage from "@/assets/cards/prison_and_time.png";
 import newsImage from "@/assets/cards/news_events.jpg";
 
 const About = () => {
