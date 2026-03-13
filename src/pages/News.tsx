@@ -52,7 +52,15 @@ In Mend Fences, editors and collaborators reflect on themes that appear in the j
 
 The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
 
-Mend Fences is available on major podcast platforms.`,
+Mend Fences is available on major podcast platforms.
+
+Listen to Mend Fences:
+
+Listen on Spotify:
+https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU
+
+Listen on Amazon Music:
+https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences`,
     slug: "mend-fences-podcast",
     featured: true,
     image: mendFencesArtImage,
@@ -322,7 +330,6 @@ const News = () => {
                 <Facebook size={20} />
                 Join us on Facebook
               </Button>
-
               <Button
                 variant="outline"
                 size="lg"
@@ -505,7 +512,6 @@ const News = () => {
                 Subscribe to our mailing list to receive the latest news,
                 events, and updates from Project Mend.
               </p>
-
               <form onSubmit={handleSignupSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-left">
@@ -521,7 +527,6 @@ const News = () => {
                       required
                     />
                   </div>
-
                   <div className="text-left">
                     <Label htmlFor="newsletter-email" className="mb-2 block">
                       Email
@@ -536,7 +541,6 @@ const News = () => {
                     />
                   </div>
                 </div>
-
                 <Button type="submit" size="lg" className="w-full md:w-auto">
                   Subscribe to Newsletter
                 </Button>
