@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import FeatureCard from "@/components/FeatureCard";
 import journalImage from "@/assets/cards/mend_journal.png";
 import apprenticeImage from "@/assets/cards/apprentice.png";
-import podcastImage from "@/assets/cards/podcast2.png";
+import podcastImage from "@/assets/cards/podcast.png";
 import renderImage from "@/assets/cards/render_cover.png";
 import prisonAndTimeImage from "@/assets/cards/prison_and_time.png";
 import newsImage from "@/assets/cards/news_events.jpg";
@@ -47,12 +47,13 @@ const About = () => {
               }
               description={
                 <span>
-                  In <em>Mend Fences</em>, our new podcast series, editors reflect on themes 
-                  that appear in the journal and in our archive. It is available on major podcast platforms
+                  In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
+                  that appear in the journal and in our archive.
                 </span>
               }
               image={podcastImage}
               imageAlt="Podcast recording setup"
+              comingSoon
             />
             
             <FeatureCard
