@@ -14,6 +14,7 @@ import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
+import mendFencesArtImage from "@/assets/news/mend_fences_art.jpg";
 
 interface Article {
   id: string;
@@ -35,9 +36,48 @@ interface Article {
   videoId?: string;
   secondVideoId?: string;
   zoomRegistrationLink?: string;
+  badge?: string;
+  listenLinks?: {
+    label: string;
+    url: string;
+    variant?: "default" | "outline";
+  }[];
 }
 
 const articles: Article[] = [
+  {
+    id: "13",
+    title: "Project Mend Launches New Podcast Series: Mend Fences",
+    date: "March 2026",
+    category: "Our News",
+    excerpt:
+      "Project Mend announces Mend Fences, a new podcast series inspired by themes in the journal and archive.",
+    content: `Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.
+
+In Mend Fences, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
+
+Episodes feature discussions of selected pieces from the journal alongside reflections on the process of writing, editing, and building an archive that documents the lived experiences and creative voices of people navigating life after prison.
+
+The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
+
+Mend Fences is available on major podcast platforms.`,
+    slug: "mend-fences-podcast",
+    featured: true,
+    image: mendFencesArtImage,
+    badge: "Podcast",
+    listenLinks: [
+      {
+        label: "Listen on Spotify",
+        url: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
+        variant: "default",
+      },
+      {
+        label: "Listen on Amazon Music",
+        url: "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
+        variant: "outline",
+      },
+    ],
+  },
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
@@ -406,13 +446,21 @@ const News = () => {
 
                         {/* RIGHT: TEXT CONTENT */}
                         <div className="relative">
+                          {article.badge && (
+                            <div className="inline-block mb-3 px-2 py-1 text-xs font-semibold bg-orange-100 text-orange-700 rounded">
+                              {article.badge}
+                            </div>
+                          )}
+
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <Calendar size={14} />
                             <time dateTime={article.date}>{article.date}</time>
                           </div>
+
                           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
                             {article.title}
                           </h3>
+
                           <div className="relative">
                             <div
                               className="text-muted-foreground leading-relaxed"
@@ -420,6 +468,33 @@ const News = () => {
                             >
                               {article.content}
                             </div>
+
+                            {article.listenLinks &&
+                              article.listenLinks.length > 0 && (
+                                <div className="mt-6">
+                                  <h4 className="text-lg font-semibold text-foreground mb-3">
+                                    Listen to <em>Mend Fences</em>
+                                  </h4>
+                                  <div className="flex flex-wrap gap-3">
+                                    {article.listenLinks.map((link) => (
+                                      <Button
+                                        key={link.url}
+                                        asChild
+                                        variant={link.variant ?? "default"}
+                                      >
+                                        <a
+                                          href={link.url}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          onClick={(e) => e.stopPropagation()}
+                                        >
+                                          {link.label}
+                                        </a>
+                                      </Button>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
 
                             {article.zoomRegistrationLink && (
                               <div className="mt-6">
