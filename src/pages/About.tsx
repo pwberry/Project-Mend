@@ -11,34 +11,38 @@ const About = () => {
   return (
     <>
       <Hero />
-      
+
       {/* Features Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6 pr-[1in] pl-4 md:pl-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Row 1: 3 cards */}
             <FeatureCard
               title={
                 <span>
                   <em>Mend</em>, The Journal
                 </span>
               }
-              description="Mend is an annual open-access publication celebrating the lives and creative work of systems-impacted people."
+              description={
+                <span>
+                  <em>Mend</em> is an annual open-access publication
+                  celebrating the lives and creative work of
+                  systems-impacted people.
+                </span>
+              }
               image={journalImage}
               imageAlt="Mend 2025 cover image"
               link="https://surface.syr.edu/mend/"
               external
             />
-            
+
             <FeatureCard
               title="Digital Media Publishing Apprenticeship"
               description="Impacted people in Syracuse build multimodal storytelling skills through our apprenticeship. Learn more about becoming an editor."
               image={apprenticeImage}
               imageAlt="Apprenticeship program participants"
               link="/join"
-              external={false}
             />
-            
+
             <FeatureCard
               title={
                 <span>
@@ -47,19 +51,26 @@ const About = () => {
               }
               description={
                 <span>
-                  In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
-                  that appear in the journal and in our archive.
+                  In <em>Mend</em> Fences, our new podcast series, editors
+                  reflect on themes that appear in the journal and in our
+                  archive.
                 </span>
               }
               image={podcastImage}
-              imageAlt="Podcast"
+              imageAlt="Artwork for the Mend Fences podcast series"
             />
-            
+
             <FeatureCard
-              title={<span>Special Issue: <em>render</em></span>}
+              title={
+                <span>
+                  Special Issue: <em>render</em>
+                </span>
+              }
               description={
                 <span>
-                  <em>render</em>, created by Katherine Nikolau, celebrates the creative work and activism of nine justice-impacted artists.
+                  <em>render</em>, created by Katherine Nikolau, celebrates
+                  the creative work and activism of nine justice-impacted
+                  artists.
                 </span>
               }
               image={renderImage}
@@ -68,23 +79,21 @@ const About = () => {
               external
             />
 
-            {/* Row 2: 2 cards */}
             <FeatureCard
               title="New Film: Prison and Time"
-              description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode collaborate on a powerful film."
+              description="In “Prison and Time,” Mend writer Marvin Wade and Evan Bode collaborate on a powerful film."
               image={prisonAndTimeImage}
               imageAlt="Prison and Time film still"
               link="https://vimeo.com/1124375859/d7a60f58dc?share=copy"
               external
             />
-            
+
             <FeatureCard
               title="News and Events"
               description="Learn about our upcoming workshops, public programs, and celebrations that highlight our community."
               image={newsImage}
               imageAlt="Community gathering at event"
               link="/news"
-              external={false}
             />
           </div>
         </div>
@@ -96,23 +105,44 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
             About Project Mend
           </h2>
-          
+
           <div className="space-y-6 text-foreground/90 leading-relaxed">
             <p>
-Project Mend is a grassroots, multimodal, open-access archive that amplifies the scholarly and creative contributions of people who are currently or formerly incarcerated, along with their broader communities. Many of our contributors are Black and brown individuals working to interrupt cycles of incarceration. Through this work, the archive pushes back against dominant narratives that diminish, silence, or dehumanize these lives.            </p>
-            
-            <p>
-              The initiative explores how people learn to write themselves into new identities and new lives by centering their interests, stories, and histories. We emphasize creative expression as healing, positioning storytelling as data and testimony—forms of knowledge often excluded from traditional academic and public archives.
+              Project Mend is a grassroots, multimodal, open-access archive
+              that amplifies the scholarly and creative contributions of
+              people who are currently or formerly incarcerated, along with
+              their broader communities. Many of our contributors are Black
+              and brown individuals working to interrupt cycles of
+              incarceration. Through this work, the archive pushes back
+              against dominant narratives that diminish, silence, or
+              dehumanize these lives.
             </p>
-                        
+
             <p>
-              Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation and the CNY Humanities Corridor. Additionally, the project has been supported at Syracuse University by the Engaged Humanities Network, the Humanities Center, the SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
+              The initiative explores how people learn to write themselves
+              into new identities and new lives by centering their interests,
+              stories, and histories. We emphasize creative expression as
+              healing, positioning storytelling as data and testimony—forms
+              of knowledge often excluded from traditional academic and public
+              archives.
+            </p>
+
+            <p>
+              Project Mend is made possible through collaboration with the
+              Center for Community Alternatives and through an HNY
+              Post-Incarceration Humanities Partnership, which is generously
+              supported by the Mellon Foundation and the CNY Humanities
+              Corridor. Additionally, the project has been supported at
+              Syracuse University by the Engaged Humanities Network, the
+              Humanities Center, the SOURCE, Syracuse University Libraries,
+              and the Department of Writing Studies, Rhetoric, and
+              Composition.
             </p>
 
             <p>
               For more information, contact Patrick W. Berry at{" "}
-              <a 
-                href="mailto:mend@project-mend.net" 
+              <a
+                href="mailto:mend@project-mend.net"
                 className="text-primary hover:text-primary-light transition-colors underline"
               >
                 mend@project-mend.net
