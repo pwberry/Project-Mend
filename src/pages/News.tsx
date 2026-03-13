@@ -299,7 +299,20 @@ const News = () => {
                   <time>{article.date}</time>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4">{article.title}</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {article.id === "12" ? (
+                    <>
+                      Celebrating the 2026 Issue of <em>Mend</em>
+                    </>
+                  ) : article.id === "13" ? (
+                    <>
+                      Project Mend Launches New Podcast Series:{" "}
+                      <em>Mend Fences</em>
+                    </>
+                  ) : (
+                    article.title
+                  )}
+                </h3>
 
                 <div
                   className="text-muted-foreground leading-relaxed"
@@ -329,6 +342,18 @@ const News = () => {
                         Listen on Amazon Music
                       </Button>
                     )}
+                  </div>
+                )}
+
+                {article.id === "14" && article.externalLink && (
+                  <div className="mt-6">
+                    <Button
+                      variant="outline"
+                      onClick={() => window.open(article.externalLink, "_blank")}
+                    >
+                      Read the Story
+                      <ExternalLink className="ml-2" size={16} />
+                    </Button>
                   </div>
                 )}
 
