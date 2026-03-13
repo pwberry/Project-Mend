@@ -47,13 +47,12 @@ const About = () => {
               }
               description={
                 <span>
-                  In <em>Mend</em> Fences, our new podcast series, editors reflect on themes 
+                  In <em>Mend Fences</em>, our new podcast series, editors reflect on themes 
                   that appear in the journal and in our archive.
                 </span>
               }
               image={podcastImage}
               imageAlt="Podcast recording setup"
-              comingSoon
             />
             
             <FeatureCard
