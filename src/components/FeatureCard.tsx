@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
 
 interface FeatureCardProps {
-  title: ReactNode;
-  description: ReactNode;
+  title: string;
+  description: string;
   image: string;
   imageAlt: string;
   link?: string;
@@ -30,28 +29,24 @@ const FeatureCard = ({
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-
-      <div className="p-6 flex flex-col gap-3 h-full">
+      <div className="p-6 flex flex-col gap-3">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-xl font-semibold leading-snug">{title}</h3>
-          {external && link && (
-            <ExternalLink className="h-4 w-4 mt-1 shrink-0 text-muted-foreground" />
+          <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+            {title}
+          </h3>
+          {comingSoon && (
+            <span className="px-2 py-1 text-xs font-medium bg-muted text-muted-foreground rounded">
+              Coming soon
+            </span>
           )}
         </div>
-
-        <div className="text-muted-foreground leading-relaxed text-sm">
-          {description}
-        </div>
-
-        {comingSoon && (
-          <p className="text-sm font-medium text-primary pt-2">Coming soon</p>
-        )}
+        <p className="text-muted-foreground line-clamp-3">{description}</p>
       </div>
     </div>
   );
 
   if (comingSoon || !link) {
-    return content;
+    return <div className="cursor-default">{content}</div>;
   }
 
   if (external) {
@@ -59,8 +54,8 @@ const FeatureCard = ({
       <a
         href={link}
         target="_blank"
-        rel="noreferrer"
-        className="block h-full"
+        rel="noopener noreferrer"
+        className="block h-full focus:outline-none focus:ring-2 focus:ring-ring rounded-lg"
       >
         {content}
       </a>
@@ -68,7 +63,10 @@ const FeatureCard = ({
   }
 
   return (
-    <Link to={link} className="block h-full">
+    <Link
+      to={link}
+      className="block h-full focus:outline-none focus:ring-2 focus:ring-ring rounded-lg"
+    >
       {content}
     </Link>
   );
