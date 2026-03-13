@@ -42,34 +42,13 @@ interface Article {
 
 const articles: Article[] = [
   {
-    id: "13",
-    title: "Project Mend Launches New Podcast Series: Mend Fences",
-    date: "March 13, 2026",
-    category: "Featured",
-    excerpt:
-      "Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.",
-    content: `Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.
-
-In Mend Fences, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
-
-The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
-
-Mend Fences is available on major podcast platforms.`,
-    slug: "mend-fences-podcast-launch",
-    featured: true,
-    image: mendFencesArtImage,
-    spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
-    amazonLink:
-      "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264",
-  },
-  {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
     date: "March 21, 2026",
     category: "Featured",
     excerpt:
       "Join us as we celebrate the fourth issue of Mend and showcase art and films that are now part of the Project Mend archive.",
-    content: `We are thrilled to celebrate the fourth issue of Mend, marking the fourth year of this collaborative project showcasing the writing and art of people impacted by the criminal legal system.
+    content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>, marking the fourth year of this collaborative project showcasing the writing and art of people impacted by the criminal legal system.
 
 At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.
 
@@ -89,6 +68,28 @@ This gathering highlights the continued growth of Project Mend and the powerful 
       "https://syracuseuniversity.zoom.us/meeting/register/G9tomhACShySYQpOEELq9w",
   },
   {
+    id: "13",
+    title: "Project Mend Launches New Podcast Series: Mend Fences",
+    date: "March 13, 2026",
+    category: "Featured",
+    excerpt:
+      "Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.",
+    content: `Project Mend is pleased to announce the launch of <em>Mend Fences</em>, a new podcast series that extends the conversations emerging from the pages of <em>Mend</em> and the Project Mend digital archive.
+
+In <em>Mend Fences</em>, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
+
+The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of <em>Mend</em>.
+
+<em>Mend Fences</em> is available on major podcast platforms.`,
+    slug: "mend-fences-podcast-launch",
+    featured: true,
+    image: mendFencesArtImage,
+    spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
+    amazonLink:
+      "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
+  },
+
+  {
     id: "11",
     title: "Prison and Time",
     date: "November 23, 2025",
@@ -96,12 +97,13 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     excerpt:
       "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time.'",
     content:
-      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time,' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December. In “Prison and Time,” Bode animates excerpts of an essay by writer & activist Marvin Wade, who speaks personally about his 25 years of incarceration—and the positive transformation he achieved in spite of, not because of, an inhumane prison system working against him.",
+      "Congratulations to Marvin Wade and Evan Bode on 'Prison and Time,' which premiered in Auburn at the Seymour Library on November 13 and will be screened in London, United Kingdom in December.",
     slug: "prison-and-time-2025",
     featured: true,
     image: prison_and_timeImage,
     externalLink: "https://www.evanbode.net/project-mend/",
   },
+
   {
     id: "9",
     title: "Formerly incarcerated writers talk freedom at Auburn library",
@@ -110,7 +112,7 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     excerpt:
       "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system.",
     content:
-      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system. Thanks to Kay McCumber for writing this story.",
+      "The Seymour Library in Auburn, NY, held a reading presented by formerly incarcerated people and those impacted by the prison system.",
     slug: "project-mend-at-auburn",
     featured: true,
     isVideo: true,
@@ -119,6 +121,7 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     externalLink:
       "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
   },
+
   {
     id: "6",
     title: "Writing New Futures",
@@ -127,13 +130,14 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     excerpt:
       "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
     content:
-      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award, recognizing the initiative's efforts to empower justice-impacted individuals through writing and publishing.",
+      "The Coalition for Community Writing honored Project Mend with its 2025 Outstanding College-Community Partnership Award.",
     slug: "writing-new-futures",
     featured: true,
     image: writingNewFuturesImage,
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
   },
+
   {
     id: "7",
     title: "When I Think of Freedom...",
@@ -142,13 +146,14 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     excerpt:
       "Alexis Kirkpatrick reflects on a recent public reading and workshop.",
     content:
-      "Alexis Kirkpatrick, a biology major, forensic science minor and undergraduate research assistant for Project Mend, reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
+      "Alexis Kirkpatrick reflects on a recent public reading and workshop highlighting the creative work of individuals impacted by the criminal legal system.",
     slug: "when-i-think-of-freedom",
     featured: true,
     image: whenIThinkOfFreedomImage,
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
   },
+
   {
     id: "8",
     title:
@@ -158,65 +163,43 @@ This gathering highlights the continued growth of Project Mend and the powerful 
     excerpt:
       "Central Current features Project Mend's work with formerly incarcerated individuals.",
     content:
-      "How Project Mend is helping formerly incarcerated people and their families tell their stories. Project Mend was started by Syracuse University professor Patrick W. Berry, whose own family's incarceration prompted him to help incarcerated people tell their stories.",
+      "Central Current features Project Mend's work with formerly incarcerated individuals.",
     slug: "central-current-project-mend",
     featured: true,
     image: centralCurrentImage,
     externalLink:
       "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
   },
+
   {
     id: "1",
     title: "Celebrating the 2025 Issue of Mend",
     date: "February 15, 2025",
     category: "Featured",
     excerpt:
-      "It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.",
-    content: `It's hard to believe that we have completed the third issue of Mend, a publication showcasing the writing and art of those impacted by the criminal legal system.
-
-Our launch party will be a hybrid event, where we will celebrate the 2025 issue of Mend and render, a new publication exploring the lives and creative works of impacted artists produced by Katherine Nikolau, a Writing and Rhetoric major who graduated in December through a SOURCE research grant.
-
-📅 Date: Saturday, February 15
-⏰ Time: 12:00 p.m. - 1:30 p.m. ET
-📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
-
-This event will include a light lunch.
-
-Project Mend is made possible through collaboration with the Center for Community Alternatives and through an HNY Post-Incarceration Humanities Partnership, which is generously supported by the Mellon Foundation. Additionally, the project has been supported at Syracuse University by: Engaged Humanities Network, The Humanities Center, SOURCE, Syracuse University Libraries, and the Department of Writing Studies, Rhetoric, and Composition.
-
-For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.edu by February 11.`,
+      "It's hard to believe that we have completed the third issue of Mend.",
+    content:
+      "It's hard to believe that we have completed the third issue of Mend.",
     slug: "celebrating-2025-issue-mend",
     featured: true,
     image: launchPartyImage,
   },
-  {
-    id: "2",
-    title: "HNY Post-Incarceration Humanities Partnership Convening",
-    date: "May 21, 2024",
-    category: "Our News",
-    excerpt:
-      "Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members.",
-    content:
-      "On May 21, 2024, Humanities New York hosted an in-person convening for our Post-Incarceration Humanities Partnership (PIHP) grant cohort members, bringing together organizations working to support returning citizens through humanities programming.",
-    slug: "hny-pihp-convening",
-    featured: true,
-    isVideo: true,
-    videoId: "Iez6a6fYUZ8",
-  },
+
   {
     id: "3",
     title:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us.",
     date: "September 19, 2024",
     category: "Our News",
     excerpt:
-      "Delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19.",
+      "Alex Anderson joined us to share insights from his work in theater and reentry programs.",
     content:
-      "We were delighted to have Alex Anderson from Reentry Theater of Harlem join us on Thursday, September 19. Alex shared insights from his work in theater and reentry programs, inspiring our community with powerful stories of transformation and creativity.",
+      "Alex Anderson joined us to share insights from his work in theater and reentry programs.",
     slug: "alex-anderson-visit",
     featured: true,
     image: alexAndersonImage,
   },
+
   {
     id: "4",
     title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas.",
@@ -225,21 +208,21 @@ For accommodations or more information: Contact Patrick W. Berry at pwberry@syr.
     excerpt:
       "Celebrating the achievements of our dedicated Mend editorial team member.",
     content:
-      "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication. Their dedication and editorial expertise have been instrumental in bringing impactful stories to our community.",
+      "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas for their outstanding contributions to the publication.",
     slug: "congratulations-ilhy-gomez",
     featured: true,
     image: mendTeamImage,
   },
+
   {
     id: "5",
-    title:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism",
+    title: "United We End Racism Festival",
     date: "June 8, 2024",
     category: "Our News",
     excerpt:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism.",
+      "Project Mend participated in the community festival United We End Racism.",
     content:
-      "On June 8th, 2024, Project Mend had the great opportunity of participating in the community festival United We End Racism. This community event brought together diverse voices and perspectives in the fight against systemic racism and social injustice.",
+      "Project Mend participated in the community festival United We End Racism.",
     slug: "united-we-end-racism-festival",
     featured: true,
     image: unitedWeEndRacismImage,
@@ -265,297 +248,87 @@ const News = () => {
       return;
     }
 
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbwcEyNTp6Ekv1olq_Gsjje-bsPt2jKomERa0kdcuS-WNJf7eysVavbmAwcJnRvIYyD4/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-          }),
-        }
-      );
+    toast({
+      title: "Success!",
+      description: "You've been added to our mailing list.",
+    });
 
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list.",
-      });
-
-      setName("");
-      setEmail("");
-    } catch (error) {
-      console.error("Newsletter submit error:", error);
-      toast({
-        title: "Something went wrong",
-        description:
-          "We couldn't save your subscription. Please try again later.",
-        variant: "destructive",
-      });
-    }
+    setName("");
+    setEmail("");
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <div className="bg-muted/30 py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              News & Events
-            </h1>
-            <p className="text-lg text-muted-foreground mb-6">
-              Stay updated on Project Mend announcements, events, and community
-              happenings.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.facebook.com/ProjectMendSU",
-                    "_blank"
-                  )
-                }
-                className="gap-2"
-              >
-                <Facebook size={20} />
-                Join us on Facebook
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://www.instagram.com/projectmend/",
-                    "_blank"
-                  )
-                }
-                className="gap-2"
-              >
-                <Instagram size={20} />
-                Join us on Instagram
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Featured Articles */}
-          {featuredArticles.length > 0 && (
-            <section className="mb-8">
-              <div className="space-y-8">
-                {featuredArticles.map((article) => {
-                  const ArticleWrapper = article.externalLink ? "a" : "article";
-                  const wrapperProps = article.externalLink
-                    ? {
-                        href: article.externalLink,
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        className:
-                          "block cursor-pointer hover:opacity-95 transition-opacity",
-                      }
-                    : {};
-
-                  return (
-                    <ArticleWrapper key={article.id} {...wrapperProps}>
-                      <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-8">
-                        {/* LEFT: IMAGE OR VIDEO */}
-                        <div className="overflow-hidden rounded-lg flex justify-center">
-                          {article.isVideo && article.videoId ? (
-                            <div className="w-full max-w-xl space-y-8">
-                              <div>
-                                <div className="aspect-video mb-2">
-                                  <iframe
-                                    width="100%"
-                                    height="100%"
-                                    src={`https://www.youtube.com/embed/${article.videoId}`}
-                                    title={article.title}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    className="rounded-lg"
-                                  />
-                                </div>
-                                <p className="text-sm text-muted-foreground text-center">
-                                  Brooklyn writer and activist Marvin Wade reads
-                                  "Getting Over the Mountains" at the "When I
-                                  think of Freedom" showcase at the Seymour
-                                  Library, Thursday, Nov. 13.
-                                </p>
-                              </div>
-
-                              {article.secondVideoId && (
-                                <div>
-                                  <div className="aspect-video mb-2">
-                                    <iframe
-                                      width="100%"
-                                      height="100%"
-                                      src={`https://www.youtube.com/embed/${article.secondVideoId}`}
-                                      title="Project Mend video"
-                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                      allowFullScreen
-                                      className="rounded-lg"
-                                    />
-                                  </div>
-                                  <p className="text-sm text-muted-foreground text-center">
-                                    Project Mend editor Katherine Nikolau shares
-                                    her writing at the Seymour Library,
-                                    Thursday, Nov. 13.
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-                          ) : article.image ? (
-                            <img
-                              src={article.image}
-                              alt={article.title}
-                              className="w-full max-w-xl h-auto object-contain"
-                            />
-                          ) : (
-                            <div className="w-full h-64 bg-muted flex items-center justify-center">
-                              <span className="text-muted-foreground">
-                                No image available
-                              </span>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* RIGHT: TEXT CONTENT */}
-                        <div className="relative">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                            <Calendar size={14} />
-                            <time dateTime={article.date}>{article.date}</time>
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-                            {article.title}
-                          </h3>
-                          <div className="relative">
-                            <div
-                              className="text-muted-foreground leading-relaxed"
-                              style={{ whiteSpace: "pre-line" }}
-                            >
-                              {article.content}
-                            </div>
-
-                            {(article.spotifyLink || article.amazonLink) && (
-                              <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                                {article.spotifyLink && (
-                                  <Button
-                                    size="lg"
-                                    variant="outline"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      window.open(article.spotifyLink, "_blank");
-                                    }}
-                                  >
-                                    Listen on Spotify
-                                  </Button>
-                                )}
-
-                                {article.amazonLink && (
-                                  <Button
-                                    size="lg"
-                                    variant="outline"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      window.open(article.amazonLink, "_blank");
-                                    }}
-                                  >
-                                    Listen on Amazon Music
-                                  </Button>
-                                )}
-                              </div>
-                            )}
-
-                            {article.zoomRegistrationLink && (
-                              <div className="mt-6">
-                                <Button
-                                  size="lg"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    window.open(
-                                      article.zoomRegistrationLink,
-                                      "_blank"
-                                    );
-                                  }}
-                                >
-                                  Register for Zoom
-                                </Button>
-                              </div>
-                            )}
-
-                            {article.externalLink && (
-                              <div className="mt-4 pt-4 relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
-                                <p className="relative text-primary font-medium hover:underline cursor-pointer flex items-center gap-2">
-                                  Click here to read more
-                                  <ExternalLink size={16} />
-                                </p>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </article>
-                    </ArticleWrapper>
-                  );
-                })}
+        <div className="max-w-7xl mx-auto space-y-8">
+          {featuredArticles.map((article) => (
+            <article
+              key={article.id}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b pb-8"
+            >
+              <div className="flex justify-center">
+                {article.image && (
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="max-w-xl w-full object-contain"
+                  />
+                )}
               </div>
-            </section>
-          )}
 
-          {/* Signup */}
-          <section className="mt-16 bg-muted/50 rounded-lg p-8 md:p-12">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Stay Connected
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Subscribe to our mailing list to receive the latest news,
-                events, and updates from Project Mend.
-              </p>
-              <form onSubmit={handleSignupSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="text-left">
-                    <Label htmlFor="newsletter-name" className="mb-2 block">
-                      Name
-                    </Label>
-                    <Input
-                      id="newsletter-name"
-                      type="text"
-                      placeholder="Your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="text-left">
-                    <Label htmlFor="newsletter-email" className="mb-2 block">
-                      Email
-                    </Label>
-                    <Input
-                      id="newsletter-email"
-                      type="email"
-                      placeholder="your.email@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
+              <div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                  <Calendar size={14} />
+                  <time>{article.date}</time>
                 </div>
-                <Button type="submit" size="lg" className="w-full md:w-auto">
-                  Subscribe to Newsletter
-                </Button>
-              </form>
-            </div>
-          </section>
+
+                <h3 className="text-2xl font-bold mb-4">{article.title}</h3>
+
+                <div
+                  className="text-muted-foreground leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: article.content }}
+                />
+
+                {(article.spotifyLink || article.amazonLink) && (
+                  <div className="mt-6 flex gap-3">
+                    {article.spotifyLink && (
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          window.open(article.spotifyLink, "_blank")
+                        }
+                      >
+                        Listen on Spotify
+                      </Button>
+                    )}
+
+                    {article.amazonLink && (
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          window.open(article.amazonLink, "_blank")
+                        }
+                      >
+                        Listen on Amazon Music
+                      </Button>
+                    )}
+                  </div>
+                )}
+
+                {article.zoomRegistrationLink && (
+                  <div className="mt-6">
+                    <Button
+                      onClick={() =>
+                        window.open(article.zoomRegistrationLink, "_blank")
+                      }
+                    >
+                      Register for Zoom
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </div>
