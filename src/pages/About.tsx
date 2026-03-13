@@ -4,7 +4,7 @@ import journalImage from "@/assets/cards/mend_journal.png";
 import apprenticeImage from "@/assets/cards/apprentice.png";
 import podcastImage from "@/assets/cards/podcast.png";
 import renderImage from "@/assets/cards/render_cover.png";
-import prisonAndTimeImage from "@/assets/cards/prison_and_time.png";
+import prisonAndTimeImage from "@/assets/cards/podcast2.png";
 import newsImage from "@/assets/cards/news_events.jpg";
 
 const About = () => {
