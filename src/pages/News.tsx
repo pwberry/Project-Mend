@@ -50,7 +50,13 @@ At the event, we will celebrate the journal while also showcasing art and films 
 
 📅 Date: Saturday, March 21, 2026
 ⏰ Time: 12:00 p.m. - 1:30 p.m.
-📍 Location: Syracuse Central Library, Community Room, 447 S. Salina St., Syracuse, NY 13202 and via Zoom
+📍 Location: Art in the Atrium, 201 E Washington Street, Syracuse, NY 13202 and on Zoom
+
+This event will include a light lunch. 
+
+The event will also be available on Zoom for those who wish to attend remotely. 
+
+To register for Zoom: https://syracuseuniversity.zoom.us/meeting/register/G9tomhACShySYQpOEELq9w
 
 This gathering highlights the continued growth of Project Mend and the powerful creative work of our contributors and collaborators.`,
     slug: "celebrating-2026-issue-mend",
