@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
-import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
+import mendFencesArtImage from "@/assets/news/podcast.png";
 import projectMendLaunchImage from "@/assets/news/project_mend_launch.png";
 import johnnyMoiraImage from "@/assets/news/johnny_moira.jpg";
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
