@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 
 import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
 import projectMendLaunchImage from "@/assets/news/project_mend_launch.png";
+import johnnyMoiraImage from "@/assets/news/johnny_moira.jpg";
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
 import mendTeamImage from "@/assets/news/mend_team_2024.jpg";
@@ -87,6 +88,22 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
     amazonLink:
       "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
+  },
+  {
+    id: "14",
+    title: "Is Writing Enough?",
+    date: "February 23, 2026",
+    category: "In The Media",
+    excerpt:
+      "Congratulations to Drew Murphy and Camren Wyche on their article 'Is Writing Enough?' reflecting on a Humanities Center Syracuse Symposium event on creativity.",
+    content: `Congratulations to Drew Murphy and Camren Wyche on their article “Is Writing Enough?” in which they reflect on a Humanities Center Syracuse Symposium event on the theme of creativity with Dr. Moira Marquis, Manager of Higher Education Partnerships at the Petey Greene Program, and Johnny Page, Director of Reentry for the Illinois Department of Human Services.
+
+The article appears on the Syracuse University website and will be part of the 2026 issue of <em>Mend</em>.`,
+    slug: "is-writing-enough",
+    featured: true,
+    image: johnnyMoiraImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/is-writing-enough/",
   },
 
   {
