@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
+import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
 import projectMendLaunchImage from "@/assets/news/project_mend_launch.png";
 import launchPartyImage from "@/assets/news/launch_party_2025.png";
 import alexAndersonImage from "@/assets/news/alex_anderson.png";
@@ -35,9 +36,32 @@ interface Article {
   videoId?: string;
   secondVideoId?: string;
   zoomRegistrationLink?: string;
+  spotifyLink?: string;
+  amazonLink?: string;
 }
 
 const articles: Article[] = [
+  {
+    id: "13",
+    title: "Project Mend Launches New Podcast Series: Mend Fences",
+    date: "March 13, 2026",
+    category: "Featured",
+    excerpt:
+      "Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.",
+    content: `Project Mend is pleased to announce the launch of Mend Fences, a new podcast series that extends the conversations emerging from the pages of Mend and the Project Mend digital archive.
+
+In Mend Fences, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
+
+The first episode of Mend Fences was inspired by Rebekah Nilsen’s “Permission to Grieve,” which appears in the 2026 issue of Mend.
+
+Mend Fences is available on major podcast platforms.`,
+    slug: "mend-fences-podcast-launch",
+    featured: true,
+    image: mendFencesArtImage,
+    spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
+    amazonLink:
+      "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264",
+  },
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
@@ -420,6 +444,36 @@ const News = () => {
                             >
                               {article.content}
                             </div>
+
+                            {(article.spotifyLink || article.amazonLink) && (
+                              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                                {article.spotifyLink && (
+                                  <Button
+                                    size="lg"
+                                    variant="outline"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(article.spotifyLink, "_blank");
+                                    }}
+                                  >
+                                    Listen on Spotify
+                                  </Button>
+                                )}
+
+                                {article.amazonLink && (
+                                  <Button
+                                    size="lg"
+                                    variant="outline"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(article.amazonLink, "_blank");
+                                    }}
+                                  >
+                                    Listen on Amazon Music
+                                  </Button>
+                                )}
+                              </div>
+                            )}
 
                             {article.zoomRegistrationLink && (
                               <div className="mt-6">
