@@ -53,7 +53,6 @@ const About = () => {
               }
               image={podcastImage}
               imageAlt="Podcast recording setup"
-              comingSoon
             />
             
             <FeatureCard
