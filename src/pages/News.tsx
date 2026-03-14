@@ -1,13 +1,5 @@
-import { useState, FormEvent } from "react";
-import {
-  Calendar,
-  ExternalLink,
-  Music,
-  Podcast,
-  Headphones,
-} from "lucide-react";
+import { Calendar, ExternalLink, Music, Podcast, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
 import projectMendLaunchImage from "@/assets/news/project_mend_launch.png";
@@ -265,10 +257,54 @@ const News = () => {
 
                 <h3 className="text-2xl font-bold mb-4">{article.title}</h3>
 
-                <div
-                  className="text-muted-foreground leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                />
+                {article.id === "12" ? (
+                  <div className="text-muted-foreground leading-relaxed space-y-5">
+                    <p>
+                      We are thrilled to celebrate the fourth issue of <em>Mend</em>,
+                      marking the fourth year of this collaborative project
+                      showcasing the writing and art of people impacted by the
+                      criminal legal system.
+                    </p>
+
+                    <p>
+                      At the event, we will celebrate the journal while also
+                      showcasing art and films that are now part of the Project Mend
+                      archive.
+                    </p>
+
+                    <div className="rounded-lg border bg-muted/40 p-4 space-y-2 text-sm md:text-base">
+                      <p>
+                        <span className="font-semibold">Date:</span> Saturday, March
+                        21, 2026
+                      </p>
+                      <p>
+                        <span className="font-semibold">Time:</span> 12:00 p.m. –
+                        1:30 p.m.
+                      </p>
+                      <p>
+                        <span className="font-semibold">Location:</span> Art in the
+                        Atrium, 201 E Washington Street, Syracuse, NY 13202
+                      </p>
+                      <p>
+                        <span className="font-semibold">Remote option:</span> Attend
+                        on Zoom
+                      </p>
+                    </div>
+
+                    <p>
+                      This gathering highlights the continued growth of Project Mend
+                      and the powerful creative work of our contributors and
+                      collaborators.
+                    </p>
+
+                    <p>This event will include a light lunch.</p>
+                  </div>
+                ) : (
+                  <div
+                    className="text-muted-foreground leading-relaxed whitespace-pre-line"
+                    dangerouslySetInnerHTML={{ __html: article.content }}
+                  />
+                )}
 
                 {(article.spotifyLink ||
                   article.amazonLink ||
