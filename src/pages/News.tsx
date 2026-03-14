@@ -45,8 +45,8 @@ const articles: Article[] = [
     date: "March 21, 2026",
     category: "Featured",
     excerpt:
-      "Join us as we celebrate the fourth issue of Mend and showcase art and films that are now part of the Project Mend archive.",
-    content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>, marking the fourth year of this collaborative project showcasing the writing and art of people impacted by the criminal legal system.
+      "Join us as we celebrate the fourth issue of <em>Mend</em> and showcase art and films that are now part of the Project Mend archive.",
+    content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>,  showcasing the writing and art of people impacted by the criminal legal system.
 
 At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.`,
     slug: "celebrating-2026-issue-mend",
