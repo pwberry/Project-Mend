@@ -105,7 +105,6 @@ The article appears on the Syracuse University website and will be part of the 2
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/is-writing-enough/",
   },
-
   {
     id: "11",
     title: "Prison and Time",
@@ -120,7 +119,6 @@ The article appears on the Syracuse University website and will be part of the 2
     image: prison_and_timeImage,
     externalLink: "https://www.evanbode.net/project-mend/",
   },
-
   {
     id: "9",
     title: "Formerly incarcerated writers talk freedom at Auburn library",
@@ -138,7 +136,6 @@ The article appears on the Syracuse University website and will be part of the 2
     externalLink:
       "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
   },
-
   {
     id: "6",
     title: "Writing New Futures",
@@ -154,7 +151,6 @@ The article appears on the Syracuse University website and will be part of the 2
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
   },
-
   {
     id: "7",
     title: "When I Think of Freedom...",
@@ -170,7 +166,6 @@ The article appears on the Syracuse University website and will be part of the 2
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
   },
-
   {
     id: "8",
     title:
@@ -187,7 +182,6 @@ The article appears on the Syracuse University website and will be part of the 2
     externalLink:
       "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
   },
-
   {
     id: "1",
     title: "Celebrating the 2025 Issue of Mend",
@@ -201,7 +195,6 @@ The article appears on the Syracuse University website and will be part of the 2
     featured: true,
     image: launchPartyImage,
   },
-
   {
     id: "3",
     title:
@@ -216,7 +209,6 @@ The article appears on the Syracuse University website and will be part of the 2
     featured: true,
     image: alexAndersonImage,
   },
-
   {
     id: "4",
     title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas.",
@@ -230,7 +222,6 @@ The article appears on the Syracuse University website and will be part of the 2
     featured: true,
     image: mendTeamImage,
   },
-
   {
     id: "5",
     title: "United We End Racism Festival",
@@ -281,7 +272,9 @@ const News = () => {
           {featuredArticles.map((article) => (
             <article
               key={article.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b pb-8"
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 border-b pb-8 ${
+                article.id === "12" ? "bg-muted/20 rounded-xl p-8 shadow-sm" : ""
+              }`}
             >
               <div className="flex justify-center">
                 {article.image && (
@@ -299,7 +292,11 @@ const News = () => {
                   <time>{article.date}</time>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4">
+                <h3
+                  className={`font-bold mb-4 ${
+                    article.id === "12" ? "text-3xl" : "text-2xl"
+                  }`}
+                >
                   {article.id === "12" ? (
                     <>
                       Celebrating the 2026 Issue of <em>Mend</em>
@@ -314,13 +311,62 @@ const News = () => {
                   )}
                 </h3>
 
-                <div
-                  className="text-muted-foreground leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                />
+                {article.id === "12" ? (
+                  <>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      We are thrilled to celebrate the fourth issue of{" "}
+                      <em>Mend</em>, marking the fourth year of this
+                      collaborative project showcasing the writing and art of
+                      people impacted by the criminal legal system.
+                    </p>
+
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      At the event, we will celebrate the journal while also
+                      showcasing art and films that are now part of the Project
+                      Mend archive.
+                    </p>
+
+                    <div className="bg-muted/40 border rounded-lg p-6 space-y-4 text-sm md:text-base">
+                      <div className="flex items-center gap-2">
+                        <Calendar size={16} />
+                        <span>
+                          <strong>Date:</strong> Saturday, March 21, 2026
+                        </span>
+                      </div>
+
+                      <div>
+                        <strong>Time:</strong> 12:00 p.m. - 1:30 p.m.
+                      </div>
+
+                      <div>
+                        <strong>Location:</strong> Art in the Atrium
+                        <br />
+                        201 E Washington Street
+                        <br />
+                        Syracuse, NY 13202
+                      </div>
+
+                      <div>
+                        <strong>Also available:</strong> Attend on Zoom
+                      </div>
+                    </div>
+
+                    <p className="text-muted-foreground leading-relaxed mt-6">
+                      This event will include a light lunch. This gathering
+                      highlights the continued growth of Project Mend and the
+                      powerful creative work of our contributors and
+                      collaborators.
+                    </p>
+                  </>
+                ) : (
+                  <div
+                    className="text-muted-foreground leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: article.content }}
+                  />
+                )}
 
                 {(article.spotifyLink || article.amazonLink) && (
-                  <div className="mt-6 flex gap-3">
+                  <div className="mt-6 flex gap-3 flex-wrap">
                     {article.spotifyLink && (
                       <Button
                         variant="outline"
