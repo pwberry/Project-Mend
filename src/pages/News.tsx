@@ -2,16 +2,11 @@ import { useState, FormEvent } from "react";
 import {
   Calendar,
   ExternalLink,
-  Instagram,
-  Facebook,
   Music,
   Podcast,
-  Headphones
+  Headphones,
 } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 import mendFencesArtImage from "@/assets/news/mend_fences_art.png";
@@ -61,30 +56,21 @@ const articles: Article[] = [
       "Join us as we celebrate the fourth issue of Mend and showcase art and films that are now part of the Project Mend archive.",
     content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>, marking the fourth year of this collaborative project showcasing the writing and art of people impacted by the criminal legal system.
 
-At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.
-
-📅 Date: Saturday, March 21, 2026
-⏰ Time: 12:00 p.m. - 1:30 p.m.
-📍 Location: Art in the Atrium, 201 E Washington Street, Syracuse, NY 13202 and on Zoom
-
-This event will include a light lunch.
-
-The event will also be available on Zoom for those who wish to attend remotely.
-
-This gathering highlights the continued growth of Project Mend and the powerful creative work of our contributors and collaborators.`,
+At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.`,
     slug: "celebrating-2026-issue-mend",
     featured: true,
     image: projectMendLaunchImage,
     zoomRegistrationLink:
       "https://syracuseuniversity.zoom.us/meeting/register/G9tomhACShySYQpOEELq9w",
   },
+
   {
     id: "13",
     title: "Project Mend Launches New Podcast Series: Mend Fences",
     date: "March 13, 2026",
     category: "Featured",
     excerpt:
-      "Project Mend is pleased to announce the launch of Mend Fences, a new podcast series.",
+      "Project Mend announces Mend Fences, a new podcast series extending the conversations emerging from the pages of Mend.",
     content: `Project Mend is pleased to announce the launch of <em>Mend Fences</em>, a new podcast series that extends the conversations emerging from the pages of <em>Mend</em> and the Project Mend digital archive.
 
 In <em>Mend Fences</em>, editors and collaborators reflect on themes that appear in the journal and in the growing Project Mend archive. Through conversation and storytelling, the podcast explores the creative work of writers and artists who have been impacted by incarceration.
@@ -98,56 +84,169 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
     amazonLink:
       "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
-    appleLink:
-      "https://podcastsconnect.apple.com/my-podcasts/show/mend-fences/09cee090-07ae-4827-bc6b-00013d9300a9",
+    appleLink: "https://podcasts.apple.com/us/podcast/mend-fences/id1884876834",
   },
 
-  /* remaining articles unchanged */
+  {
+    id: "14",
+    title: "Is Writing Enough?",
+    date: "February 23, 2026",
+    category: "In The Media",
+    excerpt:
+      "Drew Murphy and Camren Wyche reflect on creativity and justice-impacted storytelling.",
+    content: `Congratulations to Drew Murphy and Camren Wyche on their article “Is Writing Enough?” reflecting on a Humanities Center Syracuse Symposium event.`,
+    slug: "is-writing-enough",
+    featured: true,
+    image: johnnyMoiraImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/is-writing-enough/",
+  },
 
+  {
+    id: "11",
+    title: "Prison and Time",
+    date: "November 23, 2025",
+    category: "Awards and Recognitions",
+    excerpt:
+      "Congratulations to Marvin Wade and Evan Bode on their film Prison and Time.",
+    content:
+      "Prison and Time premiered in Auburn at the Seymour Library and later screened in London.",
+    slug: "prison-and-time-2025",
+    featured: true,
+    image: prison_and_timeImage,
+    externalLink: "https://www.evanbode.net/project-mend/",
+  },
+
+  {
+    id: "9",
+    title: "Formerly incarcerated writers talk freedom at Auburn library",
+    date: "November 13, 2025",
+    category: "In The Media",
+    excerpt:
+      "The Seymour Library in Auburn hosted a reading featuring justice-impacted writers.",
+    content:
+      "The event highlighted writing and storytelling from people impacted by incarceration.",
+    slug: "project-mend-at-auburn",
+    featured: true,
+    externalLink:
+      "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
+  },
+
+  {
+    id: "6",
+    title: "Writing New Futures",
+    date: "November 11, 2025",
+    category: "In The Media",
+    excerpt:
+      "Project Mend receives the 2025 Outstanding College-Community Partnership Award.",
+    content:
+      "The Coalition for Community Writing honored Project Mend for its collaborative work with justice-impacted communities.",
+    slug: "writing-new-futures",
+    featured: true,
+    image: writingNewFuturesImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
+  },
+
+  {
+    id: "7",
+    title: "When I Think of Freedom...",
+    date: "July 30, 2025",
+    category: "In The Media",
+    excerpt:
+      "Alexis Kirkpatrick reflects on a public reading and creative workshop.",
+    content:
+      "The event showcased creative writing from individuals impacted by incarceration.",
+    slug: "when-i-think-of-freedom",
+    featured: true,
+    image: whenIThinkOfFreedomImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
+  },
+
+  {
+    id: "8",
+    title:
+      "How Project Mend is helping formerly incarcerated people tell their stories",
+    date: "March 27, 2025",
+    category: "In The Media",
+    excerpt:
+      "Central Current features Project Mend's work with formerly incarcerated individuals.",
+    content:
+      "Central Current highlights storytelling initiatives from Project Mend.",
+    slug: "central-current-project-mend",
+    featured: true,
+    image: centralCurrentImage,
+    externalLink:
+      "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
+  },
+
+  {
+    id: "1",
+    title: "Celebrating the 2025 Issue of Mend",
+    date: "February 15, 2025",
+    category: "Featured",
+    excerpt: "Celebrating the third issue of Mend.",
+    content: "The third issue of Mend highlights writing and art.",
+    slug: "celebrating-2025-issue-mend",
+    featured: true,
+    image: launchPartyImage,
+  },
+
+  {
+    id: "3",
+    title: "Alex Anderson visits Project Mend",
+    date: "September 19, 2024",
+    category: "Our News",
+    excerpt:
+      "Alex Anderson from Reentry Theater of Harlem joined us to share insights.",
+    content:
+      "Alex Anderson spoke about theater, storytelling, and reentry programs.",
+    slug: "alex-anderson-visit",
+    featured: true,
+    image: alexAndersonImage,
+  },
+
+  {
+    id: "4",
+    title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas",
+    date: "May 2024",
+    category: "Client Stories",
+    excerpt: "Celebrating the achievements of a Mend editor.",
+    content:
+      "Ilhy Gomez Del Campo Rojas continues to make meaningful contributions to the publication.",
+    slug: "congratulations-ilhy-gomez",
+    featured: true,
+    image: mendTeamImage,
+  },
+
+  {
+    id: "5",
+    title: "United We End Racism Festival",
+    date: "June 8, 2024",
+    category: "Our News",
+    excerpt:
+      "Project Mend participated in the United We End Racism community festival.",
+    content:
+      "The festival highlighted community collaboration and storytelling.",
+    slug: "united-we-end-racism-festival",
+    featured: true,
+    image: unitedWeEndRacismImage,
+  },
 ];
 
 const News = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const { toast } = useToast();
-
   const featuredArticles = articles.filter((article) => article.featured);
-
-  const handleSignupSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!name || !email) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    toast({
-      title: "Success!",
-      description: "You've been added to our mailing list.",
-    });
-
-    setName("");
-    setEmail("");
-  };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="max-w-7xl mx-auto space-y-8">
-
+        <div className="max-w-7xl mx-auto space-y-10">
           {featuredArticles.map((article) => (
-
             <article
               key={article.id}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 border-b pb-8 ${
-                article.id === "12" ? "bg-muted/20 rounded-xl p-8 shadow-sm" : ""
-              }`}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b pb-10"
             >
-
               <div className="flex justify-center">
                 {article.image && (
                   <img
@@ -159,99 +258,30 @@ const News = () => {
               </div>
 
               <div>
-
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                   <Calendar size={14} />
                   <time>{article.date}</time>
                 </div>
 
-                <h3
-                  className={`font-bold mb-4 ${
-                    article.id === "12" ? "text-3xl" : "text-2xl"
-                  }`}
-                >
-                  {article.id === "12" ? (
-                    <>
-                      Celebrating the 2026 Issue of <em>Mend</em>
-                    </>
-                  ) : article.id === "13" ? (
-                    <>
-                      Project Mend Launches New Podcast Series:{" "}
-                      <em>Mend Fences</em>
-                    </>
-                  ) : (
-                    article.title
-                  )}
-                </h3>
+                <h3 className="text-2xl font-bold mb-4">{article.title}</h3>
 
-                {article.id === "12" ? (
-                  <>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      We are thrilled to celebrate the fourth issue of{" "}
-                      <em>Mend</em>, marking the fourth year of this
-                      collaborative project showcasing the writing and art of
-                      people impacted by the criminal legal system.
-                    </p>
+                <div
+                  className="text-muted-foreground leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: article.content }}
+                />
 
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      At the event, we will celebrate the journal while also
-                      showcasing art and films that are now part of the Project
-                      Mend archive.
-                    </p>
-
-                    <div className="bg-muted/40 border rounded-lg p-6 space-y-4 text-sm md:text-base">
-
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} />
-                        <span>
-                          <strong>Date:</strong> Saturday, March 21, 2026
-                        </span>
-                      </div>
-
-                      <div>
-                        <strong>Time:</strong> 12:00 p.m. - 1:30 p.m.
-                      </div>
-
-                      <div>
-                        <strong>Location:</strong> Art in the Atrium
-                        <br />
-                        201 E Washington Street
-                        <br />
-                        Syracuse, NY 13202
-                      </div>
-
-                      <div>
-                        <strong>Also available:</strong> Attend on Zoom
-                      </div>
-
-                    </div>
-
-                    <p className="text-muted-foreground leading-relaxed mt-6">
-                      This event will include a light lunch. This gathering
-                      highlights the continued growth of Project Mend and the
-                      powerful creative work of our contributors and
-                      collaborators.
-                    </p>
-                  </>
-                ) : (
-                  <div
-                    className="text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                  />
-                )}
-
-                {(article.spotifyLink || article.amazonLink || article.appleLink) && (
-                  <div className="mt-6 flex flex-wrap gap-3">
-
+                {(article.spotifyLink ||
+                  article.amazonLink ||
+                  article.appleLink) && (
+                  <div className="mt-6 flex gap-3 flex-wrap">
                     {article.spotifyLink && (
                       <Button
                         variant="outline"
-                        className="flex items-center gap-2"
                         onClick={() =>
                           window.open(article.spotifyLink, "_blank")
                         }
                       >
-                        <Music size={16} />
+                        <Music size={16} className="mr-2" />
                         Spotify
                       </Button>
                     )}
@@ -259,12 +289,11 @@ const News = () => {
                     {article.amazonLink && (
                       <Button
                         variant="outline"
-                        className="flex items-center gap-2"
                         onClick={() =>
                           window.open(article.amazonLink, "_blank")
                         }
                       >
-                        <Headphones size={16} />
+                        <Headphones size={16} className="mr-2" />
                         Amazon Music
                       </Button>
                     )}
@@ -272,16 +301,26 @@ const News = () => {
                     {article.appleLink && (
                       <Button
                         variant="outline"
-                        className="flex items-center gap-2"
                         onClick={() =>
                           window.open(article.appleLink, "_blank")
                         }
                       >
-                        <Podcast size={16} />
+                        <Podcast size={16} className="mr-2" />
                         Apple Podcasts
                       </Button>
                     )}
+                  </div>
+                )}
 
+                {article.externalLink && (
+                  <div className="mt-6">
+                    <Button
+                      variant="outline"
+                      onClick={() => window.open(article.externalLink, "_blank")}
+                    >
+                      Read More
+                      <ExternalLink size={16} className="ml-2" />
+                    </Button>
                   </div>
                 )}
 
@@ -296,13 +335,9 @@ const News = () => {
                     </Button>
                   </div>
                 )}
-
               </div>
-
             </article>
-
           ))}
-
         </div>
       </div>
     </div>
