@@ -44,9 +44,9 @@ const articles: Article[] = [
     date: "April 22, 2026",
     category: "In The Media",
     excerpt:
-      "Thank you to Ella Chan and syracuse.com for writing about Patrick W. Berry being named a finalist for the inaugural Syracuse Prize.",
+      "Patrick W. Berry is named a finalist for the inaugural Syracuse Prize from CNY Arts. Read story by Ella Chan.",
     content:
-      "Thank you Ella Chan for writing this story in syracuse.com about Patrick W. Berry being one of five finalists for the inaugural Syracuse Prize, which honors city residents who have significantly enriched the Syracuse community.",
+      "Patrick W. Berry is named a finalist for the inaugural Syracuse Prize from CNY Arts. Read story by Ella Chan.",
     slug: "patrick-berry-syracuse-prize-finalist",
     featured: true,
     image: berryImage,
