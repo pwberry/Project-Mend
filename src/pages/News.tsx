@@ -14,6 +14,7 @@ import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prisonAndTimeImage from "@/assets/news/prison_and_time.png";
 import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 import berryImage from "@/assets/news/berry_headshot2.png";
+import groupImage from "@/assets/news/group_edited.png";
 
 interface Article {
   id: string;
@@ -38,6 +39,21 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: "17",
+    title: "Mend: Amplifying Voices, Honoring Stories and Creating Purpose",
+    date: "April 29, 2026",
+    category: "In The Media",
+    excerpt:
+      "Through student-involved publications, A&S writers and editors build career-ready skills and create work that reaches well beyond campus.",
+    content:
+      "Through student-involved publications, A&S writers and editors build career-ready skills and create work that reaches well beyond campus.",
+    slug: "finding-purpose-in-writing",
+    featured: true,
+    image: groupImage,
+    externalLink:
+      "https://artsandsciences.syracuse.edu/news-all/news-2026/finding-purpose-in-writing",
+  },
   {
     id: "16",
     title: "Patrick W. Berry Named Finalist for the Syracuse Prize",
