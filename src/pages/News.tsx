@@ -54,7 +54,8 @@ const articles: Article[] = [
   slug: "patrick-berry-syracuse-prize-finalist",
   featured: true,
   image: berryImage,
-  externalLink: "PASTE_SYRACUSE_DOT_COM_LINK_HERE",
+  externalLink:
+    "https://www.syracuse.com/entertainment/2026/04/10000-syracuse-prize-on-the-line-cny-arts-announces-5-finalists.html",
 },
   {
   id: "15",
