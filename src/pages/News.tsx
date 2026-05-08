@@ -50,7 +50,7 @@ const articles: Article[] = [
     'Thank you to Lily Zuckerman and the Daily Orange for writing this story on the Project Mend launch.',
   content: `Thank you to Lily Zuckerman and the Daily Organge for writing this story on the Project Mend launch.
   While working as a receptionist at the Center for Community Alternatives, Sheela Grant was introduced to a platform that would finally allow her to share the story of her late sister, Cheryl, who was incarcerated for some of her life.
-</em>"`,
+</em>`,
   slug: "latest-edition-project-mend-grieving-surviving",
   featured: true,
   image: marionTroyLaunchImage,
