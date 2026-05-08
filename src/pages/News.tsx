@@ -48,7 +48,7 @@ const articles: Article[] = [
   category: "In The Media",
   excerpt:
     'Thank you to Lily Zuckerman and the Daily Orange for writing this story on the Project Mend launch.',
-  content: `Thank you to Lily Zuckerman for writing this story on the Project Mend launch: "<em>Latest edition of Project Mend explores themes of grieving, surviving.</em>"`,
+  content: `Thank you to Lily Zuckerman and the Daily Organge for writing this story on the Project Mend launch.</em>"`,
   slug: "latest-edition-project-mend-grieving-surviving",
   featured: true,
   image: marionTroyLaunchImage,
