@@ -12,6 +12,7 @@ import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
+import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 
 interface Article {
   id: string;
@@ -39,6 +40,21 @@ interface Article {
 }
 
 const articles: Article[] = [
+ {
+  id: "15",
+  title:
+    'Latest Edition of Project Mend Explores Themes of Grieving, Surviving',
+  date: "March 22, 2026",
+  category: "In The Media",
+  excerpt:
+    'Thank you to Lily Zuckerman for writing this story on the Project Mend launch: "Latest edition of Project Mend explores themes of grieving, surviving."',
+  content: `Thank you to Lily Zuckerman for writing this story on the Project Mend launch: "<em>Latest edition of Project Mend explores themes of grieving, surviving.</em>"`,
+  slug: "latest-edition-project-mend-grieving-surviving",
+  featured: true,
+  image: marionTroyLaunchImage,
+  externalLink:
+    "https://dailyorange.com/2026/03/project-mend-incarcerated-voices/#google_vignette",
+},
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
