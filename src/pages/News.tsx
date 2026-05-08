@@ -13,6 +13,8 @@ import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg"
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
 import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
+import berryImage from "@/assets/news/berryheadshot2.png";
+
 
 interface Article {
   id: string;
@@ -41,6 +43,20 @@ interface Article {
 
 const articles: Article[] = [
  {
+  id: "16",
+  title: "Patrick W. Berry Named Finalist for the Syracuse Prize",
+  date: "April 22, 2026",
+  category: "In The Media",
+  excerpt:
+    "Thank you to Ella Chan and syracuse.com for writing about Patrick W. Berry being named a finalist for the inaugural Syracuse Prize.",
+  content:
+    "Thank you Ella Chan for writing this story in syracuse.com about Patrick W. Berry being one of five finalists for the inaugural Syracuse Prize, which honors city residents who have significantly enriched the Syracuse community.",
+  slug: "patrick-berry-syracuse-prize-finalist",
+  featured: true,
+  image: berryImage,
+  externalLink: "PASTE_SYRACUSE_DOT_COM_LINK_HERE",
+},
+  {
   id: "15",
   title:
     'Latest Edition of Project Mend Explores Themes of Grieving, Surviving',
