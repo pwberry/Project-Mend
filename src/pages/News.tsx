@@ -13,7 +13,7 @@ import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg"
 import centralCurrentImage from "@/assets/news/central_current.jpg";
 import prison_and_timeImage from "@/assets/news/prison_and_time.png";
 import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
-import berryImage from "@/assets/news/berryheadshot2.png";
+import berryImage from "@/assets/news/berry_headshot2.png";
 
 
 interface Article {
