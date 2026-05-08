@@ -11,10 +11,9 @@ import unitedWeEndRacismImage from "@/assets/news/united_we_end_racism.jpg";
 import writingNewFuturesImage from "@/assets/news/writing_new_futures.jpg";
 import whenIThinkOfFreedomImage from "@/assets/news/when_i_think_of_freedom.jpg";
 import centralCurrentImage from "@/assets/news/central_current.jpg";
-import prison_and_timeImage from "@/assets/news/prison_and_time.png";
+import prisonAndTimeImage from "@/assets/news/prison_and_time.png";
 import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 import berryImage from "@/assets/news/berry_headshot2.png";
-
 
 interface Article {
   id: string;
@@ -32,9 +31,6 @@ interface Article {
   slug: string;
   featured: boolean;
   externalLink?: string;
-  isVideo?: boolean;
-  videoId?: string;
-  secondVideoId?: string;
   zoomRegistrationLink?: string;
   spotifyLink?: string;
   amazonLink?: string;
@@ -42,38 +38,37 @@ interface Article {
 }
 
 const articles: Article[] = [
- {
-  id: "16",
-  title: "Patrick W. Berry Named Finalist for the Syracuse Prize",
-  date: "April 22, 2026",
-  category: "In The Media",
-  excerpt:
-    "Thank you to Ella Chan and syracuse.com for writing about Patrick W. Berry being named a finalist for the inaugural Syracuse Prize.",
-  content:
-    "Thank you Ella Chan for writing this story in syracuse.com about Patrick W. Berry being one of five finalists for the inaugural Syracuse Prize, which honors city residents who have significantly enriched the Syracuse community.",
-  slug: "patrick-berry-syracuse-prize-finalist",
-  featured: true,
-  image: berryImage,
-  externalLink:
-    "https://www.syracuse.com/entertainment/2026/04/10000-syracuse-prize-on-the-line-cny-arts-announces-5-finalists.html",
-},
   {
-  id: "15",
-  title:
-    'Latest Edition of Project Mend Explores Themes of Grieving, Surviving',
-  date: "March 22, 2026",
-  category: "In The Media",
-  excerpt:
-    'Thank you to Lily Zuckerman and the Daily Orange for writing this story on the Project Mend launch.',
-  content: `Thank you to Lily Zuckerman and the Daily Organge for writing this story on the Project Mend launch.
-  While working as a receptionist at the Center for Community Alternatives, Sheela Grant was introduced to a platform that would finally allow her to share the story of her late sister, Cheryl, who was incarcerated for some of her life.
-</em>`,
-  slug: "latest-edition-project-mend-grieving-surviving",
-  featured: true,
-  image: marionTroyLaunchImage,
-  externalLink:
-    "https://dailyorange.com/2026/03/project-mend-incarcerated-voices/#google_vignette",
-},
+    id: "16",
+    title: "Patrick W. Berry Named Finalist for the Syracuse Prize",
+    date: "April 22, 2026",
+    category: "In The Media",
+    excerpt:
+      "Thank you to Ella Chan and syracuse.com for writing about Patrick W. Berry being named a finalist for the inaugural Syracuse Prize.",
+    content:
+      "Thank you Ella Chan for writing this story in syracuse.com about Patrick W. Berry being one of five finalists for the inaugural Syracuse Prize, which honors city residents who have significantly enriched the Syracuse community.",
+    slug: "patrick-berry-syracuse-prize-finalist",
+    featured: true,
+    image: berryImage,
+    externalLink:
+      "https://www.syracuse.com/entertainment/2026/04/10000-syracuse-prize-on-the-line-cny-arts-announces-5-finalists.html",
+  },
+  {
+    id: "15",
+    title: "Latest Edition of Project Mend Explores Themes of Grieving, Surviving",
+    date: "March 22, 2026",
+    category: "In The Media",
+    excerpt:
+      "Thank you to Lily Zuckerman and the Daily Orange for writing this story on the Project Mend launch.",
+    content: `Thank you to Lily Zuckerman and the Daily Orange for writing this story on the Project Mend launch.
+
+While working as a receptionist at the Center for Community Alternatives, Sheela Grant was introduced to a platform that would finally allow her to share the story of her late sister, Cheryl, who was incarcerated for some of her life.`,
+    slug: "latest-edition-project-mend-grieving-surviving",
+    featured: true,
+    image: marionTroyLaunchImage,
+    externalLink:
+      "https://dailyorange.com/2026/03/project-mend-incarcerated-voices/#google_vignette",
+  },
   {
     id: "12",
     title: "Celebrating the 2026 Issue of Mend",
@@ -81,7 +76,7 @@ const articles: Article[] = [
     category: "Featured",
     excerpt:
       "Join us as we celebrate the fourth issue of <em>Mend</em> and showcase art and films that are now part of the Project Mend archive.",
-    content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>,  showcasing the writing and art of people impacted by the criminal legal system.
+    content: `We are thrilled to celebrate the fourth issue of <em>Mend</em>, showcasing the writing and art of people impacted by the criminal legal system.
 
 At the event, we will celebrate the journal while also showcasing art and films that are now part of the Project Mend archive.`,
     slug: "celebrating-2026-issue-mend",
@@ -90,7 +85,6 @@ At the event, we will celebrate the journal while also showcasing art and films 
     zoomRegistrationLink:
       "https://syracuseuniversity.zoom.us/meeting/register/G9tomhACShySYQpOEELq9w",
   },
-
   {
     id: "13",
     title: "Project Mend Launches New Podcast Series: Mend Fences",
@@ -113,7 +107,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
       "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
     appleLink: "https://podcasts.apple.com/us/podcast/mend-fences/id1884876834",
   },
-
   {
     id: "14",
     title: "Is Writing Enough?",
@@ -121,29 +114,27 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     category: "In The Media",
     excerpt:
       "Drew Murphy and Camren Wyche reflect on creativity and justice-impacted storytelling.",
-    content: `Congratulations to Drew Murphy and Camren Wyche on their article “Is Writing Enough?” reflecting on a Humanities Center Syracuse Symposium event.`,
+    content:
+      "Congratulations to Drew Murphy and Camren Wyche on their article “Is Writing Enough?” reflecting on a Humanities Center Syracuse Symposium event.",
     slug: "is-writing-enough",
     featured: true,
     image: johnnyMoiraImage,
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/is-writing-enough/",
   },
-
   {
     id: "11",
     title: "Prison and Time",
     date: "November 23, 2025",
     category: "Awards and Recognitions",
-    excerpt:
-      "Congratulations to Marvin Wade and Evan Bode on their film Prison and Time.",
+    excerpt: "Congratulations to Marvin Wade and Evan Bode on their film Prison and Time.",
     content:
       "Prison and Time premiered in Auburn at the Seymour Library and later screened in London.",
     slug: "prison-and-time-2025",
     featured: true,
-    image: prison_and_timeImage,
+    image: prisonAndTimeImage,
     externalLink: "https://www.evanbode.net/project-mend/",
   },
-
   {
     id: "9",
     title: "Formerly incarcerated writers talk freedom at Auburn library",
@@ -158,7 +149,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     externalLink:
       "https://auburnpub.com/news/local/article_c919b805-e55b-476b-8519-ccbc0c065053.html",
   },
-
   {
     id: "6",
     title: "Writing New Futures",
@@ -174,7 +164,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/writing-new-futures/",
   },
-
   {
     id: "7",
     title: "When I Think of Freedom...",
@@ -190,24 +179,20 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     externalLink:
       "https://artsandsciences.syracuse.edu/writing-studies-rhetoric-and-composition/news/when-i-think-of-freedom/",
   },
-
   {
     id: "8",
-    title:
-      "How Project Mend is helping formerly incarcerated people tell their stories",
+    title: "How Project Mend is helping formerly incarcerated people tell their stories",
     date: "March 27, 2025",
     category: "In The Media",
     excerpt:
       "Central Current features Project Mend's work with formerly incarcerated individuals.",
-    content:
-      "Central Current highlights storytelling initiatives from Project Mend.",
+    content: "Central Current highlights storytelling initiatives from Project Mend.",
     slug: "central-current-project-mend",
     featured: true,
     image: centralCurrentImage,
     externalLink:
       "https://centralcurrent.org/how-project-mend-is-helping-formerly-incarcerated-people-and-their-families-tell-their-stories/",
   },
-
   {
     id: "1",
     title: "Celebrating the 2025 Issue of Mend",
@@ -219,7 +204,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     featured: true,
     image: launchPartyImage,
   },
-
   {
     id: "3",
     title: "Alex Anderson visits Project Mend",
@@ -233,7 +217,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     featured: true,
     image: alexAndersonImage,
   },
-
   {
     id: "4",
     title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas",
@@ -246,7 +229,6 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     featured: true,
     image: mendTeamImage,
   },
-
   {
     id: "5",
     title: "United We End Racism Festival",
@@ -296,15 +278,14 @@ const News = () => {
                   <div className="text-muted-foreground leading-relaxed space-y-5">
                     <p>
                       We are thrilled to celebrate the fourth issue of <em>Mend</em>,
-                      marking the fourth year of this collaborative project
-                      showcasing the writing and art of people impacted by the
-                      criminal legal system.
+                      marking the fourth year of this collaborative project showcasing
+                      the writing and art of people impacted by the criminal legal
+                      system.
                     </p>
 
                     <p>
-                      At the event, we will celebrate the journal while also
-                      showcasing art and films that are now part of the Project Mend
-                      archive.
+                      At the event, we will celebrate the journal while also showcasing
+                      art and films that are now part of the Project Mend archive.
                     </p>
 
                     <div className="rounded-lg border bg-muted/40 p-4 space-y-2 text-sm md:text-base">
@@ -341,16 +322,12 @@ const News = () => {
                   />
                 )}
 
-                {(article.spotifyLink ||
-                  article.amazonLink ||
-                  article.appleLink) && (
+                {(article.spotifyLink || article.amazonLink || article.appleLink) && (
                   <div className="mt-6 flex gap-3 flex-wrap">
                     {article.spotifyLink && (
                       <Button
                         variant="outline"
-                        onClick={() =>
-                          window.open(article.spotifyLink, "_blank")
-                        }
+                        onClick={() => window.open(article.spotifyLink, "_blank")}
                       >
                         <Music size={16} className="mr-2" />
                         Spotify
@@ -360,9 +337,7 @@ const News = () => {
                     {article.amazonLink && (
                       <Button
                         variant="outline"
-                        onClick={() =>
-                          window.open(article.amazonLink, "_blank")
-                        }
+                        onClick={() => window.open(article.amazonLink, "_blank")}
                       >
                         <Headphones size={16} className="mr-2" />
                         Amazon Music
@@ -372,9 +347,7 @@ const News = () => {
                     {article.appleLink && (
                       <Button
                         variant="outline"
-                        onClick={() =>
-                          window.open(article.appleLink, "_blank")
-                        }
+                        onClick={() => window.open(article.appleLink, "_blank")}
                       >
                         <Podcast size={16} className="mr-2" />
                         Apple Podcasts
