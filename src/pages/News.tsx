@@ -15,6 +15,8 @@ import prisonAndTimeImage from "@/assets/news/prison_and_time.png";
 import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 import berryImage from "@/assets/news/berry_headshot2.png";
 import groupImage from "@/assets/news/group_edited.png";
+import folcsImage from "@/assets/news/folcs.png";
+
 
 interface Article {
   id: string;
@@ -39,6 +41,21 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: "18",
+    title: "More Recognition for Prison and Time",
+    date: "May 5, 2026",
+    category: "Awards",
+    excerpt:
+      "The Forum on Life, Culture, & Society (FOLCS) hosted the 13th Annual Awards Night for our International Short Film Competition on May 5, 2026. Held at the iconic Peter Norton Symphony Space, a landmark for arts and culture in New York City, the FOLCS Annual Awards Night is a celebration of storytelling that challenges, enlightens, and inspires. Prison and Time won third place in the competition.",
+    content:
+      "The Forum on Life, Culture, & Society (FOLCS) hosted the 13th Annual Awards Night for our International Short Film Competition on May 5, 2026. Held at the iconic Peter Norton Symphony Space, a landmark for arts and culture in New York City, the FOLCS Annual Awards Night is a celebration of storytelling that challenges, enlightens, and inspires. Prison and Time won third place in the competition.",
+    slug: "prison-and-time-award",
+    featured: true,
+    image: folcsImage,
+    externalLink:
+      "https://folcs.org/past-event/folcs-international-short-film-competition-2026-13th-annual-awards-night/",
+  },
   {
     id: "17",
     title: "Mend: Amplifying Voices, Honoring Stories and Creating Purpose",
