@@ -43,7 +43,7 @@ interface Article {
 const articles: Article[] = [
   {
     id: "18",
-    title: "More Recognition for <em>Prison and Time</em>",
+    title: "More Recognition for Prison and Time",
     date: "May 5, 2026",
     category: "Awards",
     excerpt:
