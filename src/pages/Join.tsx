@@ -3,7 +3,7 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents); // read JSON payload
     const email = data.email; // example
     MailApp.sendEmail({
-      to: "mend@project-mend.net",
+      to: "pb112233@gmail.com",
       subject: "New Application",
       body: `New applicant: ${data.firstName} ${data.lastName}\nEmail: ${email}`,
     });
