@@ -1,16 +1,22 @@
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents); // read JSON payload
-    const email = data.email; // example
+    if (!e.postData || !e.postData.contents) throw new Error("No POST data received");
+
+    Logger.log(JSON.stringify(e)); // debug log
+    const data = JSON.parse(e.postData.contents);
+    Logger.log(data);
+
     MailApp.sendEmail({
-      to: "pb112233@gmail.com",
+      to: "mend@project-mend.net",
       subject: "New Application",
-      body: `New applicant: ${data.firstName} ${data.lastName}\nEmail: ${email}`,
+      body: `New applicant: ${data.firstName} ${data.lastName}\nEmail: ${data.email}`,
     });
+
     return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
                          .setMimeType(ContentService.MimeType.JSON);
   } catch(err) {
-    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err }))
+    Logger.log(err);
+    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
                          .setMimeType(ContentService.MimeType.JSON);
   }
 }
