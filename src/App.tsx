@@ -9,11 +9,16 @@ import About from "./pages/About";
 import People from "./pages/People";
 import Submit from "./pages/Submit";
 import MendPage from "./pages/Mend";
-import Join from "./pages/Join";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+const RedirectToGoogleForm = () => {
+  window.location.href =
+    "https://docs.google.com/forms/d/e/1FAIpQLSeaNrIqdNe7AfZ2ReeNtbangxboxv3xz_as4G2h_3tdhFP0Xg/viewform?usp=dialog";
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -30,7 +35,7 @@ const App = () => (
               <Route path="/people" element={<People />} />
               <Route path="/submit" element={<Submit />} />
               <Route path="/mend" element={<MendPage />} />
-              <Route path="/join" element={<Join />} />
+              <Route path="/join" element={<RedirectToGoogleForm />} />
               <Route path="/news" element={<News />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
