@@ -76,7 +76,7 @@ const About = () => {
               description="In 'Prison and Time,' Mend writer Marvin Wade and Evan Bode collaborate on a powerful film."
               image={prisonAndTimeImage}
               imageAlt="Prison and Time film still"
-              link="https://vimeo.com/1124375859/d7a60f58dc?share=copy"
+              link="https://www.nytimes.com/2026/05/27/opinion/america-incarceration-prison-time-film.html"
               external
             />
             
