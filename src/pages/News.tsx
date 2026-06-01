@@ -16,7 +16,7 @@ import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 import berryImage from "@/assets/news/berry_headshot2.png";
 import groupImage from "@/assets/news/group_edited.png";
 import folcsImage from "@/assets/news/folcs.png";
-import nytImage from "@/assets/news/wade_bode_nyc.png";
+import nytImage from "@/assets/news/wade_bode_nyt.png";
 
 
 interface Article {
