@@ -46,10 +46,11 @@ const articles: Article[] = [
     id: "19",
     title: "Befriending Time Changed My Life",
     date: "May 27, 2026",
-    category: "Movies",
+    category: "In the Media",
     excerpt:
       "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",
-    slug: "prison-and-time-in_ny_times",
+    content:
+      "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",slug: "prison-and-time-in_ny_times",
     featured: true,
     image: nytImage,
     externalLink:
