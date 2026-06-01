@@ -16,6 +16,7 @@ import marionTroyLaunchImage from "@/assets/news/marion_troy_launch.jpg";
 import berryImage from "@/assets/news/berry_headshot2.png";
 import groupImage from "@/assets/news/group_edited.png";
 import folcsImage from "@/assets/news/folcs.png";
+import nytImage from "@/assets/news/wade_bode_nyc.png";
 
 
 interface Article {
@@ -41,6 +42,19 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: "19",
+    title: "Befriending Time Changed My Life",
+    date: "May 27, 2026",
+    category: "Movies",
+    excerpt:
+      "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",
+    slug: "prison-and-time-in_ny_times",
+    featured: true,
+    image: nytImage,
+    externalLink:
+      "https://www.nytimes.com/2026/05/27/opinion/america-incarceration-prison-time-film.html?smid=fb-nytopinion&smtyp=cur&fbclid=IwY2xjawSKqGBleHRuA2FlbQIxMQBicmlkETE1ZVVnWHdmZkdvVUhYbk5pc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnDyK-2oIm5zGimhx0E4h1_v5vA3M6XVejLhVeWg7MVt2t1oKzK6onKCmSdw_aem_n-OxChXRliwTpTJjGEwf0g",
+  },
   {
     id: "18",
     title: "More Recognition for Prison and Time",
