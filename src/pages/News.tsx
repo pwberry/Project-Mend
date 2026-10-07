@@ -77,7 +77,7 @@ const articles: Article[] = [
     id: "18",
     title: "More Recognition for Prison and Time",
     date: "May 5, 2026",
-    category: "Awards",
+    category: "Awards and Recognitions",
     excerpt:
       "The Forum on Life, Culture, & Society (FOLCS) hosted the 13th Annual Awards Night for our International Short Film Competition on May 5, 2026. Held at the iconic Peter Norton Symphony Space, a landmark for arts and culture in New York City, the FOLCS Annual Awards Night is a celebration of storytelling that challenges, enlightens, and inspires. <em>Prison and Time</em> won third place in the competition.",
     content:
@@ -167,10 +167,12 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     slug: "mend-fences-podcast-launch",
     featured: true,
     image: mendFencesArtImage,
-    spotifyLink: "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
+    spotifyLink:
+      "https://open.spotify.com/show/78G3PLCIz4Hhhr9r6pnqmU",
     amazonLink:
       "https://music.amazon.com/podcasts/a91b8d75-168c-4d90-9bd5-0cbe5e264661/mend-fences",
-    appleLink: "https://podcasts.apple.com/us/podcast/mend-fences/id1884876834",
+    appleLink:
+      "https://podcasts.apple.com/us/podcast/mend-fences/id1884876834",
   },
   {
     id: "14",
@@ -199,7 +201,8 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     slug: "prison-and-time-2025",
     featured: true,
     image: prisonAndTimeImage,
-    externalLink: "https://www.evanbode.net/project-mend/",
+    externalLink:
+      "https://www.evanbode.net/project-mend/",
   },
   {
     id: "9",
@@ -266,8 +269,10 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     title: "Celebrating the 2025 Issue of Mend",
     date: "February 15, 2025",
     category: "Featured",
-    excerpt: "Celebrating the third issue of Mend.",
-    content: "The third issue of Mend highlights writing and art.",
+    excerpt:
+      "Celebrating the third issue of Mend.",
+    content:
+      "The third issue of Mend highlights writing and art.",
     slug: "celebrating-2025-issue-mend",
     featured: true,
     image: launchPartyImage,
@@ -290,7 +295,8 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     title: "Congratulations to Mend editor Ilhy Gomez Del Campo Rojas",
     date: "May 2024",
     category: "Client Stories",
-    excerpt: "Celebrating the achievements of a Mend editor.",
+    excerpt:
+      "Celebrating the achievements of a Mend editor.",
     content:
       "Ilhy Gomez Del Campo Rojas continues to make meaningful contributions to the publication.",
     slug: "congratulations-ilhy-gomez",
@@ -313,7 +319,9 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
 ];
 
 const News = () => {
-  const featuredArticles = articles.filter((article) => article.featured);
+  const featuredArticles = articles.filter(
+    (article) => article.featured
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -340,46 +348,56 @@ const News = () => {
                   <time>{article.date}</time>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4">{article.title}</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {article.title}
+                </h3>
 
                 {article.id === "12" ? (
                   <div className="text-muted-foreground leading-relaxed space-y-5">
                     <p>
                       We are thrilled to celebrate the fourth issue of{" "}
-                      <em>Mend</em>, marking the fourth year of this collaborative
-                      project showcasing the writing and art of people impacted
-                      by the criminal legal system.
+                      <em>Mend</em>, marking the fourth year of this
+                      collaborative project showcasing the writing and art
+                      of people impacted by the criminal legal system.
                     </p>
 
                     <p>
                       At the event, we will celebrate the journal while also
-                      showcasing art and films that are now part of the Project
-                      Mend archive.
+                      showcasing art and films that are now part of the
+                      Project Mend archive.
                     </p>
 
                     <div className="rounded-lg border bg-muted/40 p-4 space-y-2 text-sm md:text-base">
                       <p>
-                        <span className="font-semibold">Date:</span> Saturday,
-                        March 21, 2026
+                        <span className="font-semibold">Date:</span>{" "}
+                        Saturday, March 21, 2026
                       </p>
+
                       <p>
-                        <span className="font-semibold">Time:</span> 12:00 p.m. –
-                        1:30 p.m.
+                        <span className="font-semibold">Time:</span>{" "}
+                        12:00 p.m. – 1:30 p.m.
                       </p>
+
                       <p>
-                        <span className="font-semibold">Location:</span> Art in
-                        the Atrium, 201 E Washington Street, Syracuse, NY 13202
+                        <span className="font-semibold">
+                          Location:
+                        </span>{" "}
+                        Art in the Atrium, 201 E Washington Street,
+                        Syracuse, NY 13202
                       </p>
+
                       <p>
-                        <span className="font-semibold">Remote option:</span>{" "}
+                        <span className="font-semibold">
+                          Remote option:
+                        </span>{" "}
                         Attend on Zoom
                       </p>
                     </div>
 
                     <p>
-                      This gathering highlights the continued growth of Project
-                      Mend and the powerful creative work of our contributors
-                      and collaborators.
+                      This gathering highlights the continued growth of
+                      Project Mend and the powerful creative work of our
+                      contributors and collaborators.
                     </p>
 
                     <p>This event will include a light lunch.</p>
@@ -387,22 +405,27 @@ const News = () => {
                 ) : article.audioLink ? (
                   <div className="text-muted-foreground leading-relaxed">
                     <p>
-                      {article.content} Listen to the interview{" "}
-                      <a
-                        href={article.audioLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline font-medium hover:text-foreground"
-                      >
-                        here
-                      </a>
-                      .
+                      {article.content} Listen to the interview here.
                     </p>
+
+                    <audio
+                      controls
+                      preload="metadata"
+                      className="mt-5 w-full"
+                    >
+                      <source
+                        src={article.audioLink}
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
                   </div>
                 ) : (
                   <div
                     className="text-muted-foreground leading-relaxed whitespace-pre-line"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
+                    dangerouslySetInnerHTML={{
+                      __html: article.content,
+                    }}
                   />
                 )}
 
@@ -414,7 +437,10 @@ const News = () => {
                       <Button
                         variant="outline"
                         onClick={() =>
-                          window.open(article.spotifyLink, "_blank")
+                          window.open(
+                            article.spotifyLink,
+                            "_blank"
+                          )
                         }
                       >
                         <Music size={16} className="mr-2" />
@@ -426,10 +452,16 @@ const News = () => {
                       <Button
                         variant="outline"
                         onClick={() =>
-                          window.open(article.amazonLink, "_blank")
+                          window.open(
+                            article.amazonLink,
+                            "_blank"
+                          )
                         }
                       >
-                        <Headphones size={16} className="mr-2" />
+                        <Headphones
+                          size={16}
+                          className="mr-2"
+                        />
                         Amazon Music
                       </Button>
                     )}
@@ -437,9 +469,17 @@ const News = () => {
                     {article.appleLink && (
                       <Button
                         variant="outline"
-                        onClick={() => window.open(article.appleLink, "_blank")}
+                        onClick={() =>
+                          window.open(
+                            article.appleLink,
+                            "_blank"
+                          )
+                        }
                       >
-                        <Podcast size={16} className="mr-2" />
+                        <Podcast
+                          size={16}
+                          className="mr-2"
+                        />
                         Apple Podcasts
                       </Button>
                     )}
@@ -451,11 +491,17 @@ const News = () => {
                     <Button
                       variant="outline"
                       onClick={() =>
-                        window.open(article.externalLink, "_blank")
+                        window.open(
+                          article.externalLink,
+                          "_blank"
+                        )
                       }
                     >
                       Read More
-                      <ExternalLink size={16} className="ml-2" />
+                      <ExternalLink
+                        size={16}
+                        className="ml-2"
+                      />
                     </Button>
                   </div>
                 )}
@@ -464,7 +510,10 @@ const News = () => {
                   <div className="mt-6">
                     <Button
                       onClick={() =>
-                        window.open(article.zoomRegistrationLink, "_blank")
+                        window.open(
+                          article.zoomRegistrationLink,
+                          "_blank"
+                        )
                       }
                     >
                       Register for Zoom
