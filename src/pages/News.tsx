@@ -17,7 +17,8 @@ import berryImage from "@/assets/news/berry_headshot2.png";
 import groupImage from "@/assets/news/group_edited.png";
 import folcsImage from "@/assets/news/folcs.png";
 import nytImage from "@/assets/news/wade_bode_nyt.png";
-
+import berryTroyWaerImage from "@/assets/news/berry_troy_waer.png";
+import waerInterviewAudio from "@/assets/news/PROJECT MEND AUG 31 2026 WAER NEWS.wav";
 
 interface Article {
   id: string;
@@ -35,6 +36,7 @@ interface Article {
   slug: string;
   featured: boolean;
   externalLink?: string;
+  audioLink?: string;
   zoomRegistrationLink?: string;
   spotifyLink?: string;
   amazonLink?: string;
@@ -43,14 +45,29 @@ interface Article {
 
 const articles: Article[] = [
   {
+    id: "20",
+    title: "Project Mend speaks with WAER",
+    date: "August 31, 2026",
+    category: "In The Media",
+    excerpt:
+      "Troy White and Patrick W. Berry sat down with WAER on August 31 to discuss the project and the new year. Listen to the interview here.",
+    content:
+      "Troy White and Patrick W. Berry sat down with WAER on August 31 to discuss the project and the new year.",
+    slug: "project-mend-speaks-with-waer",
+    featured: true,
+    image: berryTroyWaerImage,
+    audioLink: waerInterviewAudio,
+  },
+  {
     id: "19",
     title: "Befriending Time Changed My Life",
     date: "May 27, 2026",
-    category: "In the Media",
+    category: "In The Media",
     excerpt:
       "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",
     content:
-      "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",slug: "prison-and-time-in_ny_times",
+      "In conversations about prison, people often mistake punishment for justice. Instead of investing in prevention, repair and healing, the carceral system often doubles down on violence. But it doesn’t have to be that way.",
+    slug: "prison-and-time-in_ny_times",
     featured: true,
     image: nytImage,
     externalLink:
@@ -175,7 +192,8 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
     title: "Prison and Time",
     date: "November 23, 2025",
     category: "Awards and Recognitions",
-    excerpt: "Congratulations to Marvin Wade and Evan Bode on their film Prison and Time.",
+    excerpt:
+      "Congratulations to Marvin Wade and Evan Bode on their film Prison and Time.",
     content:
       "Prison and Time premiered in Auburn at the Seymour Library and later screened in London.",
     slug: "prison-and-time-2025",
@@ -229,12 +247,14 @@ The first episode of <em>Mend Fences</em> was inspired by Rebekah Nilsen’s “
   },
   {
     id: "8",
-    title: "How Project Mend is helping formerly incarcerated people tell their stories",
+    title:
+      "How Project Mend is helping formerly incarcerated people tell their stories",
     date: "March 27, 2025",
     category: "In The Media",
     excerpt:
       "Central Current features Project Mend's work with formerly incarcerated individuals.",
-    content: "Central Current highlights storytelling initiatives from Project Mend.",
+    content:
+      "Central Current highlights storytelling initiatives from Project Mend.",
     slug: "central-current-project-mend",
     featured: true,
     image: centralCurrentImage,
@@ -325,43 +345,59 @@ const News = () => {
                 {article.id === "12" ? (
                   <div className="text-muted-foreground leading-relaxed space-y-5">
                     <p>
-                      We are thrilled to celebrate the fourth issue of <em>Mend</em>,
-                      marking the fourth year of this collaborative project showcasing
-                      the writing and art of people impacted by the criminal legal
-                      system.
+                      We are thrilled to celebrate the fourth issue of{" "}
+                      <em>Mend</em>, marking the fourth year of this collaborative
+                      project showcasing the writing and art of people impacted
+                      by the criminal legal system.
                     </p>
 
                     <p>
-                      At the event, we will celebrate the journal while also showcasing
-                      art and films that are now part of the Project Mend archive.
+                      At the event, we will celebrate the journal while also
+                      showcasing art and films that are now part of the Project
+                      Mend archive.
                     </p>
 
                     <div className="rounded-lg border bg-muted/40 p-4 space-y-2 text-sm md:text-base">
                       <p>
-                        <span className="font-semibold">Date:</span> Saturday, March
-                        21, 2026
+                        <span className="font-semibold">Date:</span> Saturday,
+                        March 21, 2026
                       </p>
                       <p>
                         <span className="font-semibold">Time:</span> 12:00 p.m. –
                         1:30 p.m.
                       </p>
                       <p>
-                        <span className="font-semibold">Location:</span> Art in the
-                        Atrium, 201 E Washington Street, Syracuse, NY 13202
+                        <span className="font-semibold">Location:</span> Art in
+                        the Atrium, 201 E Washington Street, Syracuse, NY 13202
                       </p>
                       <p>
-                        <span className="font-semibold">Remote option:</span> Attend
-                        on Zoom
+                        <span className="font-semibold">Remote option:</span>{" "}
+                        Attend on Zoom
                       </p>
                     </div>
 
                     <p>
-                      This gathering highlights the continued growth of Project Mend
-                      and the powerful creative work of our contributors and
-                      collaborators.
+                      This gathering highlights the continued growth of Project
+                      Mend and the powerful creative work of our contributors
+                      and collaborators.
                     </p>
 
                     <p>This event will include a light lunch.</p>
+                  </div>
+                ) : article.audioLink ? (
+                  <div className="text-muted-foreground leading-relaxed">
+                    <p>
+                      {article.content} Listen to the interview{" "}
+                      <a
+                        href={article.audioLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline font-medium hover:text-foreground"
+                      >
+                        here
+                      </a>
+                      .
+                    </p>
                   </div>
                 ) : (
                   <div
@@ -370,12 +406,16 @@ const News = () => {
                   />
                 )}
 
-                {(article.spotifyLink || article.amazonLink || article.appleLink) && (
+                {(article.spotifyLink ||
+                  article.amazonLink ||
+                  article.appleLink) && (
                   <div className="mt-6 flex gap-3 flex-wrap">
                     {article.spotifyLink && (
                       <Button
                         variant="outline"
-                        onClick={() => window.open(article.spotifyLink, "_blank")}
+                        onClick={() =>
+                          window.open(article.spotifyLink, "_blank")
+                        }
                       >
                         <Music size={16} className="mr-2" />
                         Spotify
@@ -385,7 +425,9 @@ const News = () => {
                     {article.amazonLink && (
                       <Button
                         variant="outline"
-                        onClick={() => window.open(article.amazonLink, "_blank")}
+                        onClick={() =>
+                          window.open(article.amazonLink, "_blank")
+                        }
                       >
                         <Headphones size={16} className="mr-2" />
                         Amazon Music
@@ -408,7 +450,9 @@ const News = () => {
                   <div className="mt-6">
                     <Button
                       variant="outline"
-                      onClick={() => window.open(article.externalLink, "_blank")}
+                      onClick={() =>
+                        window.open(article.externalLink, "_blank")
+                      }
                     >
                       Read More
                       <ExternalLink size={16} className="ml-2" />
